@@ -1,0 +1,1973 @@
+1
+00:00:21,000 --> 00:00:23,860
+<i>Previously on "Battlestar Galactica":</i>
+
+2
+00:00:23,960 --> 00:00:26,265
+l was burnt out.
+
+3
+00:00:26,365 --> 00:00:28,308
+l started taking... stims.
+
+4
+00:00:28,408 --> 00:00:30,545
+- What are these?
+- Stims.
+
+5
+00:00:30,645 --> 00:00:35,745
+And by the look of it,
+she's been taking them by the handful.
+
+6
+00:00:35,880 --> 00:00:40,628
+Coming in late cos you're hungover is
+bad, but when you back out on a mission?
+
+7
+00:00:40,728 --> 00:00:42,908
+Unlike you,
+l don't take a bunch of pills...
+
+8
+00:00:43,008 --> 00:00:49,213
+and then climb in my cockpit so wired
+that l can't land the frakking ship.
+
+9
+00:00:49,880 --> 00:00:52,866
+Starbuck, you're an embarrassment.
+
+10
+00:00:52,966 --> 00:00:56,228
+l need you back in the CIC.
+
+11
+00:00:56,328 --> 00:01:00,546
+It just ain't the same without you in there...
+intimidating the inmates.
+
+12
+00:01:00,646 --> 00:01:01,696
+No, no.
+
+13
+00:01:03,560 --> 00:01:08,185
+There are 12 Cylon models. But in the
+occupation on New Caprica, l saw seven.
+
+14
+00:01:08,285 --> 00:01:11,585
+- Who are the final five?
+- l can't talk about that.
+
+15
+00:01:11,685 --> 00:01:13,666
+<i>(Baltar) What is it talking about?</i>
+
+16
+00:01:13,766 --> 00:01:17,225
+<i>(Number Six) Most Cylons think</i>
+the mind of the hybrid has gone mad...
+
+17
+00:01:17,325 --> 00:01:19,508
+and the vocalisations are meaningless.
+
+18
+00:01:19,608 --> 00:01:22,027
+But not everyone thinks that.
+
+19
+00:01:22,127 --> 00:01:25,788
+You'll delete the order from your logs.
+Execute.
+
+20
+00:01:25,888 --> 00:01:27,190
+<i>(gunshot)...</i>
+
+21
+00:01:27,290 --> 00:01:28,829
+<i>(gasps)</i>
+
+22
+00:01:28,929 --> 00:01:31,480
+It's OK. It's OK.
+
+23
+00:01:32,080 --> 00:01:35,117
+There is something beautiful...
+
+24
+00:01:36,200 --> 00:01:39,556
+miraculous,
+between life and death.
+
+25
+00:02:05,960 --> 00:02:10,106
+There's no food to be salvaged?
+What about the good food we had stored...
+
+26
+00:02:10,206 --> 00:02:13,468
+before we started
+churning out the contaminated stuff?
+
+27
+00:02:13,568 --> 00:02:15,349
+The newly processed bad food...
+
+28
+00:02:15,449 --> 00:02:19,108
+went into the depleted storage system.
+Everything's tainted.
+
+29
+00:02:19,208 --> 00:02:21,989
+<i>(Cottle) Sharon's finding algae</i>
+<i>for us to process.</i>
+
+30
+00:02:22,089 --> 00:02:24,907
+It's tough to choke down,
+but it's almost pure protein.
+
+31
+00:02:25,007 --> 00:02:30,307
+What if Sharon comes back and reports
+there is no clear passage to this planet?
+
+32
+00:02:30,407 --> 00:02:33,785
+Then the question is, Doc,
+how long can we survive?
+
+33
+00:02:33,885 --> 00:02:38,426
+With the rations we've been on?
+l'd say seven to ten days.
+
+34
+00:02:38,526 --> 00:02:41,788
+<i>- (Roslin) When is she due back?</i>
+- She was due three hours ago.
+
+35
+00:02:41,888 --> 00:02:46,580
+The, uh, radiation levels are high,
+but she's strong and...
+
+36
+00:02:46,680 --> 00:02:48,480
+she's, uh...
+
+37
+00:02:49,490 --> 00:02:51,700
+She'll be here any moment.
+
+38
+00:03:22,000 --> 00:03:24,710
+- No, l'm sorry. l don't have anything.
+- To share.
+
+39
+00:03:24,810 --> 00:03:27,829
+l told you, Starbuck, l don't have anything.
+Get off my back.
+
+40
+00:03:27,929 --> 00:03:30,145
+- l saw a protein bar.
+- l gave it to Cottle.
+
+41
+00:03:30,245 --> 00:03:32,146
+Right. Right after l gave him head.
+
+42
+00:03:32,246 --> 00:03:34,188
+- Now l'm a liar?!
+- If the shoe fits...
+
+43
+00:03:34,288 --> 00:03:35,946
+All right, can it!
+
+44
+00:03:36,046 --> 00:03:38,474
+Kat, get down here.
+
+45
+00:03:39,800 --> 00:03:46,770
+All right. For frak's sake, everybody eat.
+We're getting paranoid over this hunger.
+
+46
+00:03:59,560 --> 00:04:01,828
+<i>(Kat) Here, baby. Eat this.</i>
+
+47
+00:04:01,928 --> 00:04:04,988
+<i>(Starbuck) Oh, my gods, that's good.</i>
+
+48
+00:04:14,480 --> 00:04:16,480
+<i>(alarm)...</i>
+
+49
+00:05:39,040 --> 00:05:41,547
+<i>(Baltar) Somewhere to be, D'Anna?</i>
+
+50
+00:05:41,647 --> 00:05:45,155
+<i>(Number Three) Ssh. You'll wake Caprica.</i>
+
+51
+00:05:46,760 --> 00:05:52,795
+l'd love to hang around with you two
+all day, but... l got things to do.
+
+52
+00:05:54,120 --> 00:05:57,548
+l'll never understand
+what you all do all day long,
+
+53
+00:05:57,648 --> 00:06:01,133
+living on this thing like fleas on a cat.
+
+54
+00:06:02,600 --> 00:06:05,746
+Where do you suppose
+she takes herself off to, then?
+
+55
+00:06:05,846 --> 00:06:10,386
+- You're not the only one asking that.
+- l'm not?
+
+56
+00:06:10,486 --> 00:06:12,349
+What do you mean?
+
+57
+00:06:12,449 --> 00:06:17,150
+- She's been doing things.
+- "Doing things"?
+
+58
+00:06:20,720 --> 00:06:22,429
+What things?
+
+59
+00:06:22,529 --> 00:06:24,715
+<i>(loud hissing)...</i>
+
+60
+00:06:26,360 --> 00:06:29,165
+<i>(talking drowned out by noise)...</i>
+
+61
+00:06:35,080 --> 00:06:38,140
+<i>(man) Go ahead,</i>
+l've got your helmet.
+
+62
+00:06:38,640 --> 00:06:42,040
+- There you go. Got you.
+<i>- (man #2) Easy.</i>
+
+63
+00:06:45,360 --> 00:06:48,708
+<i>(man) Prepare the starboard side</i>
+for wash down.
+
+64
+00:06:48,808 --> 00:06:53,745
+- All the way down to fifth.
+<i>- (man #2) Right through here, Lieutenant.</i>
+
+65
+00:06:53,845 --> 00:06:56,354
+Radiation negative.
+
+66
+00:06:59,480 --> 00:07:02,660
+There's a way through the star cluster.
+
+67
+00:07:02,760 --> 00:07:05,549
+And l found the planet,
+on the other side.
+
+68
+00:07:05,649 --> 00:07:08,307
+l skimmed it, l took photos.
+
+69
+00:07:08,407 --> 00:07:12,657
+There's huge swaths of algae,
+just like we thought.
+
+70
+00:07:13,600 --> 00:07:15,506
+- It's black.
+<i>- (Apollo) She's a Cylon.</i>
+
+71
+00:07:15,606 --> 00:07:17,665
+She can handle a radiation dose that big.
+
+72
+00:07:17,765 --> 00:07:21,305
+- We think. Someone call Cottle!
+- l'm fine.
+
+73
+00:07:21,405 --> 00:07:25,669
+Maybe you are, but...
+a human might not be able to make it.
+
+74
+00:07:25,769 --> 00:07:30,189
+So then how do we get tens of thousands
+of humans through there?
+
+75
+00:07:30,289 --> 00:07:34,426
+<i>(Sharon) So we can make it through</i>
+in two jumps with a stop right there.
+
+76
+00:07:34,526 --> 00:07:37,788
+- There's no solution with a single jump?
+- The cluster's too big.
+
+77
+00:07:37,888 --> 00:07:39,509
+It's too big to go around, too.
+
+78
+00:07:39,609 --> 00:07:43,384
+Civvy ships aren't shielded enough
+to jump in the middle of that radiation.
+
+79
+00:07:43,484 --> 00:07:45,987
+l would say 80% of the people
+on board would die.
+
+80
+00:07:46,087 --> 00:07:49,226
+<i>- Can we send Galactica for food?</i>
+- And put it where?
+
+81
+00:07:49,326 --> 00:07:51,109
+- What?
+- It'd take dozens of trips.
+
+82
+00:07:51,209 --> 00:07:55,309
+Each time we'd leave the fleet vulnerable.
+We can't bring the food to the people.
+
+83
+00:07:55,409 --> 00:07:59,105
+What if we bring the people to the food,
+<i>put the people on Galactica?</i>
+
+84
+00:07:59,205 --> 00:08:03,346
+Send the civilian ships with skeleton crew,
+give them radiation meds.
+
+85
+00:08:03,446 --> 00:08:06,905
+Except that the radiation
+would fry the civvy ships' nav systems.
+
+86
+00:08:07,005 --> 00:08:11,466
+They wouldn't be able to see squat. There
+wouldn't be a way to calculate a jump out.
+
+87
+00:08:11,566 --> 00:08:15,866
+It's worse than that. Once you jump in,
+the light is so blinding you begin to drift,
+
+88
+00:08:15,966 --> 00:08:19,830
+and before you can get your bearings...
+you're over there.
+
+89
+00:08:19,930 --> 00:08:23,188
+<i>(Apollo) No visual contact.</i>
+Instruments blinded by radiation.
+
+90
+00:08:23,288 --> 00:08:26,192
+They'd get lost, they'd burn up.
+
+91
+00:08:31,240 --> 00:08:32,890
+Pilot ship.
+
+92
+00:08:34,087 --> 00:08:37,705
+We pair a Raptor with each civilian ship.
+
+93
+00:08:37,805 --> 00:08:42,149
+Raptor navigation systems are hardened.
+They could handle the radiation.
+
+94
+00:08:42,249 --> 00:08:45,189
+Each Raptor leads a civilian ship
+through the cluster,
+
+95
+00:08:45,289 --> 00:08:48,094
+then they both jump out together.
+
+96
+00:08:48,240 --> 00:08:53,519
+The question is...
+how many jumps will it take?
+
+97
+00:08:54,040 --> 00:08:55,946
+Five round trips.
+
+98
+00:08:56,046 --> 00:08:58,425
+You heard. Five round trips.
+
+99
+00:08:58,525 --> 00:09:00,984
+On our outbound jumps,
+we'll each be responsible...
+
+100
+00:09:01,084 --> 00:09:04,385
+for relaying jump coordinates
+to our own specific civilian ship,
+
+101
+00:09:04,485 --> 00:09:07,748
+nailing them to jump points
+and ensuring they don't drift off.
+
+102
+00:09:07,848 --> 00:09:09,826
+Sir, will we get fed when we get there?
+
+103
+00:09:09,926 --> 00:09:13,827
+Eventually, yes, but only after
+we find the algae and get it processed.
+
+104
+00:09:13,927 --> 00:09:14,677
+Oh!
+
+105
+00:09:15,244 --> 00:09:19,429
+But the truth is, nausea from radiation
+exposure will take care of our appetites.
+
+106
+00:09:19,529 --> 00:09:22,825
+You'll all be issued with
+radiation badges to track our exposure.
+
+107
+00:09:22,925 --> 00:09:27,109
+White, like this, you're OK.
+As your exposure increases, it'll darken.
+
+108
+00:09:27,209 --> 00:09:29,707
+If it approaches this,
+you'll be pulled from duty.
+
+109
+00:09:29,807 --> 00:09:33,148
+Keep checking your badges.
+It's every pilot's own responsibility...
+
+110
+00:09:33,248 --> 00:09:36,308
+to monitor their own badge.
+Starbuck.
+
+111
+00:09:37,680 --> 00:09:41,427
+Remember, we're all flying solo
+on this mission.
+
+112
+00:09:41,527 --> 00:09:44,389
+So there'll be nobody
+to bitch slap you if you get tired...
+
+113
+00:09:44,489 --> 00:09:48,510
+or start seeing toasters on your wing.
+We'll be issuing stims, so use them.
+
+114
+00:09:48,610 --> 00:09:50,506
+Are you crazy?
+We can't use stims.
+
+115
+00:09:50,606 --> 00:09:52,825
+- Problem?
+- Stims amp up your metabolism.
+
+116
+00:09:52,925 --> 00:09:56,465
+We've got nothing to burn.
+We'll be flying into the sides of the ships.
+
+117
+00:09:56,565 --> 00:09:58,987
+- They'd mess us up?
+- You used to like stims, Kat.
+
+118
+00:09:59,087 --> 00:10:01,188
+Personal discretion on the stims.
+
+119
+00:10:01,288 --> 00:10:04,628
+We're taking the first load of civilians
+on board as we speak.
+
+120
+00:10:04,728 --> 00:10:07,533
+That's it.
+Skids up in four hours.
+
+121
+00:10:13,280 --> 00:10:17,666
+<i>(Dualla) There is no food here. There are</i>
+no rations anywhere on this ship.
+
+122
+00:10:17,766 --> 00:10:20,709
+If someone told you there was food,
+they were lying!
+
+123
+00:10:20,809 --> 00:10:23,786
+If you leave this area,
+force will be used.
+
+124
+00:10:23,886 --> 00:10:30,941
+Once we get through the star cluster, you
+will be returned to your designated ships.
+
+125
+00:10:33,440 --> 00:10:34,340
+Sacha!
+
+126
+00:10:38,080 --> 00:10:40,587
+<i>(man) Keep following.</i>
+Down to the front.
+
+127
+00:10:40,687 --> 00:10:43,267
+My name isn't "Sacha".
+
+128
+00:10:43,367 --> 00:10:46,586
+My name is Captain Louanne Katraine,
+you understand me?
+
+129
+00:10:46,686 --> 00:10:49,310
+Sacha and you were a lifetime ago.
+
+130
+00:10:49,410 --> 00:10:52,895
+Right, right.
+Cos you got this now, right?
+
+131
+00:10:54,200 --> 00:10:57,430
+No more hanging with the sinners, huh?
+
+132
+00:10:59,520 --> 00:11:04,071
+Stay away from me.
+Do you understand me?
+
+133
+00:11:07,200 --> 00:11:10,345
+Do they even know who you really are?
+
+134
+00:11:17,920 --> 00:11:21,146
+Fancy bumping into you here.
+Can you believe l'm lost again?
+
+135
+00:11:21,246 --> 00:11:25,190
+l can never find my way around this place.
+Where have you been?
+
+136
+00:11:25,290 --> 00:11:29,230
+l've been talking with Simon about our
+move toward Earth. There's some debate.
+
+137
+00:11:29,330 --> 00:11:35,580
+Of course, if l spoke to the relevant Simon
+he'd ascertain you were at this meeting?
+
+138
+00:11:35,680 --> 00:11:37,796
+Beg your pardon?
+
+139
+00:11:38,840 --> 00:11:43,348
+l hear that you've been
+going off by yourself, "doing things".
+
+140
+00:11:43,448 --> 00:11:44,830
+Really?
+
+141
+00:11:44,930 --> 00:11:49,668
+Now, who would tell you
+<i>anything about my business?</i>
+
+142
+00:11:49,768 --> 00:11:53,070
+- So it's true?
+- Caprica?
+
+143
+00:11:55,320 --> 00:11:58,748
+Did you know you have
+some dried goo in your hair?
+
+144
+00:11:58,848 --> 00:12:01,823
+That can happen when you resurrect.
+
+145
+00:12:02,760 --> 00:12:06,630
+Now l understand what you've been
+doing with yourself all these afternoons.
+
+146
+00:12:06,730 --> 00:12:10,425
+Do you have any idea
+what you are accusing me of?
+
+147
+00:12:10,525 --> 00:12:11,425
+Yes...
+
+148
+00:12:12,446 --> 00:12:17,507
+Intentionally killing yourself over and over
+so you can download over and over.
+
+149
+00:12:17,607 --> 00:12:21,347
+But death's just a revolving door, isn't it?
+
+150
+00:12:27,720 --> 00:12:29,720
+Come here!
+
+151
+00:12:30,680 --> 00:12:31,430
+Ooh!
+
+152
+00:12:31,888 --> 00:12:34,467
+What do you want?!
+
+153
+00:12:34,567 --> 00:12:39,185
+Take it down a notch, baby. Relax.
+l'm not looking for a business partner.
+
+154
+00:12:39,285 --> 00:12:41,266
+l told you to stay the frak away from me.
+
+155
+00:12:41,366 --> 00:12:46,470
+Yeah, cos if they find out who you are,
+they'll kick you out the service, or worse.
+
+156
+00:12:46,570 --> 00:12:49,067
+Now, do you think l want that?
+
+157
+00:12:49,167 --> 00:12:52,705
+l don't want that,
+cos if that happens...
+
+158
+00:12:52,805 --> 00:12:55,440
+<i>who's gonna feed me? (sniggers)</i>
+
+159
+00:12:56,040 --> 00:12:58,590
+Oh, come on,
+you're getting three squares.
+
+160
+00:12:58,690 --> 00:13:01,666
+We don't.
+And l don't have anything stashed, Enzo.
+
+161
+00:13:01,766 --> 00:13:03,766
+Yeah, sure you don't.
+
+162
+00:13:04,440 --> 00:13:06,635
+Oh, we go back, baby.
+
+163
+00:13:07,640 --> 00:13:12,555
+Since when is it a crime to...
+take care of your own? Hm?
+
+164
+00:13:14,960 --> 00:13:20,230
+Remember, l know who you are,
+and l know how to make you happy.
+
+165
+00:13:20,880 --> 00:13:23,110
+Get your hands off of me.
+
+166
+00:13:35,920 --> 00:13:37,120
+Colonel.
+
+167
+00:13:40,040 --> 00:13:41,390
+Go ahead.
+
+168
+00:14:14,560 --> 00:14:17,509
+<i>- (man) Welcome back, sir.</i>
+<i>- (woman) Good to see you, sir.</i>
+
+169
+00:14:17,609 --> 00:14:19,389
+<i>(man #2) Colonel's back on board.</i>
+
+170
+00:14:19,489 --> 00:14:24,674
+<i>- (man #3) Welcome, sir.</i>
+<i>- (man #4) It's good to see you, sir.</i>
+
+171
+00:14:26,320 --> 00:14:29,429
+<i>- (man #5) We're with you, sir.</i>
+<i>- (man #6) Welcome back.</i>
+
+172
+00:14:29,529 --> 00:14:32,929
+Enough!
+Don't you people have jobs to do?
+
+173
+00:14:36,240 --> 00:14:39,130
+- Welcome back, Colonel.
+- Admiral.
+
+174
+00:14:43,680 --> 00:14:47,268
+<i>Apollo, Galactica.</i>
+Launch Raptors on your orders.
+
+175
+00:14:47,368 --> 00:14:50,788
+<i>(Apollo) Shepherds, find your sheep.</i>
+<i>Stay close. Never let them go.</i>
+
+176
+00:14:50,888 --> 00:14:52,669
+<i>These crews are counting on us.</i>
+
+177
+00:14:52,769 --> 00:14:55,986
+<i>- Apollo, Starbuck on station.</i>
+<i>- (Kat) l got visual on "Chiron".</i>
+
+178
+00:14:56,086 --> 00:14:58,710
+<i>(Apollo) Hotdog.</i>
+<i>"Adriatic" in sight. OK.</i>
+
+179
+00:14:58,810 --> 00:15:01,350
+When you jump in,
+you'll be disoriented.
+
+180
+00:15:01,450 --> 00:15:03,229
+<i>Take it one step at a time.</i>
+
+181
+00:15:03,329 --> 00:15:07,706
+<i>Find your sheep, work the jump</i>
+<i>calculations and get them out.</i>
+
+182
+00:15:07,806 --> 00:15:12,026
+<i>Remember, we do not stay</i>
+<i>beyond our radiation-dose limit.</i>
+
+183
+00:15:12,126 --> 00:15:14,787
+<i>(Hoshi) Apollo reports pilots in position, sir.</i>
+
+184
+00:15:14,887 --> 00:15:18,228
+Initiate jump on his command.
+<i>Galactica will follow.</i>
+
+185
+00:15:18,328 --> 00:15:20,470
+<i>(man) Aye aye, sir.</i>
+
+186
+00:15:23,840 --> 00:15:27,385
+Raptors, Apollo.
+We jump on my mark.
+
+187
+00:15:27,485 --> 00:15:29,545
+<i>- Three, two...</i>
+- Jumping...
+
+188
+00:15:29,645 --> 00:15:31,645
+<i>...one. Mark.</i>
+
+189
+00:15:47,280 --> 00:15:48,030
+Whoa!
+
+190
+00:15:48,690 --> 00:15:51,580
+What is this?
+l can't see anything.
+
+191
+00:15:53,080 --> 00:15:53,830
+Frak!
+
+192
+00:15:56,440 --> 00:15:57,190
+Oh!
+
+193
+00:16:11,200 --> 00:16:13,000
+Ah! Got you!
+
+194
+00:16:13,807 --> 00:16:16,467
+- Kat, you got yours?
+<i>- Affirmative, Apollo.</i>
+
+195
+00:16:16,567 --> 00:16:19,988
+<i>Only got eyes for the Chiron.</i>
+Relaying coordinates.
+
+196
+00:16:20,088 --> 00:16:22,907
+Squadron, Apollo.
+<i>l have Thera Sita.</i>
+
+197
+00:16:23,007 --> 00:16:26,588
+<i>Relaying jump coordinates</i>
+<i>to her right now.</i>
+
+198
+00:16:26,688 --> 00:16:31,029
+Apollo, Starbuck. l got mine.
+Frak. l'm just barely holding on here.
+
+199
+00:16:31,129 --> 00:16:35,309
+<i>l lost mine! Has anyone seen Adriatic?</i>
+She has lost her jump coordinates.
+
+200
+00:16:35,409 --> 00:16:38,349
+<i>(Helo) Hotdog, negative!</i>
+<i>Negative on Adriatic.</i>
+
+201
+00:16:38,449 --> 00:16:41,027
+Hotdog, ease off on the control, man!
+
+202
+00:16:41,127 --> 00:16:43,185
+Ease up with the stick.
+It's a Raptor.
+
+203
+00:16:43,285 --> 00:16:45,285
+Frak it, frak it!
+
+204
+00:16:53,120 --> 00:16:55,345
+<i>Apollo, it's Galactica actual.</i>
+
+205
+00:16:55,445 --> 00:16:59,028
+<i>You've reached your radiation-dose limit.</i>
+<i>You've got to jump.</i>
+
+206
+00:16:59,128 --> 00:17:01,228
+- Count us down.
+<i>- (Apollo) Roger that.</i>
+
+207
+00:17:01,328 --> 00:17:03,668
+No! Hold on!
+Apollo, please wait.
+
+208
+00:17:03,768 --> 00:17:05,868
+<i>Hotdog, listen!</i>
+<i>We have to get out of here!</i>
+
+209
+00:17:05,968 --> 00:17:09,628
+l can find them!
+l can find them! Hold on!
+
+210
+00:17:09,728 --> 00:17:12,430
+- Please wait!
+<i>- (Apollo) Jump on my mark!</i>
+
+211
+00:17:12,530 --> 00:17:14,665
+<i>- Please, wait!</i>
+<i>- (Apollo) One, two...</i>
+
+212
+00:17:14,765 --> 00:17:16,948
+- No! Please! Wait!
+<i>- Mark!</i>
+
+213
+00:17:17,048 --> 00:17:20,237
+<i>(Hotdog) We can't leave without them!</i>
+<i>
+
+214
+00:17:25,000 --> 00:17:26,650
+Frak! Frak!
+
+215
+00:17:28,920 --> 00:17:31,305
+Jump complete.
+
+216
+00:17:31,405 --> 00:17:35,068
+DRADIS is back online.
+Ship reports moderate hull damage.
+
+217
+00:17:35,168 --> 00:17:37,827
+<i>"Galactica", Apollo.</i>
+<i>First trip complete.</i>
+
+218
+00:17:37,927 --> 00:17:40,709
+Raptors, land your birds
+and prepare to jump back...
+
+219
+00:17:40,809 --> 00:17:43,699
+for the second group of civilians.
+
+220
+00:17:49,480 --> 00:17:52,386
+<i>We lost the Adriatic.</i>
+
+221
+00:17:52,486 --> 00:17:55,886
+- It's only our first jump.
+- Yes, it is.
+
+222
+00:18:04,640 --> 00:18:06,640
+<i>(alarm)</i>
+
+223
+00:18:12,200 --> 00:18:16,239
+<i>Carina, Kat!</i>
+Report your location!
+
+224
+00:18:17,200 --> 00:18:19,425
+Kat, Apollo.
+<i>Do you have the Carina?</i>
+
+225
+00:18:19,525 --> 00:18:23,513
+Negative!
+Radiation's pissing on my nav.
+
+226
+00:18:24,600 --> 00:18:26,600
+l can't see jack!
+
+227
+00:18:28,480 --> 00:18:31,278
+OK. l found her.
+
+228
+00:18:35,160 --> 00:18:37,907
+- No! Frak!
+<i>- (Apollo) Kat! Kat, report!</i>
+
+229
+00:18:38,007 --> 00:18:39,746
+Godsdammit!
+
+230
+00:18:39,846 --> 00:18:43,108
+<i>(Apollo) All right, Kat!</i>
+<i>Time's up. We're jumping on my mark!</i>
+
+231
+00:18:43,208 --> 00:18:47,543
+<i>- Three, two, one... Mark!</i>
+<i>- Godsdammit! The Carina!</i>
+
+232
+00:18:49,880 --> 00:18:51,230
+l lost...
+
+233
+00:18:52,444 --> 00:18:54,444
+l lost her.
+
+234
+00:20:01,680 --> 00:20:06,508
+<i>(Apollo) All right. We managed</i>
+to get another eight ships through,
+
+235
+00:20:06,608 --> 00:20:09,194
+but we still lost one.
+
+236
+00:20:10,400 --> 00:20:13,970
+We gotta get better at tracking our sheep.
+
+237
+00:20:14,880 --> 00:20:18,714
+Quicker reaction times out of the jumps.
+
+238
+00:20:19,920 --> 00:20:23,348
+Racetrack, don't be calling out
+coordinates to the wrong ship.
+
+239
+00:20:23,448 --> 00:20:25,628
+l got mixed up.
+
+240
+00:20:25,728 --> 00:20:28,467
+Keep checking your instruments,
+and recheck them.
+
+241
+00:20:28,567 --> 00:20:31,028
+The instruments are crap.
+
+242
+00:20:35,400 --> 00:20:36,900
+All right.
+
+243
+00:20:37,645 --> 00:20:40,110
+That concludes Outbound Four.
+
+244
+00:20:41,680 --> 00:20:44,347
+This is Return Four.
+
+245
+00:20:44,447 --> 00:20:45,947
+One to go.
+
+246
+00:20:47,047 --> 00:20:49,270
+All right, get some rest.
+
+247
+00:20:53,840 --> 00:20:55,040
+Come on.
+
+248
+00:21:01,120 --> 00:21:03,755
+Here's the report from the doc.
+
+249
+00:21:05,560 --> 00:21:10,670
+A hundred marines too weak to work.
+Two hundred more are ready to drop.
+
+250
+00:21:10,770 --> 00:21:13,906
+That's gonna slow down the harvest.
+
+251
+00:21:14,006 --> 00:21:16,667
+Last batch of passengers
+kicked up some trouble.
+
+252
+00:21:16,767 --> 00:21:19,187
+You... you get these people
+to the other side...
+
+253
+00:21:19,287 --> 00:21:23,027
+and they think there's a diner and a chef
+waiting to take their order.
+
+254
+00:21:23,127 --> 00:21:24,177
+l know.
+
+255
+00:21:25,647 --> 00:21:29,387
+When they gonna learn they gotta
+process the thing first, for frak's sake?
+
+256
+00:21:29,487 --> 00:21:32,589
+Try telling that
+to a bunch of empty stomachs.
+
+257
+00:21:32,689 --> 00:21:36,188
+l hear they're still eating paper.
+Is that true?
+
+258
+00:21:36,288 --> 00:21:39,158
+No... Paper shortage.
+
+259
+00:22:03,920 --> 00:22:06,115
+Not a good sign.
+
+260
+00:22:08,280 --> 00:22:09,480
+No, sir.
+
+261
+00:22:35,160 --> 00:22:40,430
+So, while you resurrect
+do you see the faces of the final five?
+
+262
+00:22:40,720 --> 00:22:42,865
+The ones that no one's seen.
+
+263
+00:22:42,965 --> 00:22:46,026
+What do you want to know about them?
+
+264
+00:22:46,126 --> 00:22:48,350
+l could be a Cylon.
+
+265
+00:22:50,440 --> 00:22:54,775
+l would stop being a traitor
+to one set of people...
+
+266
+00:22:55,000 --> 00:22:57,639
+and be a hero to another.
+
+267
+00:22:59,920 --> 00:23:02,309
+l'd have a place to belong.
+
+268
+00:23:04,640 --> 00:23:08,553
+You would help me understand my destiny.
+
+269
+00:23:11,040 --> 00:23:14,026
+- Have you seen my face?
+- Your face?
+
+270
+00:23:14,126 --> 00:23:16,076
+Yes, my face.
+
+271
+00:23:18,240 --> 00:23:20,674
+Can't remember.
+
+272
+00:23:22,160 --> 00:23:26,306
+l've been trying to get it all down on paper
+while it's still fresh in my mind,
+
+273
+00:23:26,406 --> 00:23:28,868
+but nothing much comes out.
+
+274
+00:23:30,840 --> 00:23:33,475
+It's rubbish. l can't remember.
+
+275
+00:23:34,640 --> 00:23:36,835
+Cylons, humans...
+
+276
+00:23:40,520 --> 00:23:44,108
+We're all just trying to discover...
+
+277
+00:23:44,208 --> 00:23:45,858
+who we are.
+
+278
+00:23:47,047 --> 00:23:49,047
+Aren't we?
+
+279
+00:24:00,160 --> 00:24:01,660
+Hey, Enzo.
+
+280
+00:24:07,720 --> 00:24:08,470
+Yeah.
+
+281
+00:24:13,360 --> 00:24:16,070
+l took the name Louanne Katraine
+from a girl who died...
+
+282
+00:24:16,170 --> 00:24:19,400
+two days before the attack on Caprica.
+
+283
+00:24:20,680 --> 00:24:23,144
+It got me through the background checks.
+
+284
+00:24:23,244 --> 00:24:26,312
+Yeah, times were rough.
+Keep going.
+
+285
+00:24:32,680 --> 00:24:35,267
+l was a drug runner.
+
+286
+00:24:35,367 --> 00:24:37,874
+Enzo was my supplier.
+
+287
+00:24:39,600 --> 00:24:44,108
+What do you want? We were truckers,
+OK? We just moved stuff.
+
+288
+00:24:44,208 --> 00:24:45,258
+People?
+
+289
+00:24:46,727 --> 00:24:53,102
+You see, some think that that's the way
+that the Cylons infiltrated Caprica.
+
+290
+00:24:53,440 --> 00:24:56,309
+They seeded themselves in the colonies,
+then used criminals...
+
+291
+00:24:56,409 --> 00:24:59,551
+to get them into the capital.
+
+292
+00:25:00,600 --> 00:25:06,260
+Anyone who's found guilty of helping
+the Cylons is considered a traitor.
+
+293
+00:25:06,360 --> 00:25:08,468
+- We didn't carry Cylons.
+- How do you know?
+
+294
+00:25:08,568 --> 00:25:14,773
+- Cos nobody knew they looked like us.
+- Then how do you know you didn't?!
+
+295
+00:25:17,160 --> 00:25:21,233
+- How do you know?
+- You think l'm a traitor?
+
+296
+00:25:22,320 --> 00:25:24,629
+You think l'm a traitor?
+
+297
+00:25:26,440 --> 00:25:27,190
+No.
+
+298
+00:25:28,560 --> 00:25:31,195
+l don't think you're a traitor.
+
+299
+00:25:32,520 --> 00:25:34,985
+You're a "smart young woman".
+
+300
+00:25:35,880 --> 00:25:38,749
+That's what the old man said.
+
+301
+00:25:38,849 --> 00:25:43,099
+You're just not smart enough
+to accept who you are.
+
+302
+00:25:43,680 --> 00:25:48,610
+You see, you lied your way
+into the company of good people.
+
+303
+00:25:54,640 --> 00:25:57,445
+Starbuck, don't tell the admiral.
+
+304
+00:25:57,960 --> 00:26:01,388
+Please... Please don't, or I...
+
+305
+00:26:01,488 --> 00:26:02,688
+Or what?
+
+306
+00:26:03,449 --> 00:26:07,065
+Starbuck, please.
+Just let me tell him myself.
+
+307
+00:26:07,165 --> 00:26:09,310
+Please just let me.
+
+308
+00:26:10,760 --> 00:26:12,760
+Can you do that?
+
+309
+00:26:22,160 --> 00:26:22,910
+Gods.
+
+310
+00:26:29,400 --> 00:26:31,400
+<i>(sobs)...</i>
+
+311
+00:26:39,800 --> 00:26:42,068
+<i>(Hybrid) One degree...</i>
+
+312
+00:26:42,168 --> 00:26:44,907
+Angle nominal...
+
+313
+00:26:45,007 --> 00:26:49,349
+Seascape portrait of
+the woman-child cavern of the soul...
+
+314
+00:26:49,449 --> 00:26:51,829
+Under pressure-heat ratio...
+
+315
+00:26:52,920 --> 00:26:55,507
+Lines of evolution have buried their fuse...
+
+316
+00:26:55,607 --> 00:27:01,387
+So this is where you got the idea
+to start intentionally downloading.
+
+317
+00:27:02,240 --> 00:27:05,789
+Gestalt therapy and escape clauses...
+
+318
+00:27:06,520 --> 00:27:09,389
+Right, let's see what we can find out.
+
+319
+00:27:09,489 --> 00:27:12,785
+<i>(Hybrid) Throughout history,</i>
+the nexus between man and machine...
+
+320
+00:27:12,885 --> 00:27:16,627
+has spun some of
+the most dramatic, compelling...
+
+321
+00:27:16,727 --> 00:27:17,927
+Gaius...
+
+322
+00:27:20,560 --> 00:27:23,195
+what do you think you're doing?
+
+323
+00:27:29,480 --> 00:27:31,550
+Don't touch it!
+
+324
+00:27:35,960 --> 00:27:37,910
+Intelligence.
+
+325
+00:27:38,567 --> 00:27:41,120
+A mind that burns like a fire.
+
+326
+00:27:42,280 --> 00:27:43,909
+Yes. l'm here.
+
+327
+00:27:44,009 --> 00:27:47,508
+Find the hand that lies
+in the shadow of the light.
+
+328
+00:27:47,608 --> 00:27:51,603
+In the eye of the husband
+of the eye of the cow.
+
+329
+00:27:56,720 --> 00:27:58,995
+Are you all right?
+
+330
+00:28:02,760 --> 00:28:05,735
+It just speaks nonsense,
+doesn't it?
+
+331
+00:28:07,600 --> 00:28:11,108
+l don't think anything it says is nonsense.
+
+332
+00:28:11,208 --> 00:28:14,186
+"The husband of the eye."
+
+333
+00:28:14,286 --> 00:28:16,350
+"The eye of the..."
+
+334
+00:28:17,440 --> 00:28:18,190
+Hera.
+
+335
+00:28:20,320 --> 00:28:24,757
+Hera is sometimes referred to
+as "cow-eyed Hera".
+
+336
+00:28:27,720 --> 00:28:30,509
+- And the husband of Hera...
+- Is Jupiter.
+
+337
+00:28:30,609 --> 00:28:35,794
+The Eye of Jupiter.
+That's written about in the ancient texts.
+
+338
+00:28:36,440 --> 00:28:37,790
+Oh, gods.
+
+339
+00:28:38,568 --> 00:28:43,185
+Could there be a connection
+between their gods and ours?
+
+340
+00:28:43,285 --> 00:28:46,107
+What does it mean?
+
+341
+00:28:46,207 --> 00:28:48,585
+It's a location.
+
+342
+00:28:48,685 --> 00:28:53,950
+A planet hidden in the shadow of light -
+probably a cluster of stars.
+
+343
+00:28:54,050 --> 00:28:57,450
+That will lead us to the Eye of Jupiter.
+
+344
+00:28:59,200 --> 00:29:02,266
+And to the hand...
+
+345
+00:29:02,366 --> 00:29:05,426
+"hidden in the shadow of light".
+
+346
+00:29:05,526 --> 00:29:08,586
+It's probably some type of artefact.
+
+347
+00:29:10,800 --> 00:29:11,850
+A hand.
+
+348
+00:29:13,240 --> 00:29:15,240
+As in five.
+
+349
+00:29:17,840 --> 00:29:19,840
+Five faces.
+
+350
+00:29:23,640 --> 00:29:27,720
+Now all we have to do
+is find the right planet...
+
+351
+00:29:29,680 --> 00:29:31,680
+the right star cluster.
+
+352
+00:30:26,200 --> 00:30:28,509
+Accept who you are.
+
+353
+00:30:31,200 --> 00:30:34,510
+<i>Accept who you are.</i>
+
+354
+00:30:41,160 --> 00:30:41,910
+Yeah.
+
+355
+00:30:45,120 --> 00:30:47,185
+Remember me?
+
+356
+00:30:47,285 --> 00:30:48,035
+Yeah.
+
+357
+00:30:49,765 --> 00:30:52,347
+Yeah, l remember you.
+
+358
+00:30:52,447 --> 00:30:54,788
+Thieving bastard.
+
+359
+00:30:54,888 --> 00:30:58,026
+You'll ruin everything l've got.
+
+360
+00:30:58,126 --> 00:31:00,126
+Come here.
+
+361
+00:32:01,640 --> 00:32:04,429
+<i>Faru Sadin, report your location.</i>
+
+362
+00:32:04,529 --> 00:32:06,909
+<i>Kat! You got Faru Sadin?</i>
+
+363
+00:32:09,640 --> 00:32:12,700
+<i>Kat, have you got "Faru Sadin"? Kat?</i>
+
+364
+00:32:13,480 --> 00:32:16,199
+<i>Kat, report.</i>
+
+365
+00:32:17,480 --> 00:32:19,189
+Negative.
+
+366
+00:32:19,289 --> 00:32:20,039
+Kat.
+
+367
+00:32:21,525 --> 00:32:24,070
+<i>Frak! l've lost the Faru Sadin.</i>
+
+368
+00:32:24,170 --> 00:32:28,306
+Sir. Escalating damage reports,
+ship-wide.
+
+369
+00:32:28,406 --> 00:32:31,386
+Engineers are reporting
+a cascade of pressure failures.
+
+370
+00:32:31,486 --> 00:32:34,546
+Jump spot's become unstable.
+We gotta get out of here.
+
+371
+00:32:34,646 --> 00:32:37,281
+- Open line.
+<i>- (Hoshi) Aye, sir.</i>
+
+372
+00:32:38,240 --> 00:32:39,587
+Channel open.
+
+373
+00:32:39,687 --> 00:32:41,948
+<i>Apollo, Galactica actual.</i>
+
+374
+00:32:42,048 --> 00:32:43,307
+Jump all.
+
+375
+00:32:43,407 --> 00:32:45,269
+<i>Repeat, jump all.</i>
+
+376
+00:32:45,369 --> 00:32:50,299
+All right, admiral's calling it.
+Everyone, jump on my mark.
+
+377
+00:32:51,120 --> 00:32:55,795
+- l'm not losing another one.
+- Three, two, one... Mark!
+
+378
+00:33:07,200 --> 00:33:10,351
+Apollo, Starbuck.
+l don't see Kat.
+
+379
+00:33:21,960 --> 00:33:23,010
+Report.
+
+380
+00:33:26,200 --> 00:33:29,266
+<i>We're missing Faru Sadin and one Raptor.</i>
+
+381
+00:33:29,366 --> 00:33:33,948
+It's Kat. She must have missed the order.
+She's still out there.
+
+382
+00:33:34,048 --> 00:33:34,798
+Damn.
+
+383
+00:33:36,920 --> 00:33:41,550
+<i>Faru Sadin, this is Kat.</i>
+Report your location.
+
+384
+00:33:47,840 --> 00:33:48,590
+Frak!
+
+385
+00:34:17,800 --> 00:34:20,917
+<i>(Tigh) Come on, kid.</i>
+Come on home.
+
+386
+00:34:42,360 --> 00:34:44,665
+<i>(Hoshi) It's them!</i>
+
+387
+00:34:44,765 --> 00:34:47,638
+She brought 'em home!
+
+388
+00:34:49,200 --> 00:34:52,665
+<i>Galactica, Kat.</i>
+
+389
+00:34:52,765 --> 00:34:54,765
+Mission accomplished.
+
+390
+00:35:53,240 --> 00:35:57,405
+- They said you wanted to see me.
+<i>- (weakly) Yeah.</i>
+
+391
+00:35:57,640 --> 00:36:00,227
+l don't think we should end
+the way we ended.
+
+392
+00:36:00,327 --> 00:36:02,327
+Listen, um...
+
+393
+00:36:04,280 --> 00:36:06,396
+everybody is...
+
+394
+00:36:08,600 --> 00:36:13,955
+Everybody is stuck...
+with the things that they're not proud of.
+
+395
+00:36:15,840 --> 00:36:20,515
+And that, uh...
+that thing about "good people", I, uh...
+
+396
+00:36:20,840 --> 00:36:23,070
+l didn't mean that.
+
+397
+00:36:24,480 --> 00:36:26,516
+Yeah, l know.
+
+398
+00:36:31,680 --> 00:36:32,430
+Here.
+
+399
+00:36:34,048 --> 00:36:36,713
+Take these. Sleeping pills.
+
+400
+00:36:40,760 --> 00:36:41,810
+Enough.
+
+401
+00:36:44,120 --> 00:36:46,840
+So, uh... take them if you want.
+
+402
+00:36:47,320 --> 00:36:48,820
+Thank you.
+
+403
+00:36:51,320 --> 00:36:53,390
+l got to go.
+
+404
+00:37:06,480 --> 00:37:08,386
+Admiral, I...
+
+405
+00:37:08,486 --> 00:37:10,755
+l know. l'm... l'm sorry.
+
+406
+00:37:12,200 --> 00:37:14,668
+l'm not here to lecture.
+
+407
+00:37:16,640 --> 00:37:20,308
+l'm letting you know about a promotion.
+
+408
+00:37:20,408 --> 00:37:22,868
+l'm making you CAG again.
+
+409
+00:37:25,520 --> 00:37:27,905
+Sir, you know
+l'm not getting out of here, right?
+
+410
+00:37:28,005 --> 00:37:30,275
+But you earned it.
+
+411
+00:37:31,360 --> 00:37:34,149
+What you did
+was harder than facing a bullet,
+
+412
+00:37:34,249 --> 00:37:39,394
+and you did it without
+putting one other soul in harm's way.
+
+413
+00:37:40,440 --> 00:37:43,585
+l don't know if l could've done that.
+
+414
+00:37:44,200 --> 00:37:46,425
+l wish there was
+something more l could give.
+
+415
+00:37:46,525 --> 00:37:47,275
+No.
+
+416
+00:37:48,685 --> 00:37:50,685
+It's good.
+
+417
+00:37:52,080 --> 00:37:55,146
+l would like to be CAG very much.
+
+418
+00:37:55,246 --> 00:37:56,746
+Thank you.
+
+419
+00:38:01,440 --> 00:38:03,908
+Listen... There's a...
+
+420
+00:38:06,600 --> 00:38:08,670
+There's a thing...
+
+421
+00:38:10,560 --> 00:38:14,130
+a reason why
+you might not want to do this.
+
+422
+00:38:16,160 --> 00:38:18,469
+Kara knows what it is...
+
+423
+00:38:19,480 --> 00:38:21,907
+but l wanted to tell you myself.
+
+424
+00:38:22,007 --> 00:38:26,349
+l don't need to know anything
+other than what l already know.
+
+425
+00:38:26,449 --> 00:38:29,309
+When you were CAG,
+
+426
+00:38:29,409 --> 00:38:31,545
+you protected your people,
+
+427
+00:38:31,645 --> 00:38:34,960
+made them feel safe enough to be brave.
+
+428
+00:38:36,160 --> 00:38:39,815
+What you were gonna say
+doesn't change that.
+
+429
+00:38:56,160 --> 00:38:59,072
+Are you... staying?
+
+430
+00:39:00,080 --> 00:39:02,480
+Oh, l'm staying.
+
+431
+00:39:05,200 --> 00:39:07,794
+l love this sickbay, in a way.
+
+432
+00:39:10,840 --> 00:39:15,197
+It reminds me of
+where my son Zak was born.
+
+433
+00:39:16,680 --> 00:39:19,478
+Carolanne was so happy.
+
+434
+00:39:21,800 --> 00:39:24,500
+She was convinced,
+
+435
+00:39:25,525 --> 00:39:28,956
+both times,
+that she was having a girl.
+
+436
+00:39:30,160 --> 00:39:33,588
+So it was a surprise at the end.
+
+437
+00:39:33,688 --> 00:39:36,319
+Did you want a girl, too?
+
+438
+00:39:39,200 --> 00:39:39,950
+Yeah.
+
+439
+00:39:41,126 --> 00:39:43,509
+Three's a good round number.
+
+440
+00:41:50,680 --> 00:41:53,427
+l need your verdict on this one.
+What if?
+
+441
+00:41:53,527 --> 00:41:55,527
+- l hate it.
+- Ah.

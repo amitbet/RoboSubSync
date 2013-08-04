@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GoogleTranslateAPI</name>
+    </assembly>
+    <members>
+        <member name="T:Google.API.GoogleAPIException">
+            <summary>
+            Google API exception.
+            </summary>
+        </member>
+        <member name="M:Google.API.RequestBase.GetWebRequest">
+            <summary>
+            Get the web request.
+            </summary>
+            <returns>The web request.</returns>
+        </member>
+        <member name="M:Google.API.RequestBase.GetWebRequest(System.Int32)">
+            <summary>
+            Get the web request with time out.
+            </summary>
+            <param name="timeout">The length of time, in milliseconds, before the request times out.</param>
+            <returns>The web request.</returns>
+        </member>
+        <member name="P:Google.API.RequestBase.UrlString">
+            <summary>
+            Get the url string.
+            </summary>
+        </member>
+        <member name="P:Google.API.RequestBase.Uri">
+            <summary>
+            Get the uri.
+            </summary>
+        </member>
+        <member name="M:Google.API.ArgumentAttribute.#ctor(System.String)">
+            <summary>
+            Constructor of ArgumentAttribute
+            </summary>
+            <param name="name">The argument name.</param>
+        </member>
+        <member name="M:Google.API.ArgumentAttribute.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor of ArgumentAttribute
+            </summary>
+            <param name="name">The argument name.</param>
+            <param name="defaultValue">Default value.</param>
+        </member>
+        <member name="P:Google.API.ArgumentAttribute.Name">
+            <summary>
+            Get the argument name.
+            </summary>
+        </member>
+        <member name="P:Google.API.ArgumentAttribute.Optional">
+            <summary>
+            Get or set whether this argument is optional.
+            The default value is true.
+            </summary>
+        </member>
+        <member name="P:Google.API.ArgumentAttribute.DefaultValue">
+            <summary>
+            Get the default value. Or return null is no default value.
+            </summary>
+        </member>
+        <member name="P:Google.API.ArgumentAttribute.NeedEncode">
+            <summary>
+            Get or set whether this argument need to be encoded.
+            The default value is false.
+            </summary>
+        </member>
+        <member name="T:Google.API.Translate.Language">
+            <summary>
+            The enum of languages.
+            </summary>
+        </member>
+        <member name="T:Google.API.Translate.LanguageUtility">
+            <summary>
+            Utility class for language and language codes.
+            </summary>
+        </member>
+        <member name="M:Google.API.Translate.LanguageUtility.IsTranslatable(Google.API.Translate.Language)">
+            <summary>
+            Whether this language is translatable.
+            </summary>
+            <param name="language">The language.</param>
+            <returns>Return true if the language is translatable.</returns>
+        </member>
+        <member name="M:Google.API.Translate.LanguageUtility.GetLanguage(System.String)">
+            <summary>
+            Get language from a language code.
+            </summary>
+            <param name="languageCode">The language code.</param>
+            <returns>The language of this code or unknown language if of language match this code.</returns>
+        </member>
+        <member name="M:Google.API.Translate.LanguageUtility.GetLanguageCode(Google.API.Translate.Language)">
+            <summary>
+            Get the language code of a language.
+            </summary>
+            <param name="language">The language</param>
+            <returns>The language code of this language or code for unknown language.</returns>
+        </member>
+        <member name="P:Google.API.Translate.LanguageUtility.translatableCollection">
+            <summary>
+            Get translatable language collection.
+            </summary>
+        </member>
+        <member name="P:Google.API.Translate.LanguageUtility.languageCollection">
+            <summary>
+            Get language collection.
+            </summary>
+        </member>
+        <member name="P:Google.API.Translate.LanguageUtility.LanguageCodeDict">
+            <summary>
+            Get language code dictionary.
+            </summary>
+        </member>
+        <member name="T:Google.API.Translate.TranslateException">
+            <summary>
+            Google API translate exception.
+            </summary>
+        </member>
+        <member name="T:Google.API.Translate.TranslateFormat">
+            <summary>
+            Translate format.
+            </summary>
+        </member>
+        <member name="F:Google.API.Translate.TranslateFormat.text">
+            <summary>
+            Text format. Default value.
+            </summary>
+        </member>
+        <member name="F:Google.API.Translate.TranslateFormat.html">
+            <summary>
+            Html format.
+            </summary>
+        </member>
+        <member name="T:Google.API.Translate.Translator">
+            <summary>
+            Utility class for translate and detect.
+            </summary>
+        </member>
+        <member name="M:Google.API.Translate.Translator.Translate(System.String,Google.API.Translate.Language,Google.API.Translate.Language)">
+            <summary>
+            Translate the text from <paramref name="from"/> to <paramref name="to"/>.
+            </summary>
+            <param name="text">The content to translate.</param>
+            <param name="from">The language of the original text. You can set it as <c>Language.Unknown</c> to the auto detect it.</param>
+            <param name="to">The target language you want to translate to.</param>
+            <returns>The translate result.</returns>
+            <exception cref="T:Google.API.Translate.TranslateException">Translate failed.</exception>
+            <example>
+            This is the c# code example.
+            <code>
+            string text = "我喜欢跑步。";
+            string translated = Translator.Translate(text, Language.Chinese_Simplified, Language.English);
+            Console.WriteLine(translated);
+            // I like running.
+            </code>
+            </example>
+        </member>
+        <member name="M:Google.API.Translate.Translator.Translate(System.String,Google.API.Translate.Language,Google.API.Translate.Language,Google.API.Translate.TranslateFormat)">
+            <summary>
+            Translate the text from <paramref name="from"/> to <paramref name="to"/>.
+            </summary>
+            <param name="text">The content to translate.</param>
+            <param name="from">The language of the original text. You can set it as <c>Language.Unknown</c> to the auto detect it.</param>
+            <param name="to">The target language you want to translate to.</param>
+            <param name="format">The format of the text.</param>
+            <returns>The translate result.</returns>
+            <exception cref="T:Google.API.Translate.TranslateException">Translate failed.</exception>
+            <example>
+            This is the c# code example.
+            <code>
+            string text = GetYourHtmlString();
+            string translated = Translator.Translate(text, Language.English, Language.French, TranslateFormat.html);
+            </code>
+            </example>
+        </member>
+        <member name="M:Google.API.Translate.Translator.Translate(System.String,Google.API.Translate.Language,Google.API.Translate.Language@)">
+            <summary>
+            Translate the text to <paramref name="to"/> and auto detect which language the text is from.
+            </summary>
+            <param name="text">The content to translate.</param>
+            <param name="to">The target language you want to translate to.</param>
+            <param name="from">The detected language of the original text.</param>
+            <returns>The translate result.</returns>
+            <exception cref="T:Google.API.Translate.TranslateException">Translate failed.</exception>
+            <example>
+            This is the c# code example.
+            <code>
+            string text = "Je t'aime.";
+            Language from;
+            string translated = Translator.Translate(text, Language.English, out from);
+            Console.WriteLine("\"{0}\" is \"{1}\" in {2}", text, translated, from);
+            // "Je t'aime." is "I love you." in French.
+            </code>
+            </example>
+        </member>
+        <member name="M:Google.API.Translate.Translator.Translate(System.String,Google.API.Translate.Language,Google.API.Translate.TranslateFormat,Google.API.Translate.Language@)">
+            <summary>
+            Translate the text to <paramref name="to"/> and auto detect which language the text is from.
+            </summary>
+            <param name="text">The content to translate.</param>
+            <param name="to">The target language you want to translate to.</param>
+            <param name="format">The format of the text.</param>
+            <param name="from">The detected language of the original text.</param>
+            <returns>The translate result.</returns>
+            <exception cref="T:Google.API.Translate.TranslateException">Translate failed.</exception>
+        </member>
+        <member name="M:Google.API.Translate.Translator.Detect(System.String,System.Boolean@,System.Double@)">
+            <summary>
+            Detect the language for this text.
+            </summary>
+            <param name="text">The text you want to test.</param>
+            <param name="isReliable">Whether the result is reliable</param>
+            <param name="confidence">The confidence percent of the result.</param>
+            <returns>The detected language.</returns>
+            <exception cref="T:Google.API.Translate.TranslateException">Detect failed.</exception>
+        </member>
+        <member name="P:Google.API.Translate.Translator.Timeout">
+            <summary>
+            Get or set the length of time, in milliseconds, before the request times out.
+            </summary>
+        </member>
+    </members>
+</doc>
