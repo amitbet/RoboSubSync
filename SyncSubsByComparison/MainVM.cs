@@ -35,27 +35,33 @@ namespace SyncSubsByComparison
         public int CountMatchPoints
         {
             get { return _countMatchPoints; }
-            set { _countMatchPoints = value;
-            if (PropertyChanged != null)
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs("CountMatchPoints"));
+            set
+            {
+                _countMatchPoints = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("CountMatchPoints"));
             }
         }
 
         public int MatchMinimumLettersForMatch
         {
             get { return _minimumLettersForMatch; }
-            set { _minimumLettersForMatch = value;
-            if (PropertyChanged != null)
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs("MatchMinimumLettersForMatch"));
+            set
+            {
+                _minimumLettersForMatch = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("MatchMinimumLettersForMatch"));
             }
         }
 
         public int MatchLinesToSearchForward
         {
             get { return _linesToSearchForward; }
-            set { _linesToSearchForward = value;
-            if (PropertyChanged != null)
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs("MatchLinesToSearchForward"));
+            set
+            {
+                _linesToSearchForward = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("MatchLinesToSearchForward"));
             }
         }
 
@@ -63,19 +69,21 @@ namespace SyncSubsByComparison
         public double MatchSimilarityThreshold
         {
             get { return _orderedLetterSimilarityTreshold; }
-            set { _orderedLetterSimilarityTreshold = value;
-            if (PropertyChanged != null)
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs("MatchSimilarityThreshold"));
+            set
+            {
+                _orderedLetterSimilarityTreshold = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("MatchSimilarityThreshold"));
             }
         }
-
-        
 
         public double TimeStampDurationMultiplyer
         {
             get { return _timeStampDurationMultiplyer; }
-            set { _timeStampDurationMultiplyer = value;
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs("TimeStampDurationMultiplyer"));
+            set
+            {
+                _timeStampDurationMultiplyer = value;
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs("TimeStampDurationMultiplyer"));
             }
         }
 
@@ -225,11 +233,20 @@ namespace SyncSubsByComparison
 
             //langSub.Translate(Google.API.Translate.Language.English);
             //timingSub.Translate(Google.API.Translate.Language.English);
-            langSub.Translate();
+
+            try
+            {
+                langSub.Translate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Translation error: " + ex.Message);
+            }
+
             //timingSub.Translate();
             TranslationText = langSub.GetTranslatedSrtString();
             Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(langSub, timingSub);
-            
+
             //update the counter.
             CountMatchPoints = matchedLangLines2timingLines.Count();
 
@@ -245,6 +262,7 @@ namespace SyncSubsByComparison
             {
                 averages = averages.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
                 ordered = ordered.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
+                dataset2 = dataset2.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
             }
 
             if (SyncAccordingToMatch)
@@ -256,8 +274,10 @@ namespace SyncSubsByComparison
             //_actualData.Collection.Clear();
             //_actualData.AppendMany(actualPoints);
 
-            UpdateGraph(averages, _baselineData);
-            UpdateGraph(dataset2.Select(p => (double)p), _actualData);
+            var timesForXAxis = ordered.Select(p => p.Key.TimeStamp.FromTime);
+
+            UpdateGraph(timesForXAxis, averages, _baselineData);
+            UpdateGraph(timesForXAxis, dataset2.Select(p => (double)p), _actualData);
 
 
             //var dataset = ordered.Select(x => new { diff = (x.Value.TimeStamp.FromTime - x.Key.TimeStamp.FromTime), origTime = x.Value.TimeStamp.FromTime }).ToList();
@@ -278,7 +298,7 @@ namespace SyncSubsByComparison
 
             //spread correction to all timestamps (including the ones not attached)
             long prevOffset = dataset2[0];
-            TimeStamp prev = null;//langSub.TimeMarkers.First();
+            TimeStamp prev = null;
 
             foreach (var time in langSub.TimeMarkers)
             {
@@ -389,16 +409,15 @@ namespace SyncSubsByComparison
                 sumOfSquares = alpha * Math.Pow(sample, 2) + (1 - alpha) * sumOfSquares;
             }
             var abnormalPointsHash = new HashSet<long>();
-            abnormalValuePositions.ForEach(a=>abnormalPointsHash.Add(a));
+            abnormalValuePositions.ForEach(a => abnormalPointsHash.Add(a));
             return new Baseline() { AbnormalPoints = abnormalPointsHash, Averages = averageValues };
         }
 
-
-
-
-        private void UpdateGraph(IEnumerable<double> values, ObservableDataSource<Point> dataSourceToUpdate)
+        private void UpdateGraph(IEnumerable<long> xAxis, IEnumerable<double> values, ObservableDataSource<Point> dataSourceToUpdate)
         {
-            var points = values.Select((p, i) => new Point(i, (double)p));
+            //var points = values.Select((p, i) => new Point(i, (double)p));
+            var points = values.Select((p, i) => new Point(xAxis.ElementAt(i), (double)p));
+
             dataSourceToUpdate.Collection.Clear();
             dataSourceToUpdate.AppendMany(points);
         }
