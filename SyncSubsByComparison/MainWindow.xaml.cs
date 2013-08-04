@@ -84,7 +84,8 @@ namespace SyncSubsByComparison
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Thread.CurrentThread.Abort();
+            //workaround some bug of the graph component (application won't close properly)
+            Application.Current.Shutdown();
         }
     }
 }
