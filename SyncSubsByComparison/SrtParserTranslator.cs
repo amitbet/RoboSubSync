@@ -9,21 +9,13 @@ namespace SyncSubsByComparison
     public class SrtParserTranslator : ITranslator
     {
         static Regex _regTimeStamp = new Regex(@"\d+?\w*?\s+(?<fromTime>\d\d:\d\d:\d\d,\d\d\d)\s+.+?>\s+(?<toTime>\d\d:\d\d:\d\d,\d\d\d)(?<lines>.*?)(?=\d+?\w*?\s+\d\d:\d\d:\d\d,\d\d\d\s+.+?>|\z)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        //static Regex _regNumbering = new Regex(@"\d+.*", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         List<string> _translation;
         public SrtParserTranslator(string translation)
         {
-            _translation = new List<string>();
-            //_translation = translation.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Where(l => !_regTimeStamp.IsMatch(l));
-            var matches = _regTimeStamp.Matches(translation);
-            if (matches.Count == 0)
-                return;
-            
-            foreach (Match m in matches)
-            {
-                _translation.AddRange(m.Groups["lines"].Value.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
-            }
+            SubtitleInfo inf = new SubtitleInfo(null);
+            inf.LoadSrtFileContent(translation);
+            _translation = inf.Lines.Select(l => l.Line).ToList();
         }
 
         public IEnumerable<string> TranslateLines(IEnumerable<string> translateArraySourceTexts, string toLang, string fromLang)
@@ -45,12 +37,6 @@ namespace SyncSubsByComparison
         }
     }
 
-    //public class PromptingTextTranslator : ITranslator
-    //{
-    //    public IEnumerable<string> TranslateLines(IEnumerable<string> translateArraySourceTexts, string toLang, string fromLang)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+
 
 }

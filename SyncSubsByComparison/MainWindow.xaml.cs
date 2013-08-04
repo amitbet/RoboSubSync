@@ -39,7 +39,6 @@ namespace SyncSubsByComparison
             InitializeComponent();
             plotter.AddLineGraph(ViewModel.ActualData, 1, "Sync Difference");
             plotter.AddLineGraph(ViewModel.BaselineData, 2, "Baseline");
-
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
