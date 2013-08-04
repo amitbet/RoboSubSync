@@ -28,11 +28,11 @@ namespace SyncSubsByComparison
         private string _languageSrt = @"c:\TEST\Battlestar.Galactica.S03E10.The.Passage.WS.DSR.XviD-ORENJi.srt";
         private string _timingSrt = @"c:\TEST\battlestar_galactica.3x10.the_passage.dvdrip_xvid-fov.srt";
         private double _normalZoneAmplitude = 3;
-        private double _timeStampDurationMultiplyer = 1.1d;
+        private double _timeStampDurationMultiplyer = 1.0d;
 
-        private int _countMatchPoints = 0;
+        private string _countMatchPoints = "0";
 
-        public int CountMatchPoints
+        public string CountMatchPoints
         {
             get { return _countMatchPoints; }
             set
@@ -241,6 +241,7 @@ namespace SyncSubsByComparison
             catch (Exception ex)
             {
                 MessageBox.Show("Translation error: " + ex.Message);
+                return;
             }
 
             //timingSub.Translate();
@@ -248,7 +249,7 @@ namespace SyncSubsByComparison
             Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(langSub, timingSub);
 
             //update the counter.
-            CountMatchPoints = matchedLangLines2timingLines.Count();
+            CountMatchPoints = matchedLangLines2timingLines.Count() + " of " + langSub.Lines.Count();
 
             var ordered = matchedLangLines2timingLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
             var lastTimeStamForSync = ordered.Last().Value.TimeStamp.FromTime;
@@ -263,6 +264,8 @@ namespace SyncSubsByComparison
                 averages = averages.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
                 ordered = ordered.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
                 dataset2 = dataset2.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
+                baseline = CreateBaseline(dataset2, 7, (int)StartSectionLength, BaselineAlgAlpha, 3);
+                averages = baseline.Averages;
             }
 
             if (SyncAccordingToMatch)

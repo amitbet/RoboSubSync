@@ -82,5 +82,9 @@ namespace SyncSubsByComparison
             ViewModel.FixedSub.WriteSrt(newSrtFile);
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Thread.CurrentThread.Abort();
+        }
     }
 }

@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:vm="clr-namespace:SyncSubsByComparison"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="653" Width="1065" xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0">
+        Title="MainWindow" Height="653" Width="1065" xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0" Closing="Window_Closing">
     <Window.DataContext>
         <vm:MainVM></vm:MainVM>
     </Window.DataContext>
@@ -13,31 +13,31 @@
         <Label Content="timing srt:" Height="28" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label1" VerticalAlignment="Top" />
         <Label Content="language srt:" Height="28" HorizontalAlignment="Left" Margin="10,46,0,0" Name="label2" VerticalAlignment="Top" />
         <Button Content="Add Translation" HorizontalAlignment="Right" Margin="0,48,12,0" Name="button3" Width="109" Height="23" VerticalAlignment="Top" Click="button3_Click" />
-        <d3:ChartPlotter Margin="12,77,172,12" Name="plotter" />
+        <d3:ChartPlotter Margin="12,77,203,12" Name="plotter" />
         <Button Content="Save File" Height="23" HorizontalAlignment="Right" Margin="0,0,12,12" Name="btnSave" VerticalAlignment="Bottom" Width="109" Click="btnSave_Click" />
-        <Slider Value="{Binding BaselineAlgAlpha}" Height="23" Minimum="0.01" Maximum="0.6" Margin="0,127,12,0" Name="sldAlpha" VerticalAlignment="Top" SmallChange="0.01" HorizontalAlignment="Right" Width="154" />
-        <Label Content="{Binding Path=Value, ElementName=sldAlpha}" Height="28" Margin="0,106,12,0" Name="alpha" VerticalAlignment="Top" HorizontalAlignment="Right" Width="56" />
-        <Label Content="Algorithm alpha:" Height="28" Margin="0,106,65,0" Name="label3" VerticalAlignment="Top" HorizontalAlignment="Right" Width="101" />
-        <Slider Height="23" Margin="0,177,12,0" Maximum="50" Minimum="1" Name="sldStartSection" SmallChange="1" Value="{Binding StartSectionLength}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="154" IsSnapToTickEnabled="True" />
-        <Label Content="{Binding Path=Value, ElementName=sldStartSection}" Height="28" Margin="0,156,12,0" Name="label4" VerticalAlignment="Top" HorizontalAlignment="Right" Width="56" />
-        <Label Content="Start sect. length:" Height="28" HorizontalAlignment="Right" Margin="0,156,65,0" Name="label5" VerticalAlignment="Top" Width="101" />
-        <CheckBox Content="Remove abnormal points" IsChecked="{Binding RemoveAbnormalPoints}" Height="16" HorizontalAlignment="Right" Margin="0,256,12,0" Name="checkBox1" VerticalAlignment="Top" Width="154" />
-        <CheckBox Content="Sync to orig. match" Height="16" HorizontalAlignment="Right" IsChecked="{Binding SyncAccordingToMatch}" Margin="0,278,12,0" Name="checkBox2" VerticalAlignment="Top" Width="154" />
-        <Slider Height="23" HorizontalAlignment="Right"  Margin="0,227,12,0" Maximum="5" Minimum="0.5" Name="sldAbnormalZoneAmp" SmallChange="0.1" Value="{Binding NormalZoneAmplitude}" VerticalAlignment="Top" Width="154" TickFrequency="0.1" IsSnapToTickEnabled="True" />
-        <Label Content="{Binding Path=Value, ElementName=sldAbnormalZoneAmp}" Height="28" HorizontalAlignment="Right" Margin="0,206,0,0" Name="label6" VerticalAlignment="Top" Width="48" />
-        <Label Content="Nnormal Zone Amp:" Height="28" HorizontalAlignment="Right" Margin="0,206,43,0" Name="label7" VerticalAlignment="Top" Width="123" />
+        <Slider Value="{Binding BaselineAlgAlpha}" Height="23" Minimum="0.01" Maximum="0.6" Margin="0,127,12,0" Name="sldAlpha" VerticalAlignment="Top" SmallChange="0.01" HorizontalAlignment="Right" Width="185" />
+        <Label Content="{Binding Path=Value, ElementName=sldAlpha}" Height="28" Margin="0,106,0,0" Name="alpha" VerticalAlignment="Top" HorizontalAlignment="Right" Width="99" />
+        <Label Content="Algorithm alpha:" Height="28" Margin="0,106,96,0" Name="label3" VerticalAlignment="Top" HorizontalAlignment="Right" Width="101" />
+        <Slider Height="23" Margin="0,177,12,0" Maximum="50" Minimum="1" Name="sldStartSection" SmallChange="1" Value="{Binding StartSectionLength}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="185" IsSnapToTickEnabled="True" />
+        <Label Content="{Binding Path=Value, ElementName=sldStartSection}" Height="28" Margin="0,156,0,0" Name="label4" VerticalAlignment="Top" HorizontalAlignment="Right" Width="99" />
+        <Label Content="Start sect. length:" Height="28" HorizontalAlignment="Right" Margin="0,156,96,0" Name="label5" VerticalAlignment="Top" Width="101" />
+        <CheckBox Content="Remove abnormal points" IsChecked="{Binding RemoveAbnormalPoints}" Height="16" HorizontalAlignment="Right" Margin="0,256,43,0" Name="checkBox1" VerticalAlignment="Top" Width="154" />
+        <CheckBox Content="Sync to orig. match" Height="16" HorizontalAlignment="Right" IsChecked="{Binding SyncAccordingToMatch}" Margin="0,278,43,0" Name="checkBox2" VerticalAlignment="Top" Width="154" />
+        <Slider Height="23" HorizontalAlignment="Right"  Margin="0,227,12,0" Maximum="5" Minimum="0.5" Name="sldAbnormalZoneAmp" SmallChange="0.1" Value="{Binding NormalZoneAmplitude}" VerticalAlignment="Top" Width="185" TickFrequency="0.1" IsSnapToTickEnabled="True" />
+        <Label Content="{Binding Path=Value, ElementName=sldAbnormalZoneAmp}" Height="28" HorizontalAlignment="Right" Margin="0,206,0,0" Name="label6" VerticalAlignment="Top" Width="79" />
+        <Label Content="Nnormal Zone Amp:" Height="28" HorizontalAlignment="Right" Margin="0,206,74,0" Name="label7" VerticalAlignment="Top" Width="123" />
         
       
-                <Slider Height="23" HorizontalAlignment="Right" Margin="0,397,12,0" Maximum="1" Minimum="0.4" Name="slider1" SmallChange="0.01" Value="{Binding MatchSimilarityThreshold}" VerticalAlignment="Top" Width="154" />
-                <Label Content="{Binding Path=Value, ElementName=slider1}" Height="28" HorizontalAlignment="Right" Margin="0,376,0,0" Name="label8" VerticalAlignment="Top" Width="37" />
-                <Label Content="Similarity threshold:" Height="28" HorizontalAlignment="Right" Margin="0,376,43,0" Name="label9" VerticalAlignment="Top" Width="123" />
-                <Slider Height="23" HorizontalAlignment="Right" IsSnapToTickEnabled="True" Margin="0,447,12,0" Maximum="50" Minimum="1" Name="slider2" SmallChange="1" Value="{Binding MatchMinimumLettersForMatch}" VerticalAlignment="Top" Width="154" />
-                <Label Content="{Binding Path=Value, ElementName=slider2}" Height="28" HorizontalAlignment="Right" Margin="0,426,0,0" Name="label10" VerticalAlignment="Top" Width="37" />
-                <Label Content="Minimal match (ltrs):" HorizontalAlignment="Right" Margin="0,426,35,0" Name="label11" Width="131" Height="28" VerticalAlignment="Top" />
-                <Slider Height="23" HorizontalAlignment="Right" IsSnapToTickEnabled="True" Margin="0,497,12,0" Maximum="50" Minimum="1" Name="slider3" SmallChange="0.1" TickFrequency="0.1" Value="{Binding MatchLinesToSearchForward}" VerticalAlignment="Top" Width="154" />
-                <Label Content="{Binding Path=Value, ElementName=slider3}" Height="28" HorizontalAlignment="Right" Margin="0,476,0,0" Name="label12" VerticalAlignment="Top" Width="37" />
-                <Label Content="Lines to search fwd:" Height="28" HorizontalAlignment="Right" Margin="0,476,43,0" Name="label13" VerticalAlignment="Top" Width="123" />
-                <Label Content="{Binding CountMatchPoints}" Height="28" HorizontalAlignment="Right" Margin="0,526,0,0" Name="lblCountMatchPoints" VerticalAlignment="Top" Width="37" FontWeight="Bold" />
-                <Label Content="# Match Points:" Height="28" HorizontalAlignment="Right" Margin="0,526,43,0" Name="label15" VerticalAlignment="Top" Width="123" FontWeight="Bold" />
+                <Slider Height="23" HorizontalAlignment="Right" Margin="0,397,12,0" Maximum="1" Minimum="0.4" Name="slider1" SmallChange="0.01" Value="{Binding MatchSimilarityThreshold}" VerticalAlignment="Top" Width="185" />
+                <Label Content="{Binding Path=Value, ElementName=slider1}" Height="28" HorizontalAlignment="Right" Margin="0,376,0,0" Name="label8" VerticalAlignment="Top" Width="68" />
+                <Label Content="Similarity threshold:" Height="28" HorizontalAlignment="Right" Margin="0,376,74,0" Name="label9" VerticalAlignment="Top" Width="123" />
+                <Slider Height="23" HorizontalAlignment="Right" IsSnapToTickEnabled="True" Margin="0,447,12,0" Maximum="50" Minimum="1" Name="slider2" SmallChange="1" Value="{Binding MatchMinimumLettersForMatch}" VerticalAlignment="Top" Width="185" />
+                <Label Content="{Binding Path=Value, ElementName=slider2}" Height="28" HorizontalAlignment="Right" Margin="0,426,0,0" Name="label10" VerticalAlignment="Top" Width="68" />
+                <Label Content="Minimal match (ltrs):" HorizontalAlignment="Right" Margin="0,426,66,0" Name="label11" Width="131" Height="28" VerticalAlignment="Top" />
+                <Slider Height="23" HorizontalAlignment="Right" IsSnapToTickEnabled="True" Margin="0,497,12,0" Maximum="50" Minimum="1" Name="slider3" SmallChange="0.1" TickFrequency="0.1" Value="{Binding MatchLinesToSearchForward}" VerticalAlignment="Top" Width="185" />
+                <Label Content="{Binding Path=Value, ElementName=slider3}" Height="28" HorizontalAlignment="Right" Margin="0,476,0,0" Name="label12" VerticalAlignment="Top" Width="68" />
+                <Label Content="Lines to search fwd:" Height="28" HorizontalAlignment="Right" Margin="0,476,74,0" Name="label13" VerticalAlignment="Top" Width="123" />
+                <Label Content="{Binding CountMatchPoints}" Height="28" Margin="0,526,0,0" Name="lblCountMatchPoints" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Right" Width="99" />
+                <Label Content="Matched Lines:" Margin="0,526,96,0" Name="label15" FontWeight="Bold" HorizontalAlignment="Right" Width="101" Height="28" VerticalAlignment="Top" />
     </Grid>
 </Window>
