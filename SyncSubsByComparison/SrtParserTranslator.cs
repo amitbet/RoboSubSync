@@ -8,7 +8,7 @@ namespace SyncSubsByComparison
 {
     public class SrtParserTranslator : ITranslator
     {
-        static Regex _regTimeStamp = new Regex(@"\d+?\w*?\s+(?<fromTime>\d\d:\d\d:\d\d,\d\d\d)\s+-->\s+(?<toTime>\d\d:\d\d:\d\d,\d\d\d)(?<lines>.*?)(?=\d+?\w*?\s+\d\d:\d\d:\d\d,\d\d\d\s+-->|\z)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        static Regex _regTimeStamp = new Regex(@"\d+?\w*?\s+(?<fromTime>\d\d:\d\d:\d\d,\d\d\d)\s+.+?>\s+(?<toTime>\d\d:\d\d:\d\d,\d\d\d)(?<lines>.*?)(?=\d+?\w*?\s+\d\d:\d\d:\d\d,\d\d\d\s+.+?>|\z)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
         //static Regex _regNumbering = new Regex(@"\d+.*", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         List<string> _translation;
@@ -19,7 +19,7 @@ namespace SyncSubsByComparison
             var matches = _regTimeStamp.Matches(translation);
             if (matches.Count == 0)
                 return;
-
+            
             foreach (Match m in matches)
             {
                 _translation.AddRange(m.Groups["lines"].Value.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries));

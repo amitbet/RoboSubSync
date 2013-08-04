@@ -16,8 +16,8 @@ namespace SyncSubsByComparison
         
 
         //00:00:26,484 --> 00:00:29,278
-        static Regex _regTimeStamp = new Regex(@"(?<fromTime>\d\d:\d\d:\d\d,\d\d\d)\s+.+?>\s+(?<toTime>\d\d:\d\d:\d\d,\d\d\d)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        static Regex _regNumbering = new Regex(@"\d+.*", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        //static Regex _regTimeStamp = new Regex(@"(?<fromTime>\d\d:\d\d:\d\d,\d\d\d)\s+.+?>\s+(?<toTime>\d\d:\d\d:\d\d,\d\d\d)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        //static Regex _regNumbering = new Regex(@"\d+.*", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         public List<LineInfo> Lines
         {
@@ -103,54 +103,78 @@ return lang;
             }
         }
 
+        static Regex _regTimeStamp = new Regex(@"\d+?\w*?\s+(?<fromTime>\d\d:\d\d:\d\d,\d\d\d)\s+.+?>\s+(?<toTime>\d\d:\d\d:\d\d,\d\d\d)(?<lines>.*?)(?=\d+?\w*?\s+\d\d:\d\d:\d\d,\d\d\d\s+.+?>|\z)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        //static Regex _regNumbering = new Regex(@"\d+.*", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
+
+       
+
         public void LoadSrtFile(string file)
         {
-
-            //List<SrtLine> listOfLines = new List<SrtLine>();
-            string[] lines = File.ReadAllLines(file, Encoding.GetEncoding("Windows-1255"));
-            TimeStamp currentTimeStamp = null;
-            int currentLineNumber = 0;
-            foreach (string line in lines)
-            {
-                if (string.IsNullOrEmpty(line))
-                    continue;
-
-                TimeStamp ts = TryReadTimeStamp(line);
-                if (ts != null)
-                {
-
-                    currentTimeStamp = ts;
-                    _listOfTimeMarkers.Add(ts);
-                    currentLineNumber = 0;
-                }
-                else if (CheckIsNumberingLine(line))
-                {
-                    continue;
-                }
-                else
-                {
-                    var lineObj = new LineInfo() { Line = line, TimeStamp = currentTimeStamp, LineNumber = currentLineNumber };
-                    currentTimeStamp.Lines.Add(lineObj);
-                    ++currentLineNumber;
-                    _listOfLines.Add(lineObj);
-                }
-            }
-        }
-
-        private TimeStamp TryReadTimeStamp(string line)
-        {
-
-            Match m = _regTimeStamp.Match(line);
-            if (m.Success)
+             //List<string> _translation;
+            string text = File.ReadAllText(file, Encoding.GetEncoding("Windows-1255"));
+            //_translation = new List<string>();
+            //_translation = translation.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Where(l => !_regTimeStamp.IsMatch(l));
+            var matches = _regTimeStamp.Matches(text);
+            if (matches.Count == 0)
+                return;
+            
+            foreach (Match m in matches)
             {
                 var from = ParseDateToMiliseconds(m.Groups["fromTime"].Value);
                 var to = ParseDateToMiliseconds(m.Groups["toTime"].Value);
 
-                TimeStamp ts = new TimeStamp() { FromTime = from, Duration = to - from };
-                return ts;
+                TimeStamp currentTimeStamp = new TimeStamp() { FromTime = from, Duration = to - from };
+                currentTimeStamp.Lines.AddRange(m.Groups["lines"].Value.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(l=>new LineInfo(){Line=l, TimeStamp=currentTimeStamp}));
+                _listOfTimeMarkers.Add(currentTimeStamp);
+                _listOfLines.AddRange(currentTimeStamp.Lines);
             }
-            return null;
+        
+
+            //List<SrtLine> listOfLines = new List<SrtLine>();
+            //string[] lines = File.ReadAllLines(file, Encoding.GetEncoding("Windows-1255"));
+            //TimeStamp currentTimeStamp = null;
+            //int currentLineNumber = 0;
+            //foreach (string line in lines)
+            //{
+            //    if (string.IsNullOrEmpty(line))
+            //        continue;
+
+            //    TimeStamp ts = TryReadTimeStamp(line);
+            //    if (ts != null)
+            //    {
+
+            //        currentTimeStamp = ts;
+            //        _listOfTimeMarkers.Add(ts);
+            //        currentLineNumber = 0;
+            //    }
+            //    else if (CheckIsNumberingLine(line))
+            //    {
+            //        continue;
+            //    }
+            //    else
+            //    {
+            //        var lineObj = new LineInfo() { Line = line, TimeStamp = currentTimeStamp/*, LineNumber = currentLineNumber */};
+            //        currentTimeStamp.Lines.Add(lineObj);
+            //        ++currentLineNumber;
+            //        _listOfLines.Add(lineObj);
+            //    }
+            //}
         }
+
+        //private TimeStamp TryReadTimeStamp(string line)
+        //{
+
+        //    Match m = _regTimeStamp.Match(line);
+        //    if (m.Success)
+        //    {
+        //        var from = ParseDateToMiliseconds(m.Groups["fromTime"].Value);
+        //        var to = ParseDateToMiliseconds(m.Groups["toTime"].Value);
+
+        //        TimeStamp ts = new TimeStamp() { FromTime = from, Duration = to - from };
+        //        return ts;
+        //    }
+        //    return null;
+        //}
 
         private static long ParseDateToMiliseconds(string str)
         {
@@ -158,11 +182,11 @@ return lang;
             return time.Millisecond + time.Minute * 60 * 1000 + time.Second * 1000 + time.Hour * 60 * 60 * 1000;
         }
 
-        private bool CheckIsNumberingLine(string line)
-        {
+        //private bool CheckIsNumberingLine(string line)
+        //{
 
-            return _regNumbering.IsMatch(line);
-        }
+        //    return _regNumbering.IsMatch(line);
+        //}
 
 
         internal string GetTranslatedSrtString()

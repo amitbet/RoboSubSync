@@ -71,13 +71,11 @@
     <Compile Include="WndPasteTranslation.xaml.cs">
       <DependentUpon>WndPasteTranslation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="xBingTranslationAdapter.cs" />
     <Compile Include="BingTranslator.cs" />
     <Compile Include="Contants.cs" />
     <Compile Include="LineInfo.cs" />
     <Compile Include="SubtitleInfo.cs" />
     <Compile Include="TimeStamp.cs" />
-    <Compile Include="xTranslatorContainer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

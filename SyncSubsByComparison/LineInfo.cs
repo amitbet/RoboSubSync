@@ -11,7 +11,7 @@ namespace SyncSubsByComparison
         public string Line { get; set; }
         public string TranslatedLine { get; set; }
         public TimeStamp TimeStamp { get; set; }
-        public int LineNumber { get; set; }
+        //public int LineNumber { get; set; }
         Dictionary<string, int> _triGrams = null;
         public Dictionary<string, int> TriGrams
         {
