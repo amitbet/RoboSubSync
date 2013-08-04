@@ -68,6 +68,7 @@ That scare there.
 No, no, no
 22
 00:01:04,898 --> 00:01:06,733
+There are 12 Cylon models
 23
 00:01:06,733 --> 00:01:08,318
 , The occupation of New Caprica.
@@ -152,11 +153,13 @@ How long can we survive.
 With the remaining allowances.
 48
 00:02:40,744 --> 00:02:42,496
+I'd say 7 to 10 days.
 49
 00:02:44,164 --> 00:02:45,457
 When she needs to go
 50
 00:02:45,707 --> 00:02:47,084
+She was three hours ago.
 51
 00:02:47,709 --> 00:02:51,505
 ,ø...High levels of radiation.
@@ -213,14 +216,17 @@ Oh, that's good.
 67
 00:04:46,286 --> 00:04:49,998
 Battle star Galactica
+Episode 10 season 3
 68
 00:04:49,998 --> 00:04:54,002
 Www Turk team
 69
 00:04:54,002 --> 00:04:58,006
+Chapter 43
 "The crossing"
 70
 00:05:06,265 --> 00:05:09,017
+41,420
 Survivors.
 71
 00:05:09,685 --> 00:05:12,604
@@ -346,6 +352,7 @@ But the civilian ships.
 To jump into the radiation.
 109
 00:07:59,605 --> 00:08:02,316
+I think that 80 percent of people die.
 110
 00:08:02,399 --> 00:08:04,151
 Can we send Galactica to collect food
@@ -535,6 +542,7 @@ OK, discretion, please.
 We offer first passengers as we speak.
 167
 00:10:26,752 --> 00:10:28,795
+This is the first flight in about four hours.
 168
 00:10:35,886 --> 00:10:40,098
 There's no food.
@@ -787,11 +795,14 @@ Raptors of Apollo.
 Jump on my mark.
 247
 00:15:59,918 --> 00:16:00,794
+3.
 248
 00:16:01,712 --> 00:16:02,713
+-2
 Jumping
 249
 00:16:02,713 --> 00:16:03,714
+-1
 250
 00:16:03,881 --> 00:16:04,506
 Mark.
@@ -891,6 +902,7 @@ Please, Sir, we can't leave them.
 280
 00:17:48,193 --> 00:17:49,486
  ! No! Not
+3.
 281
 00:17:52,990 --> 00:17:54,491
 No, wait!
