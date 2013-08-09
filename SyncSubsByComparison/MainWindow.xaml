@@ -6,6 +6,149 @@
     <Window.DataContext>
         <vm:MainVM></vm:MainVM>
     </Window.DataContext>
+    <Window.Resources>
+        <!-- Animated Expander Button's Template-->
+        <ControlTemplate x:Key="AnimatedExpanderButtonTemp" TargetType="{x:Type ToggleButton}">
+            <Border x:Name="ExpanderButtonBorder"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Padding="{TemplateBinding Padding}"
+                    >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Fill="Transparent"
+                               Grid.ColumnSpan="2"/>
+                    <Ellipse Name="Circle"
+                         Grid.Column="0"
+                         Stroke="DarkGray"
+                         Width="20"
+                         Height="20"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         />
+                    <Path x:Name="Arrow"
+                      Grid.Column="0"
+                      Data="M 1,1.5 L 4.5,5 8,1.5"
+                      Stroke="#FF666666"
+                      StrokeThickness="2"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      RenderTransformOrigin="0.5,0.5"
+                      >
+                        <Path.RenderTransform>
+                            <RotateTransform Angle="0"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <ContentPresenter x:Name="HeaderContent"
+                                      Grid.Column="1"
+                                      Margin="4,0,0,0"
+                                      ContentSource="Content"/>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <!-- Animate arrow when toggled-->
+                <Trigger Property="IsChecked"
+                         Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="Arrow"
+                                                 Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)"
+                                                 To="180"
+                                                 Duration="0:0:0.4"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="Arrow"
+                                                 Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)"
+                                                 To="0"
+                                                 Duration="0:0:0.4"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+
+                <!-- MouseOver, Pressed behaviours-->
+                <Trigger Property="IsMouseOver"
+                                 Value="true">
+                    <Setter Property="Stroke"
+                                    Value="#FF3C7FB1"
+                                    TargetName="Circle"/>
+                    <Setter Property="Stroke"
+                                    Value="#222"
+                                    TargetName="Arrow"/>
+                </Trigger>
+                <Trigger Property="IsPressed"
+                                 Value="true">
+                    <Setter Property="Stroke"
+                                    Value="#FF526C7B"
+                                    TargetName="Circle"/>
+                    <Setter Property="StrokeThickness"
+                                    Value="1.5"
+                                    TargetName="Circle"/>
+                    <Setter Property="Stroke"
+                                    Value="#FF003366"
+                                    TargetName="Arrow"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <!-- Stretch Out Content Expander's Template,
+        Uses: AnimatedExpanderButtonTemp from above-->
+        <ControlTemplate x:Key="StretchyExpanderTemp" TargetType="{x:Type Expander}">
+            <DockPanel>
+                <ToggleButton x:Name="ExpanderButton" 
+                              DockPanel.Dock="Top"
+                              Template="{StaticResource AnimatedExpanderButtonTemp}"
+                              Content="{TemplateBinding Header}"
+                              IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                              OverridesDefaultStyle="True"
+                              Padding="1.5,0">
+                </ToggleButton>
+                <ContentPresenter x:Name="ExpanderContent"
+                                  ContentSource="Content"
+                                  DockPanel.Dock="Bottom"
+                                  >
+                    <ContentPresenter.LayoutTransform>
+                        <ScaleTransform ScaleY="0"/>
+                    </ContentPresenter.LayoutTransform>
+                </ContentPresenter>
+            </DockPanel>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsExpanded" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ExpanderContent"
+                                                 Storyboard.TargetProperty="(ContentPresenter.LayoutTransform).(ScaleTransform.ScaleY)"                                                 
+                                                 To="1"
+                                                 Duration="0:0:0.4"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ExpanderContent"
+                                                 Storyboard.TargetProperty="(ContentPresenter.LayoutTransform).(ScaleTransform.ScaleY)"
+                                                 To="0"
+                                                 Duration="0:0:0.4"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+    </Window.Resources>
     <Grid>
         <Button Content="Profile Sync" Height="23" Margin="0,77,12,0" Name="btnSync" VerticalAlignment="Top" Click="button1_Click" HorizontalAlignment="Right" Width="109" />
         <TextBox Height="23" Text="{Binding TimingSrtFile}" Name="txtTimingSrt" Margin="92,14,12,0" VerticalAlignment="Top" />
@@ -13,31 +156,69 @@
         <Label Content="timing srt:" Height="28" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label1" VerticalAlignment="Top" />
         <Label Content="language srt:" Height="28" HorizontalAlignment="Left" Margin="10,46,0,0" Name="label2" VerticalAlignment="Top" />
         <Button Content="Add Translation" HorizontalAlignment="Right" Margin="0,48,12,0" Name="button3" Width="109" Height="23" VerticalAlignment="Top" Click="button3_Click" />
-        <d3:ChartPlotter Margin="12,77,203,12" Name="plotter" />
+        <d3:ChartPlotter Margin="12,77,203,12" Name="plotter" IsEnabled="False" />
         <Button Content="Save File" Height="23" HorizontalAlignment="Right" Margin="0,0,12,12" Name="btnSave" VerticalAlignment="Bottom" Width="109" Click="btnSave_Click" />
-        <Slider Value="{Binding BaselineAlgAlpha}" Height="23" Minimum="0.01" Maximum="0.6" Margin="0,127,12,0" Name="sldAlpha" VerticalAlignment="Top" SmallChange="0.01" HorizontalAlignment="Right" Width="185" />
-        <Label Content="{Binding Path=Value, ElementName=sldAlpha}" Height="28" Margin="0,106,0,0" Name="alpha" VerticalAlignment="Top" HorizontalAlignment="Right" Width="99" />
-        <Label Content="Algorithm alpha:" Height="28" Margin="0,106,96,0" Name="label3" VerticalAlignment="Top" HorizontalAlignment="Right" Width="101" />
-        <Slider Height="23" Margin="0,177,12,0" Maximum="50" Minimum="1" Name="sldStartSection" SmallChange="1" Value="{Binding StartSectionLength}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="185" IsSnapToTickEnabled="True" />
-        <Label Content="{Binding Path=Value, ElementName=sldStartSection}" Height="28" Margin="0,156,0,0" Name="label4" VerticalAlignment="Top" HorizontalAlignment="Right" Width="99" />
-        <Label Content="Start sect. length:" Height="28" HorizontalAlignment="Right" Margin="0,156,96,0" Name="label5" VerticalAlignment="Top" Width="101" />
-        <CheckBox Content="Remove abnormal points" IsChecked="{Binding RemoveAbnormalPoints}" Height="16" HorizontalAlignment="Right" Margin="0,256,43,0" Name="checkBox1" VerticalAlignment="Top" Width="154" />
-        <CheckBox Content="Sync to orig. match" Height="16" HorizontalAlignment="Right" IsChecked="{Binding SyncAccordingToMatch}" Margin="0,278,43,0" Name="checkBox2" VerticalAlignment="Top" Width="154" />
-        <Slider Height="23" HorizontalAlignment="Right"  Margin="0,227,12,0" Maximum="5" Minimum="0.5" Name="sldAbnormalZoneAmp" SmallChange="0.1" Value="{Binding NormalZoneAmplitude}" VerticalAlignment="Top" Width="185" TickFrequency="0.1" IsSnapToTickEnabled="True" />
-        <Label Content="{Binding Path=Value, ElementName=sldAbnormalZoneAmp}" Height="28" HorizontalAlignment="Right" Margin="0,206,0,0" Name="label6" VerticalAlignment="Top" Width="79" />
-        <Label Content="Nnormal Zone Amp:" Height="28" HorizontalAlignment="Right" Margin="0,206,74,0" Name="label7" VerticalAlignment="Top" Width="123" />
-        
-      
-                <Slider Height="23" HorizontalAlignment="Right" Margin="0,397,12,0" Maximum="1" Minimum="0.4" Name="slider1" SmallChange="0.01" Value="{Binding MatchSimilarityThreshold}" VerticalAlignment="Top" Width="185" />
-                <Label Content="{Binding Path=Value, ElementName=slider1}" Height="28" HorizontalAlignment="Right" Margin="0,376,0,0" Name="label8" VerticalAlignment="Top" Width="68" />
-                <Label Content="Similarity threshold:" Height="28" HorizontalAlignment="Right" Margin="0,376,74,0" Name="label9" VerticalAlignment="Top" Width="123" />
-                <Slider Height="23" HorizontalAlignment="Right" IsSnapToTickEnabled="True" Margin="0,447,12,0" Maximum="50" Minimum="1" Name="slider2" SmallChange="1" Value="{Binding MatchMinimumLettersForMatch}" VerticalAlignment="Top" Width="185" />
-                <Label Content="{Binding Path=Value, ElementName=slider2}" Height="28" HorizontalAlignment="Right" Margin="0,426,0,0" Name="label10" VerticalAlignment="Top" Width="68" />
-                <Label Content="Minimal match (ltrs):" HorizontalAlignment="Right" Margin="0,426,66,0" Name="label11" Width="131" Height="28" VerticalAlignment="Top" />
-                <Slider Height="23" HorizontalAlignment="Right" IsSnapToTickEnabled="True" Margin="0,497,12,0" Maximum="50" Minimum="1" Name="slider3" SmallChange="0.1" TickFrequency="0.1" Value="{Binding MatchLinesToSearchForward}" VerticalAlignment="Top" Width="185" />
-                <Label Content="{Binding Path=Value, ElementName=slider3}" Height="28" HorizontalAlignment="Right" Margin="0,476,0,0" Name="label12" VerticalAlignment="Top" Width="68" />
-                <Label Content="Lines to search fwd:" Height="28" HorizontalAlignment="Right" Margin="0,476,74,0" Name="label13" VerticalAlignment="Top" Width="123" />
-                <Label Content="{Binding CountMatchPoints}" Height="28" Margin="0,526,0,0" Name="lblCountMatchPoints" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Right" Width="99" />
-                <Label Content="Matched Lines:" Margin="0,526,96,0" Name="label15" FontWeight="Bold" HorizontalAlignment="Right" Width="101" Height="28" VerticalAlignment="Top" />
+        <StackPanel  Orientation="Vertical" Margin="0,116,0,0" Height="498" VerticalAlignment="Top" HorizontalAlignment="Right" Width="197">
+            <Expander Template="{StaticResource StretchyExpanderTemp}"
+                  OverridesDefaultStyle="True"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                      Header="Line Match Parameters" >
+
+                <Grid Height="190" Width="530" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35*" />
+                        <ColumnDefinition Width="168*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="57*" />
+                        <RowDefinition Height="128*" />
+                    </Grid.RowDefinitions>
+                    <Slider Height="23" HorizontalAlignment="Left" Margin="6,27,0,0" Maximum="1" Minimum="0.4" Name="slider1" SmallChange="0.01" Value="{Binding MatchSimilarityThreshold}" VerticalAlignment="Top" Width="185" Grid.ColumnSpan="2" />
+                    <Label Content="{Binding Path=Value, ElementName=slider1}" Height="28" HorizontalAlignment="Left" Margin="33,6,0,0" Name="label8" VerticalAlignment="Top" Width="67" Grid.Column="1" />
+                    <Label Content="Similarity threshold:" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label9" VerticalAlignment="Top" Width="123" Grid.ColumnSpan="2" />
+                    <Slider Height="23" HorizontalAlignment="Left" IsSnapToTickEnabled="True" Margin="6,20,0,0" Maximum="50" Minimum="1" Name="slider2" SmallChange="1" Value="{Binding MatchMinimumLettersForMatch}" VerticalAlignment="Top" Width="185" Grid.Row="1" Grid.ColumnSpan="2" />
+                    <Label Content="{Binding Path=Value, ElementName=slider2}" Height="28" HorizontalAlignment="Left" Margin="36,56,0,0" Name="label10" VerticalAlignment="Top" Width="57" Grid.RowSpan="2" Grid.Column="1" />
+                    <Label Content="Minimal match (ltrs):" HorizontalAlignment="Left" Margin="6,56,0,0" Name="label11" Width="131" Height="28" VerticalAlignment="Top" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+                    <Slider Height="23" HorizontalAlignment="Left" IsSnapToTickEnabled="True" Margin="6,70,0,0" Maximum="50" Minimum="1" Name="slider3" SmallChange="0.1" TickFrequency="0.1" Value="{Binding MatchLinesToSearchForward}" VerticalAlignment="Top" Width="185" Grid.Row="1" Grid.ColumnSpan="2" />
+                    <Label Content="{Binding Path=Value, ElementName=slider3}" Height="28" HorizontalAlignment="Left" Margin="29,49,0,0" Name="label12" VerticalAlignment="Top" Width="71" Grid.Row="1" Grid.Column="1" />
+                    <Label Content="Lines to search fwd:" Height="28" HorizontalAlignment="Left" Margin="6,49,0,0" Name="label13" VerticalAlignment="Top" Width="123" Grid.Row="1" Grid.ColumnSpan="2" />
+                    <Label Content="{Binding CountMatchPoints}" Height="28" Margin="16,99,0,0" Name="lblCountMatchPoints" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Left" Width="84" Grid.Row="1" Grid.Column="1" />
+                    <Label Content="Matched Lines:" Margin="6,99,0,0" Name="label15" FontWeight="Bold" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="101" Grid.Row="1" Grid.ColumnSpan="2" />
+                </Grid>
+            </Expander>
+            <Expander
+                Template="{StaticResource StretchyExpanderTemp}"
+                OverridesDefaultStyle="True"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Header="Baseline Parameters"
+                Margin="0,10,0,0" >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="32*" />
+                        <ColumnDefinition Width="1009*" />
+                    </Grid.ColumnDefinitions>
+                    <Slider Value="{Binding BaselineAlgAlpha}" Height="23" Minimum="0.01" Maximum="0.6" Margin="9,27,0,0" Name="sldAlpha" VerticalAlignment="Top" SmallChange="0.01" HorizontalAlignment="Left" Width="185" Grid.Column="1" />
+                    <Label Content="{Binding Path=Value, ElementName=sldAlpha}" Height="28" Margin="116,6,0,0" Name="alpha" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="78" />
+                    <Label Content="Algorithm alpha:" Height="28" Margin="9,6,0,0" Name="label3" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="101" />
+                    <Slider Height="23" Margin="9,77,0,0" Maximum="50" Minimum="1" Name="sldStartSection" SmallChange="1" Value="{Binding StartSectionLength}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="185" IsSnapToTickEnabled="True" Grid.Column="1" />
+                    <Label Content="{Binding Path=Value, ElementName=sldStartSection}" Height="28" Margin="116,56,0,0" Name="label4" VerticalAlignment="Top" HorizontalAlignment="Left" Width="72" Grid.Column="1" />
+                    <Label Content="Start sect. length:" Height="28" HorizontalAlignment="Left" Margin="9,56,0,0" Name="label5" VerticalAlignment="Top" Width="101" Grid.Column="1" />
+                    <CheckBox Content="Remove abnormal points" IsChecked="{Binding RemoveAbnormalPoints}" Height="16" HorizontalAlignment="Left" Margin="9,156,0,0" Name="checkBox1" VerticalAlignment="Top" Width="154" Grid.Column="1" />
+                    <CheckBox Content="Sync to orig. match" Height="16" HorizontalAlignment="Left" IsChecked="{Binding SyncAccordingToMatch}" Margin="9,178,0,0" Name="checkBox2" VerticalAlignment="Top" Width="154" Grid.Column="1" />
+                    <Slider Height="23" HorizontalAlignment="Left"  Margin="9,127,0,0" Maximum="5" Minimum="0.5" Name="sldAbnormalZoneAmp" SmallChange="0.1" Value="{Binding NormalZoneAmplitude}" VerticalAlignment="Top" Width="185" TickFrequency="0.1" IsSnapToTickEnabled="True" Grid.Column="1" />
+                    <Label Content="{Binding Path=Value, ElementName=sldAbnormalZoneAmp}" Height="28" HorizontalAlignment="Left" Margin="131,106,0,0" Name="label6" VerticalAlignment="Top" Width="57" Grid.Column="1" />
+                    <Label Content="Normal Zone Amp:" Height="28" HorizontalAlignment="Left" Margin="9,106,0,0" Name="label7" VerticalAlignment="Top" Width="123" Grid.Column="1" />
+                </Grid>
+            </Expander>
+        </StackPanel>
     </Grid>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+            <GradientStop Color="White" Offset="1" />
+            <GradientStop Color="#FFC4E1FF" Offset="0" />
+            <GradientStop Color="#FFD2EEFF" Offset="0.284" />
+        </LinearGradientBrush>
+    </Window.Background>
 </Window>

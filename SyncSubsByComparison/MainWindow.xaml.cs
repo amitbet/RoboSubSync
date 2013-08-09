@@ -23,7 +23,6 @@ namespace SyncSubsByComparison
     public partial class MainWindow : Window
     {
 
-
         private MainVM myViewModel;
 
         public MainVM ViewModel
@@ -44,17 +43,13 @@ namespace SyncSubsByComparison
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.SyncSubtitles();
+            plotter.IsEnabled = true;
         }
-
-
-
-     
 
         //private void button2_Click(object sender, RoutedEventArgs e)
         //{
         //    //string lang=  BingTranslator.DetectLanguage("Dror had some pie");
         //    //string translated = BingTranslator.Translate("דרור אכל גלידה", "en");
-
         //}
 
         WndPasteTranslation _wndTranslation = new WndPasteTranslation();
@@ -87,5 +82,7 @@ namespace SyncSubsByComparison
             //workaround some bug of the graph component (application won't close properly)
             Application.Current.Shutdown();
         }
+
+    
     }
 }

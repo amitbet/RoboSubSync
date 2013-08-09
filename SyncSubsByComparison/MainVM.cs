@@ -5,6 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows;
+using System.IO;
 
 namespace SyncSubsByComparison
 {
@@ -245,7 +246,18 @@ namespace SyncSubsByComparison
             }
 
             //timingSub.Translate();
-            TranslationText = langSub.GetTranslatedSrtString();
+            
+            string translationFileName = LanguageSrtFile + ".trans";
+            if (!File.Exists(translationFileName))
+            {
+                TranslationText = langSub.GetTranslatedSrtString();
+                File.WriteAllText(LanguageSrtFile + ".trans", TranslationText);
+            }
+            else
+            {
+                TranslationText = File.ReadAllText(translationFileName);
+            }
+
             Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(langSub, timingSub);
 
             //update the counter.
