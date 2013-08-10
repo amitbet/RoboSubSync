@@ -10,6 +10,7 @@ namespace SyncSubsByComparison
 {
     public class SubtitleInfo
     {
+
         List<LineInfo> _listOfLines = new List<LineInfo>();
         List<TimeStamp> _listOfTimeMarkers = new List<TimeStamp>();
         static Regex _regTimeStamp = new Regex(@"\d+?\w*?\s+(?<fromTime>\d\d:\d\d:\d\d,\d\d\d)\s+.+?>\s+(?<toTime>\d\d:\d\d:\d\d,\d\d\d)(?<lines>.*?)(?=\d+?\w*?\s+\d\d:\d\d:\d\d,\d\d\d\s+.+?>|\z)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
@@ -55,6 +56,25 @@ namespace SyncSubsByComparison
             }
         }
 
+        public SubtitleInfo CloneSub()
+        {
+            SubtitleInfo clone = new SubtitleInfo(this._translator);
+            clone._language = this._language;
+            clone._listOfLines = new List<LineInfo>();
+            clone._listOfTimeMarkers = new List<TimeStamp>();
+            foreach (var ts in _listOfTimeMarkers)
+            {
+                TimeStamp tsn = new TimeStamp() { Correction = ts.Correction, Duration = ts.Duration, FromTime = ts.FromTime };
+                foreach (var line in ts.Lines)
+                {
+                    var nline = new LineInfo() { Line = line.Line, TimeStamp = tsn, TranslatedLine = line.TranslatedLine };
+                    tsn.Lines.Add(nline);
+                    clone._listOfLines.Add(nline);
+                }
+                clone._listOfTimeMarkers.Add(tsn);
+            }
+            return clone;
+        }
 
 
         public void Translate()

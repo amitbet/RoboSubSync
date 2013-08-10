@@ -24,10 +24,12 @@ namespace SyncSubsByComparison
         private int _linesToSearchForward = 18;
         private int _minimumLettersForMatch = 9;
         private string _translationText;
-        private double _alpha = 0.02d;
+        private double _alpha = 0.30d;
         private double _startSectionLength = 10;
-        private string _languageSrt = @"c:\TEST\Battlestar.Galactica.S03E10.The.Passage.WS.DSR.XviD-ORENJi.srt";
-        private string _timingSrt = @"c:\TEST\battlestar_galactica.3x10.the_passage.dvdrip_xvid-fov.srt";
+        //private string _languageSrt = @"c:\TEST\Battlestar.Galactica.S03E10.The.Passage.WS.DSR.XviD-ORENJi.srt";
+        //private string _timingSrt = @"c:\TEST\battlestar_galactica.3x10.the_passage.dvdrip_xvid-fov.srt";
+        private string _languageSrt = @"c:\TEST\BG - 3x20\heb.srt";
+        private string _timingSrt = @"c:\TEST\BG - 3x20\synced.srt";
         private double _normalZoneAmplitude = 3;
         private double _timeStampDurationMultiplyer = 1.0d;
 
@@ -216,46 +218,77 @@ namespace SyncSubsByComparison
             _baselineData.SetXYMapping(p => p);
         }
 
-
-        public void SyncSubtitles()
+        public void AutoSyncSubtitles()
         {
-            ITranslator translator;
-
-            if (!string.IsNullOrWhiteSpace(_translationText))
-                translator = new SrtParserTranslator(_translationText);
-            else
-                translator = _bingTranslator;
-
-            SubtitleInfo langSub = new SubtitleInfo(translator);
-            SubtitleInfo timingSub = new SubtitleInfo(translator);
-
-            langSub.LoadSrtFile(LanguageSrtFile);
-            timingSub.LoadSrtFile(TimingSrtFile);
-
-            //langSub.Translate(Google.API.Translate.Language.English);
-            //timingSub.Translate(Google.API.Translate.Language.English);
-
+            SubtitleInfo langSub;
+            SubtitleInfo timingSub;
             try
             {
-                langSub.Translate();
+                PrepareInputSubs(out langSub, out timingSub);
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Translation error: " + ex.Message);
                 return;
             }
 
-            //timingSub.Translate();
-            
-            string translationFileName = LanguageSrtFile + ".trans";
-            if (!File.Exists(translationFileName))
+            int bestMatchMinimumLettersForMatch = 0;
+            int bestMatchLinesToSearchForward = 0;
+            int maxMatchLines = 0;
+            Dictionary<LineInfo, LineInfo> bestMatchedLines = null;
+            for (int i = 6; i <= 7; ++i)
             {
-                TranslationText = langSub.GetTranslatedSrtString();
-                File.WriteAllText(LanguageSrtFile + ".trans", TranslationText);
+                for (int j = 10; j <= 19; ++j)
+                {
+                    MatchMinimumLettersForMatch = i;
+                    MatchLinesToSearchForward = j;
+
+                    Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(langSub, timingSub);
+                    int numMatches = matchedLangLines2timingLines.Count();
+                    if (numMatches > maxMatchLines)
+                    {
+                        maxMatchLines = numMatches;
+                        bestMatchedLines = matchedLangLines2timingLines;
+                        bestMatchMinimumLettersForMatch = MatchMinimumLettersForMatch;
+                        bestMatchLinesToSearchForward = MatchLinesToSearchForward;
+                    }
+                }
             }
-            else
+            MatchLinesToSearchForward = bestMatchLinesToSearchForward;
+            MatchMinimumLettersForMatch = bestMatchMinimumLettersForMatch;
+
+            //update the counter.
+            CountMatchPoints = bestMatchedLines.Count + " of " + langSub.Lines.Count();
+
+            var orderedMatchPoints = bestMatchedLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
+            List<long> diffs;
+            List<double> averages;
+            IEnumerable<long> timesForXAxis;
+
+            //BaselineAlgAlpha = 0.3;
+            //BaselineAlgAlpha += 0.05;
+
+            orderedMatchPoints = CalculateDiffAndBaseline(orderedMatchPoints, out diffs, out averages);
+
+            timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime);
+            UpdateGraph(timesForXAxis, averages, _baselineData);
+            UpdateGraph(timesForXAxis, diffs.Select(p => (double)p), _actualData);
+
+            //TODO: move to save button
+            _fixedSub = GetFixedSubtitle(langSub, orderedMatchPoints, averages);
+        }
+
+        public void SyncSubtitles()
+        {
+            SubtitleInfo langSub;
+            SubtitleInfo timingSub;
+            try
             {
-                TranslationText = File.ReadAllText(translationFileName);
+
+                PrepareInputSubs(out langSub, out timingSub);
+            }
+            catch
+            {
+                return;
             }
 
             Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(langSub, timingSub);
@@ -263,63 +296,41 @@ namespace SyncSubsByComparison
             //update the counter.
             CountMatchPoints = matchedLangLines2timingLines.Count() + " of " + langSub.Lines.Count();
 
-            var ordered = matchedLangLines2timingLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
-            var lastTimeStamForSync = ordered.Last().Value.TimeStamp.FromTime;
-            var dataset2 = ordered.Select(x => x.Value.TimeStamp.FromTime - x.Key.TimeStamp.FromTime).ToList();
+            var orderedMatchPoints = matchedLangLines2timingLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
+            List<long> diffs;
+            List<double> averages;
+            IEnumerable<long> timesForXAxis;
+            orderedMatchPoints = CalculateDiffAndBaseline(orderedMatchPoints, out diffs, out averages);
 
-            var baseline = CreateBaseline(dataset2, 7, (int)StartSectionLength, BaselineAlgAlpha, NormalZoneAmplitude);
-            var averages = baseline.Averages;
-            //List<KeyValuePair<LineInfo, LineInfo> ordered1;
-            //fix collections to remove abnormal values in preperation for using them in the sync later
-            if (RemoveAbnormalPoints)
-            {
-                averages = averages.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
-                ordered = ordered.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
-                dataset2 = dataset2.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
-                baseline = CreateBaseline(dataset2, 7, (int)StartSectionLength, BaselineAlgAlpha, 3);
-                averages = baseline.Averages;
-            }
-
-            if (SyncAccordingToMatch)
-            {
-                for (int i = 0; i < averages.Count(); ++i)
-                    averages[i] = ordered[i].Value.TimeStamp.FromTime - ordered[i].Key.TimeStamp.FromTime;
-            }
-            //var actualPoints = dataset2.Select((p, i) => new Point(i, p));
-            //_actualData.Collection.Clear();
-            //_actualData.AppendMany(actualPoints);
-
-            var timesForXAxis = ordered.Select(p => p.Key.TimeStamp.FromTime);
-
+            timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime);
             UpdateGraph(timesForXAxis, averages, _baselineData);
-            UpdateGraph(timesForXAxis, dataset2.Select(p => (double)p), _actualData);
-
-
-            //var dataset = ordered.Select(x => new { diff = (x.Value.TimeStamp.FromTime - x.Key.TimeStamp.FromTime), origTime = x.Value.TimeStamp.FromTime }).ToList();
-            //string strDataset2 = dataset2.Select(x => x.ToString()).Aggregate((x, y) => x + " " + y);
-            //string strAverages = averages.Select(x => x.ToString()).Aggregate((x, y) => x + " " + y);
-
-
+            UpdateGraph(timesForXAxis, diffs.Select(p => (double)p), _actualData);
 
             //TODO: move to save button
+            _fixedSub = GetFixedSubtitle(langSub, orderedMatchPoints, averages);
+        }
+
+        private SubtitleInfo GetFixedSubtitle(SubtitleInfo subtitlToFix, List<KeyValuePair<LineInfo, LineInfo>> orderedMatchPoints, List<double> matchPointsDiffsFromGoodSync)
+        {
+            var subtitle = subtitlToFix.CloneSub();
             int idx = 0;
             //attach average to actual timestamps
-            foreach (var item in ordered)
+            foreach (var item in orderedMatchPoints)
             {
                 item.Key.TimeStamp.IsOffsetCorrected = true;
-                item.Key.TimeStamp.Correction = (long)averages[idx];
+                item.Key.TimeStamp.Correction = (long)matchPointsDiffsFromGoodSync[idx];
                 ++idx;
             }
 
             //spread correction to all timestamps (including the ones not attached)
-            long prevOffset = dataset2[0];
+            long prevOffset = (long)matchPointsDiffsFromGoodSync[0];
             TimeStamp prev = null;
 
-            foreach (var time in langSub.TimeMarkers)
+            foreach (var time in subtitle.TimeMarkers)
             {
                 if (!time.IsOffsetCorrected)
                 {
-                    var next = langSub.Lines.Where(p => p.TimeStamp.FromTime > time.FromTime).FirstOrDefault(x => x.TimeStamp.IsOffsetCorrected);
+                    var next = subtitle.Lines.Where(p => p.TimeStamp.FromTime > time.FromTime).FirstOrDefault(x => x.TimeStamp.IsOffsetCorrected);
                     var currTime = time;
                     var prevTime = prev;
                     double newOffset = prevOffset;
@@ -347,12 +358,83 @@ namespace SyncSubsByComparison
                 //extend duration for all subs
                 time.Duration = (long)(TimeStampDurationMultiplyer * (double)time.Duration);
             }
+            return subtitle;
+        }
 
-            //var points = langSub.TimeMarkers.Select(tm => new Point((double)tm.Correction, (double)tm.FromTime));
-            //_baselineData.Collection.Clear();
-            //_baselineData.AppendMany(points);
+        private List<KeyValuePair<LineInfo, LineInfo>> CalculateDiffAndBaseline(List<KeyValuePair<LineInfo, LineInfo>> ordered, out List<long> dataset2, out List<double> averages)
+        {
+            var lastTimeStamForSync = ordered.Last().Value.TimeStamp.FromTime;
+            dataset2 = ordered.Select(x => x.Value.TimeStamp.FromTime - x.Key.TimeStamp.FromTime).ToList();
 
-            _fixedSub = langSub;
+            var baseline = CreateBaseline(dataset2, 7, (int)StartSectionLength, BaselineAlgAlpha, NormalZoneAmplitude);
+            averages = baseline.Averages;
+            //List<KeyValuePair<LineInfo, LineInfo> ordered1;
+            //fix collections to remove abnormal values in preperation for using them in the sync later
+            if (RemoveAbnormalPoints)
+            {
+                averages = averages.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
+                ordered = ordered.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
+                dataset2 = dataset2.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
+                baseline = CreateBaseline(dataset2, 7, (int)StartSectionLength, BaselineAlgAlpha, 3);
+                averages = baseline.Averages;
+            }
+
+            if (SyncAccordingToMatch)
+            {
+                for (int i = 0; i < averages.Count(); ++i)
+                    averages[i] = ordered[i].Value.TimeStamp.FromTime - ordered[i].Key.TimeStamp.FromTime;
+            }
+            //var actualPoints = dataset2.Select((p, i) => new Point(i, p));
+            //_actualData.Collection.Clear();
+            //_actualData.AppendMany(actualPoints);
+
+            //timesForXAxis = ordered.Select(p => p.Key.TimeStamp.FromTime);
+            return ordered;
+        }
+
+        private void PrepareInputSubs(out SubtitleInfo langSub, out SubtitleInfo timingSub)
+        {
+            ITranslator translator;
+
+            string translationFileName = LanguageSrtFile + ".trans";
+            bool transFileExists = (File.Exists(translationFileName));
+
+            if (!string.IsNullOrWhiteSpace(_translationText) || transFileExists)
+            {
+                if (transFileExists)
+                {
+                    _translationText = File.ReadAllText(translationFileName);
+                }
+                translator = new SrtParserTranslator(_translationText);
+            }
+            else
+            {
+                translator = _bingTranslator;
+            }
+
+            langSub = new SubtitleInfo(translator);
+            timingSub = new SubtitleInfo(translator);
+
+            langSub.LoadSrtFile(LanguageSrtFile);
+            timingSub.LoadSrtFile(TimingSrtFile);
+
+            //langSub.Translate(Google.API.Translate.Language.English);
+            //timingSub.Translate(Google.API.Translate.Language.English);
+            try
+            {
+                langSub.Translate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Translation error: " + ex.Message);
+                //return;
+            }
+
+
+            //timingSub.Translate();
+            TranslationText = langSub.GetTranslatedSrtString();
+            if (!transFileExists)
+                File.WriteAllText(LanguageSrtFile + ".trans", TranslationText);
         }
 
         /// <summary>

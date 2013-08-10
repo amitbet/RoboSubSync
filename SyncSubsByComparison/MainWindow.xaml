@@ -150,7 +150,7 @@
 
     </Window.Resources>
     <Grid>
-        <Button Content="Profile Sync" Height="23" Margin="0,77,12,0" Name="btnSync" VerticalAlignment="Top" Click="button1_Click" HorizontalAlignment="Right" Width="109" />
+        <Button Content="Auto Sync" Height="23" Margin="0,77,12,0" Name="btnSync" VerticalAlignment="Top" Click="button1_Click" HorizontalAlignment="Right" Width="84" />
         <TextBox Height="23" Text="{Binding TimingSrtFile}" Name="txtTimingSrt" Margin="92,14,12,0" VerticalAlignment="Top" />
         <TextBox Height="23" Text="{Binding LanguageSrtFile}"  Name="txtLanguageSrt" Margin="92,48,127,0" VerticalAlignment="Top" />
         <Label Content="timing srt:" Height="28" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label1" VerticalAlignment="Top" />
@@ -213,6 +213,7 @@
                 </Grid>
             </Expander>
         </StackPanel>
+        <Button Content="Update Graph" Height="23" Margin="0,77,102,0" Name="button1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="95" Click="button1_Click_1" />
     </Grid>
     <Window.Background>
         <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">

@@ -42,7 +42,7 @@ namespace SyncSubsByComparison
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.SyncSubtitles();
+            ViewModel.AutoSyncSubtitles();
             plotter.IsEnabled = true;
         }
 
@@ -81,6 +81,12 @@ namespace SyncSubsByComparison
         {
             //workaround some bug of the graph component (application won't close properly)
             Application.Current.Shutdown();
+        }
+
+        //update graph
+        private void button1_Click_1(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SyncSubtitles();
         }
 
     
