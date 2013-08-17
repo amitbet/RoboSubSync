@@ -8,8 +8,6 @@ namespace SyncSubsByComparison
 {
     public class SrtParserTranslator : ITranslator
     {
-        static Regex _regTimeStamp = new Regex(@"\d+?\w*?\s+(?<fromTime>\d\d:\d\d:\d\d,\d\d\d)\s+.+?>\s+(?<toTime>\d\d:\d\d:\d\d,\d\d\d)(?<lines>.*?)(?=\d+?\w*?\s+\d\d:\d\d:\d\d,\d\d\d\s+.+?>|\z)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
-
         List<string> _translation;
         public SrtParserTranslator(string translation)
         {

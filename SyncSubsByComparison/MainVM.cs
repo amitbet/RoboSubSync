@@ -26,8 +26,8 @@ namespace SyncSubsByComparison
         private int _linesToSearchForward = 18;
         private int _minimumLettersForMatch = 9;
         private string _translationText;
-        private double _alpha = 0.30d;
-        private double _startSectionLength = 10;
+        private double _alpha = 0.35d;
+        private double _startSectionLength = 6;
         //private string _languageSrt = @"c:\TEST\Battlestar.Galactica.S03E10.The.Passage.WS.DSR.XviD-ORENJi.srt";
         //private string _timingSrt = @"c:\TEST\battlestar_galactica.3x10.the_passage.dvdrip_xvid-fov.srt";
         private string _languageSrt = @"c:\TEST\BG - 3x20\heb.srt";
@@ -258,7 +258,7 @@ namespace SyncSubsByComparison
             Dictionary<LineInfo, LineInfo> bestMatchedLines = null;
             for (int i = 6; i <= 7; ++i)
             {
-                for (int j = 10; j <= 19; ++j)
+                for (int j = 10; j <= 14; ++j)
                 {
                     MatchMinimumLettersForMatch = i;
                     MatchLinesToSearchForward = j;
