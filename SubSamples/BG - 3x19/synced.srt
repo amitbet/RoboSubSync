@@ -1,0 +1,2396 @@
+1
+00:00:02,320 --> 00:00:05,420
+<i>Previously on "Battlestar Galactica":</i>
+
+2
+00:00:05,520 --> 00:00:08,586
+<i>(Roslin) The Cylons have established</i>
+<i>a human police force.</i>
+
+3
+00:00:08,686 --> 00:00:12,550
+<i>Hundreds of us</i>
+<i>have been rounded up by the Cylons,</i>
+
+4
+00:00:12,650 --> 00:00:16,185
+<i>held in detention,</i>
+<i>questioned, tortured.</i>
+
+5
+00:00:16,285 --> 00:00:17,547
+What's this?
+
+6
+00:00:17,647 --> 00:00:21,068
+This orders the executions
+of all the detainees on the next page.
+
+7
+00:00:21,168 --> 00:00:23,465
+- It requires your signature.
+<i>- (gun cocks)</i>
+
+8
+00:00:23,565 --> 00:00:25,835
+Sign it! Sign your name!
+
+9
+00:00:33,480 --> 00:00:35,480
+<i>(gunfire)</i>
+
+10
+00:00:36,360 --> 00:00:38,346
+The Cylons knew where we were gonna be.
+
+11
+00:00:38,446 --> 00:00:40,947
+- l want to explain.
+- She sold us out.
+
+12
+00:00:41,047 --> 00:00:45,346
+You know what has to be done here. It
+would be better for her sake if it was you.
+
+13
+00:00:45,446 --> 00:00:47,388
+<i>(sobs)</i>
+
+14
+00:00:47,488 --> 00:00:50,307
+You're not afraid to represent
+the most hated man alive?
+
+15
+00:00:50,407 --> 00:00:54,105
+l'd like to see my client.
+If they wanna kill me, they'll find a way.
+
+16
+00:00:54,205 --> 00:00:54,955
+No!
+
+17
+00:00:56,040 --> 00:00:58,388
+<i>(Adama) Baltar's defence will need help.</i>
+
+18
+00:00:58,488 --> 00:01:01,785
+Dad, why not me? l'm close to the case.
+l've read the documents.
+
+19
+00:01:01,885 --> 00:01:04,148
+You're a CAG.
+You're not a lawyer.
+
+20
+00:01:04,248 --> 00:01:07,146
+l will not allow you
+to sit across the courtroom,
+
+21
+00:01:07,246 --> 00:01:09,950
+on the other side,
+defending Gaius Baltar.
+
+22
+00:01:10,050 --> 00:01:14,385
+- Is that an order?
+- l'm through giving you orders.
+
+23
+00:01:31,560 --> 00:01:33,560
+<i>(child laughs)</i>
+
+24
+00:01:39,080 --> 00:01:39,830
+Hera?
+
+25
+00:01:54,120 --> 00:01:54,870
+Hera!
+
+26
+00:02:30,720 --> 00:02:34,547
+<i>We got Greenleaf s FTL nailed down.</i>
+So fleet's ready to jump again.
+
+27
+00:02:34,647 --> 00:02:36,828
+How many more before we find the nebula?
+
+28
+00:02:36,928 --> 00:02:40,348
+l'm estimating an even dozen.
+We're getting close.
+
+29
+00:02:40,448 --> 00:02:42,947
+Still no sign of the Cylons.
+
+30
+00:02:43,047 --> 00:02:45,670
+No. We've left a trailing bird
+at every jump site.
+
+31
+00:02:45,770 --> 00:02:49,385
+No DRADIS contacts,
+no sightings, nothing.
+
+32
+00:02:49,485 --> 00:02:51,944
+Alter the orders of the trailing Raptor.
+
+33
+00:02:52,044 --> 00:02:55,745
+Tell them to remain six hours
+before catching up with the fleet.
+
+34
+00:02:55,845 --> 00:02:57,064
+<i>(Gaeta) Yes, sir.</i>
+
+35
+00:02:57,164 --> 00:02:59,164
+<i>(static)...</i>
+
+36
+00:03:10,760 --> 00:03:12,586
+<i>(Skulls) Yeah!</i>
+
+37
+00:03:12,686 --> 00:03:14,036
+Whoo-hoo!
+
+38
+00:03:14,649 --> 00:03:17,307
+You're up, superstar.
+
+39
+00:03:17,407 --> 00:03:20,349
+You know this game has frak all
+to do with the real thing?
+
+40
+00:03:20,449 --> 00:03:23,229
+<i>(Skulls) l didn't hear you</i>
+say that in the beginning.
+
+41
+00:03:23,329 --> 00:03:26,949
+<i>(static continues)...</i>
+
+42
+00:03:36,440 --> 00:03:38,548
+<i>(brief snatch of music)...</i>
+
+43
+00:03:38,648 --> 00:03:41,546
+- There. Go back. You almost had it.
+<i>- (Seelix) Had what?</i>
+
+44
+00:03:41,646 --> 00:03:44,706
+That song.
+You don't hear that song?
+
+45
+00:03:44,806 --> 00:03:47,526
+No. Come on.
+You're up. Let's go.
+
+46
+00:03:48,720 --> 00:03:50,720
+Yeah, yeah, yeah.
+
+47
+00:03:52,360 --> 00:03:55,628
+Baltar was instrumental
+in the Cylon attack on the Colonies.
+
+48
+00:03:55,728 --> 00:03:58,307
+The president wants him
+charged with genocide.
+
+49
+00:03:58,407 --> 00:04:01,626
+l can't make it stick.
+There's no evidence of his involvement.
+
+50
+00:04:01,726 --> 00:04:07,745
+The president saw him with one of
+the Sixes on Caprica. Before the attacks.
+
+51
+00:04:07,845 --> 00:04:12,348
+You want me to put Roslin on the stand
+to testify about her drug-induced visions?
+
+52
+00:04:12,448 --> 00:04:15,426
+What we want is for you to do your job
+and convict him.
+
+53
+00:04:15,526 --> 00:04:17,788
+If you can't,
+we'll find someone who will.
+
+54
+00:04:17,888 --> 00:04:21,468
+This is a courtesy meeting,
+not a strategy session.
+
+55
+00:04:21,568 --> 00:04:23,828
+l am charging Baltar with what l can prove.
+
+56
+00:04:23,928 --> 00:04:28,146
+l do serve at the pleasure of the president
+<i>and if she decides to replace me...</i>
+
+57
+00:04:28,246 --> 00:04:32,466
+l'm sure there are other lawyers
+willing to take up the case.
+
+58
+00:04:32,566 --> 00:04:35,201
+If there are any other lawyers.
+
+59
+00:04:45,360 --> 00:04:46,860
+Dr Baltar?
+
+60
+00:04:53,560 --> 00:04:55,596
+Who are you?
+
+61
+00:04:57,520 --> 00:04:58,270
+Oh.
+
+62
+00:04:59,728 --> 00:05:04,345
+l'm under instructions from my attorney
+not to speak to any members of the press.
+
+63
+00:05:04,445 --> 00:05:09,878
+Oh. No, Dr Baltar,
+I... l want you to look at this picture.
+
+64
+00:05:10,320 --> 00:05:14,270
+This is my son. He's sick
+and l want you to bless him.
+
+65
+00:05:14,370 --> 00:05:16,370
+Bless him?
+
+66
+00:05:21,880 --> 00:05:24,627
+- Guard! l'm terribly sorry, madam.
+- Please.
+
+67
+00:05:24,727 --> 00:05:29,069
+l can't help you. l'm not God, the God,
+or a god of any derivation thereof.
+
+68
+00:05:29,169 --> 00:05:32,066
+- Please. I...
+- Sorry. l don't have any special powers.
+
+69
+00:05:32,166 --> 00:05:35,987
+- l believe in you. Just please take it.
+- Well, that's very flattering.
+
+70
+00:05:36,087 --> 00:05:41,025
+- Please, will you just take it? Please.
+- l'm on trial for my life. l need privacy.
+
+71
+00:05:41,125 --> 00:05:43,185
+- Please.
+- l'll do my best.
+
+72
+00:05:43,285 --> 00:05:47,365
+- You can save him.
+- Yeah. Mind how you go, now.
+
+73
+00:06:00,960 --> 00:06:03,467
+How many is that now?
+
+74
+00:06:03,567 --> 00:06:08,242
+Five. Not including the 30 or 40
+who've written letters.
+
+75
+00:06:12,880 --> 00:06:15,148
+Well, l suppose it can't be helped.
+
+76
+00:06:15,248 --> 00:06:19,386
+Celebrity trials invariably
+bring out the crazies.
+
+77
+00:06:19,486 --> 00:06:21,869
+So, you think they're crazy?
+
+78
+00:06:23,520 --> 00:06:26,353
+You see, l saw a woman in pain.
+
+79
+00:06:27,200 --> 00:06:31,746
+l saw a woman who can see you
+more clearly than you can see yourself.
+
+80
+00:06:31,846 --> 00:06:36,351
+Even if they kill you,
+your name will live on forever.
+
+81
+00:06:52,320 --> 00:06:56,908
+<i>(Racetrack) Galactica, Raptor 289. We're</i>
+<i>clear and in position for rearguard picket.</i>
+
+82
+00:06:57,008 --> 00:07:00,820
+<i>(Tigh) Roger, 289.</i>
+<i>Have fun watching our ass, Racetrack.</i>
+
+83
+00:07:00,920 --> 00:07:04,490
+Have fun watching Baltar's ass get nailed.
+
+84
+00:07:20,440 --> 00:07:23,905
+All right, get comfortable.
+12 hours and counting.
+
+85
+00:07:24,005 --> 00:07:26,268
+12 hours hanging out here
+like bait on a hook...
+
+86
+00:07:26,368 --> 00:07:29,149
+waiting to see if the Cylons
+are still following us.
+
+87
+00:07:29,249 --> 00:07:31,834
+Just shut up and deal, OK?
+
+88
+00:07:37,120 --> 00:07:39,315
+How do we measure loss?
+
+89
+00:07:45,360 --> 00:07:47,555
+How do we measure loss?
+
+90
+00:07:52,320 --> 00:07:54,987
+We measure it in the faces of the dead.
+
+91
+00:07:55,087 --> 00:07:59,167
+The faces that haunt our memories
+and our dreams.
+
+92
+00:08:01,800 --> 00:08:03,995
+How do we measure loss?
+
+93
+00:08:07,720 --> 00:08:10,350
+We measure it in our own faces,
+
+94
+00:08:10,450 --> 00:08:12,904
+the ones we see in the mirror every day,
+
+95
+00:08:13,004 --> 00:08:15,710
+because it has marked each of us.
+
+96
+00:08:15,810 --> 00:08:19,185
+So, how do we measure loss?
+
+97
+00:08:19,285 --> 00:08:24,065
+When the scale of it becomes too hard
+to absorb any other way,
+
+98
+00:08:24,165 --> 00:08:25,986
+we use numbers.
+
+99
+00:08:26,086 --> 00:08:30,828
+How many killed. How many maimed.
+How many missing.
+
+100
+00:08:30,928 --> 00:08:33,949
+And when those numbers
+become too vast to comprehend,
+
+101
+00:08:34,049 --> 00:08:36,750
+as they did two years ago,
+
+102
+00:08:36,850 --> 00:08:39,035
+we had to turn it around.
+
+103
+00:08:40,200 --> 00:08:43,027
+We began to count the living,
+
+104
+00:08:43,127 --> 00:08:48,482
+those of us who survived
+to continue the saga of the human race.
+
+105
+00:08:53,880 --> 00:08:55,530
+44,035 -...
+
+106
+00:08:57,408 --> 00:09:02,148
+the sum total of survivors from the Twelve
+Colonies who settled on New Caprica...
+
+107
+00:09:02,248 --> 00:09:07,234
+with President Gaius Baltar
+as their leader and protector.
+
+108
+00:09:08,360 --> 00:09:10,010
+38,838 -...
+
+109
+00:09:13,640 --> 00:09:16,712
+our number the day after we escaped.
+
+110
+00:09:18,680 --> 00:09:21,107
+And the missing number?
+
+111
+00:09:21,207 --> 00:09:24,192
+The one that no one wants to face?
+
+112
+00:09:32,880 --> 00:09:33,780
+5,197.
+
+113
+00:09:38,440 --> 00:09:41,290
+5,197 of us killed,
+
+114
+00:09:44,847 --> 00:09:47,957
+left behind, or simply disappeared.
+
+115
+00:09:48,560 --> 00:09:54,954
+5,197 of all that remains
+of the human race...
+
+116
+00:09:56,240 --> 00:09:56,990
+lost.
+
+117
+00:10:01,160 --> 00:10:03,188
+<i>The citizens of the Twelve Colonies...</i>
+
+118
+00:10:03,288 --> 00:10:06,788
+<i>entrusted their fate and their lives</i>
+<i>to Gaius Baltar.</i>
+
+119
+00:10:06,888 --> 00:10:09,430
+<i>What we received was a reign of terror...</i>
+
+120
+00:10:09,530 --> 00:10:12,985
+<i>that staggers our minds</i>
+<i>and breaks our hearts.</i>
+
+121
+00:10:13,085 --> 00:10:16,066
+<i>Instead of governance,</i>
+<i>we got tyranny.</i>
+
+122
+00:10:16,166 --> 00:10:18,949
+<i>Instead ofjustice,</i>
+<i>we got oppression.</i>
+
+123
+00:10:19,049 --> 00:10:22,505
+<i>Instead of a president,</i>
+<i>we got a murderer.</i>
+
+124
+00:10:22,605 --> 00:10:27,071
+<i>Today, humanity holds him</i>
+<i>accountable for his crime.</i>
+
+125
+00:10:30,120 --> 00:10:33,904
+Gaius Baltar is not a victim.
+
+126
+00:10:34,004 --> 00:10:36,667
+Gaius Baltar chose to
+side with the Cylons...
+
+127
+00:10:36,767 --> 00:10:41,508
+and to actively seek the deaths
+of his fellow citizens.
+
+128
+00:10:41,608 --> 00:10:42,958
+For that,
+
+129
+00:10:43,686 --> 00:10:46,321
+he must pay the ultimate price.
+
+130
+00:10:56,560 --> 00:11:01,780
+Your Honours, the defence would like
+to change our plea to guilty.
+
+131
+00:11:01,880 --> 00:11:05,707
+What? Counsellor,
+are you sure you want to do that?
+
+132
+00:11:05,807 --> 00:11:09,105
+No. But what choice do l have?
+
+133
+00:11:09,205 --> 00:11:12,947
+l mean, it's obvious my client is guilty.
+
+134
+00:11:13,047 --> 00:11:17,586
+He's a traitor, a killer. He's no better than
+a Cylon, and what do we do with them?
+
+135
+00:11:17,686 --> 00:11:22,704
+<i>- (man) Throw 'em out the airlock!</i>
+- That's right. Throw 'em out the airlock.
+
+136
+00:11:22,804 --> 00:11:26,388
+This man sold us to our enemy.
+
+137
+00:11:26,488 --> 00:11:29,227
+<i>This man is our enemy.</i>
+
+138
+00:11:29,327 --> 00:11:33,786
+And if there's one thing that's good
+in war, that is right and just and proper,
+
+139
+00:11:33,886 --> 00:11:36,266
+it's slaughtering our enemy!
+
+140
+00:11:36,720 --> 00:11:39,792
+Getting some righteous payback!
+
+141
+00:11:43,440 --> 00:11:45,990
+What are we waiting for?!
+
+142
+00:11:46,090 --> 00:11:48,275
+Let's just kill him now!
+
+143
+00:11:52,080 --> 00:11:54,469
+It'd be easier, wouldn't it?
+
+144
+00:11:56,480 --> 00:11:57,680
+Simpler.
+
+145
+00:11:59,449 --> 00:12:02,070
+Justice of the mob.
+
+146
+00:12:02,170 --> 00:12:04,355
+It's what they want.
+
+147
+00:12:07,640 --> 00:12:09,640
+Especially her.
+
+148
+00:12:12,000 --> 00:12:14,305
+She's been wanting this
+for over a year now.
+
+149
+00:12:14,405 --> 00:12:20,186
+Ever since he beat her
+in a free and fair election of the people.
+
+150
+00:12:20,286 --> 00:12:23,027
+Now she gets the chance
+to exact her revenge...
+
+151
+00:12:23,127 --> 00:12:28,267
+upon a man whose only real crime
+is bowing to the inevitable.
+
+152
+00:12:28,367 --> 00:12:33,188
+Gaius Baltar saved the lives
+of the people on New Caprica...
+
+153
+00:12:33,288 --> 00:12:36,585
+where Laura Roslin
+would have seen us all dead,
+
+154
+00:12:36,685 --> 00:12:42,118
+victims of a battle
+we had no hope in winning.
+
+155
+00:12:44,240 --> 00:12:48,865
+l don't know about you,
+but l'm glad she wasn't the president...
+
+156
+00:12:48,965 --> 00:12:53,431
+when the Cylons arrived
+and said, "Surrender or die."
+
+157
+00:12:54,520 --> 00:12:59,875
+l owe my life to Gaius Baltar
+and the decision he made that day.
+
+158
+00:13:01,200 --> 00:13:03,395
+And so does Laura Roslin.
+
+159
+00:13:15,800 --> 00:13:19,468
+- Yeah, like you'd frakking know.
+- l know you wank it in your rack,
+
+160
+00:13:19,568 --> 00:13:21,109
+ladies' man.
+
+161
+00:13:21,209 --> 00:13:24,269
+You see, that's called self-healing.
+
+162
+00:13:24,520 --> 00:13:26,954
+- OK. Time check.
+<i>- (beeping)</i>
+
+163
+00:13:28,200 --> 00:13:31,636
+Oh, we got something.
+Lots of company.
+
+164
+00:13:33,600 --> 00:13:37,065
+Reading five baseships.
+Crap! They're right on top of us.
+
+165
+00:13:37,165 --> 00:13:40,705
+- Frak. Frak! Incoming!
+- The FTL's still spinning up.
+
+166
+00:13:40,805 --> 00:13:44,190
+We gotta jump.
+Now, godsdammit! Now!
+
+167
+00:14:00,360 --> 00:14:03,266
+Search the entire fleet for tracking devices.
+
+168
+00:14:03,366 --> 00:14:08,891
+It's possible they could have placed one
+on a ship on New Caprica.
+
+169
+00:14:09,520 --> 00:14:13,065
+l think that we should ask the Six.
+She may be willing to help.
+
+170
+00:14:13,165 --> 00:14:15,587
+Baltar's girlfriend?
+Why would she do that?
+
+171
+00:14:15,687 --> 00:14:19,348
+Because she does not want to see Hera
+go back to the Cylons.
+
+172
+00:14:19,448 --> 00:14:23,746
+You think that thing would stick
+her neck out for some half-Cylon whelp?
+
+173
+00:14:23,846 --> 00:14:26,709
+l have a feeling
+she'd lay her life down for her.
+
+174
+00:14:26,809 --> 00:14:28,809
+A feeling?
+
+175
+00:14:30,520 --> 00:14:34,949
+It's more than a feeling, all right?
+Just do it!
+
+176
+00:14:35,049 --> 00:14:37,235
+It doesn't hurt to ask.
+
+177
+00:14:41,520 --> 00:14:42,270
+No.
+
+178
+00:14:44,084 --> 00:14:47,864
+Ask the prisoner if it knows
+of any tracking devices in the fleet.
+
+179
+00:14:47,964 --> 00:14:49,964
+With pleasure.
+
+180
+00:15:28,240 --> 00:15:31,625
+The president,
+gods bless her sunny, optimistic soul,
+
+181
+00:15:31,725 --> 00:15:35,866
+thinks you might wanna share
+how your buddies have been tracking us.
+
+182
+00:15:35,966 --> 00:15:40,641
+So l'm here to ask the question
+and listen to your lies.
+
+183
+00:15:44,800 --> 00:15:51,685
+In the last battle, we discovered your
+fuel ship had a unique radiation signature.
+
+184
+00:15:52,520 --> 00:15:55,956
+They must have found a way to track it.
+
+185
+00:15:59,320 --> 00:16:01,987
+What else do you know?
+
+186
+00:16:02,087 --> 00:16:07,307
+What other secrets are rattling around
+inside that mechanical brain?
+
+187
+00:16:07,407 --> 00:16:09,789
+Don't be intimidated by him.
+
+188
+00:16:11,080 --> 00:16:14,868
+He's just using you
+to exorcise his own pain.
+
+189
+00:16:17,040 --> 00:16:19,388
+Poor old sod.
+
+190
+00:16:19,488 --> 00:16:22,466
+He lost someone close to him.
+
+191
+00:16:22,566 --> 00:16:25,828
+You know how that feels, don't you?
+
+192
+00:16:25,928 --> 00:16:30,705
+l know a lot of things.
+You wanna know one thing l know?
+
+193
+00:16:30,805 --> 00:16:33,075
+l know about your loss.
+
+194
+00:16:36,120 --> 00:16:38,425
+It hurts, doesn't it?
+
+195
+00:16:38,525 --> 00:16:41,840
+You wonder how you can even survive it.
+
+196
+00:16:42,760 --> 00:16:47,625
+l don't know what you're talking about,
+but it's not gonna work.
+
+197
+00:16:47,725 --> 00:16:50,020
+<i>(Baltar) She was his world.</i>
+
+198
+00:16:50,560 --> 00:16:53,626
+Of course, he only realised
+when she was gone.
+
+199
+00:16:53,726 --> 00:16:55,726
+Did she know?
+
+200
+00:16:56,880 --> 00:16:58,830
+Did she know?
+
+201
+00:16:59,567 --> 00:17:02,945
+Did she know how much
+she meant to you?
+
+202
+00:17:03,045 --> 00:17:06,585
+Or did you wait to tell her
+until she was gone?
+
+203
+00:17:06,685 --> 00:17:07,435
+What?
+
+204
+00:17:08,170 --> 00:17:10,987
+But you made her think
+that she was a burden.
+
+205
+00:17:11,087 --> 00:17:13,552
+A millstone around your neck.
+
+206
+00:17:17,600 --> 00:17:23,380
+But then, you humans always destroy
+the ones who love you, don't you?
+
+207
+00:17:38,160 --> 00:17:40,549
+Shackle this thing.
+
+208
+00:17:51,000 --> 00:17:53,000
+<i>(lawyer) Colonel Tigh?</i>
+
+209
+00:17:54,000 --> 00:17:55,950
+Colonel Tigh?
+
+210
+00:17:56,810 --> 00:17:59,387
+Excuse me.
+What was the question, again?
+
+211
+00:17:59,487 --> 00:18:04,068
+As the leader of the insurgency,
+did you ever hear of an instance...
+
+212
+00:18:04,168 --> 00:18:07,465
+when Baltar stood up to the Cylons
+or tried to disrupt their plans?
+
+213
+00:18:07,565 --> 00:18:11,900
+Oh, no, never.
+He never lifted a frakking finger to help us.
+
+214
+00:18:12,000 --> 00:18:14,145
+Ellen did more.
+
+215
+00:18:14,245 --> 00:18:17,748
+At least she was trying to...
+<i>(slurs words) to help us.</i>
+
+216
+00:18:17,848 --> 00:18:20,035
+My gods, he's drunk.
+
+217
+00:18:21,280 --> 00:18:22,030
+Yes.
+
+218
+00:18:25,600 --> 00:18:28,194
+Yes, Ellen. Your wife.
+
+219
+00:18:29,480 --> 00:18:32,785
+Another victim of Baltar's Cylon allies.
+
+220
+00:18:32,885 --> 00:18:35,265
+Yeah, that's right.
+
+221
+00:18:35,365 --> 00:18:36,115
+Yeah.
+
+222
+00:18:38,360 --> 00:18:40,360
+Thank you, Colonel.
+
+223
+00:18:42,120 --> 00:18:44,547
+Your witness.
+
+224
+00:18:44,647 --> 00:18:48,467
+- What happened to his wife?
+- She worked for a Cylon administrator.
+
+225
+00:18:48,567 --> 00:18:51,024
+Worked for him?
+You know what happened to her?
+
+226
+00:18:51,124 --> 00:18:56,394
+No. No idea. l presume she died
+in the exodus from New Caprica.
+
+227
+00:19:00,600 --> 00:19:02,600
+- Colonel?
+- Hm.
+
+228
+00:19:04,880 --> 00:19:10,586
+You dislike Gaius Baltar because
+you consider him to be a traitor. Correct?
+
+229
+00:19:10,686 --> 00:19:13,230
+And a coward and a mass murderer.
+
+230
+00:19:13,330 --> 00:19:18,344
+The suicide bombing
+of the police graduation.
+
+231
+00:19:18,444 --> 00:19:20,904
+Baltar was the intended target,
+was he not?
+
+232
+00:19:21,004 --> 00:19:24,348
+If he'd had the guts to show up that day
+like he was supposed to,
+
+233
+00:19:24,448 --> 00:19:27,309
+you and l wouldn't be having
+this conversation now.
+
+234
+00:19:27,409 --> 00:19:32,308
+So you ordered the killing of -
+what was it? - 33 other men and women...
+
+235
+00:19:32,408 --> 00:19:36,068
+just for the chance to kill Gaius Baltar.
+
+236
+00:19:36,168 --> 00:19:40,626
+They were all traitors -
+anyone who put on that uniform.
+
+237
+00:19:40,726 --> 00:19:44,679
+But, yes. He was the target.
+
+238
+00:19:48,000 --> 00:19:50,906
+What happened to your wife?
+
+239
+00:19:51,006 --> 00:19:54,987
+- Exception. Relevance?
+- The door was opened on direct.
+
+240
+00:19:55,087 --> 00:19:58,306
+- l fail to see the point of pursuing...
+- He's right, Admiral.
+
+241
+00:19:58,406 --> 00:20:02,350
+If it was brought up during direct
+examination, it can be pursued in cross.
+
+242
+00:20:02,450 --> 00:20:04,590
+Overruled. Continue.
+
+243
+00:20:05,840 --> 00:20:09,385
+- What happened to your wife, Colonel?
+- You frakking son of a bitch.
+
+244
+00:20:09,485 --> 00:20:13,025
+Isn't it true that she collaborated
+openly with the Cylons?
+
+245
+00:20:13,125 --> 00:20:15,185
+That she actually worked for them?
+
+246
+00:20:15,285 --> 00:20:17,867
+She was faking it.
+
+247
+00:20:17,967 --> 00:20:20,909
+Making them think
+that she was working for them.
+
+248
+00:20:21,009 --> 00:20:24,146
+l-I see. And Baltar,
+he wasn't faking it. No?
+
+249
+00:20:24,246 --> 00:20:26,066
+That's right.
+
+250
+00:20:26,166 --> 00:20:28,587
+And you blame him for her death.
+
+251
+00:20:28,687 --> 00:20:31,917
+Have you been drinking today, Colonel?
+
+252
+00:20:35,960 --> 00:20:39,236
+l had a drink.
+l haven't been drinking.
+
+253
+00:20:42,120 --> 00:20:45,745
+- You liked to drink with Ellen, l imagine.
+<i>- (static)...</i>
+
+254
+00:20:45,845 --> 00:20:47,845
+<i>(haunting music)</i>
+
+255
+00:20:54,800 --> 00:20:57,264
+Did you hear that?
+
+256
+00:20:57,364 --> 00:21:00,027
+They're playing music in here now?
+
+257
+00:21:00,127 --> 00:21:02,140
+What the hell is he talking about?
+
+258
+00:21:02,240 --> 00:21:06,320
+Gaius Baltar didn't order
+the death of your wife.
+
+259
+00:21:07,560 --> 00:21:10,552
+Colonel, that was somebody else.
+
+260
+00:21:11,400 --> 00:21:13,400
+Who was it, Colonel?
+
+261
+00:21:15,240 --> 00:21:17,240
+Who killed Ellen?
+
+262
+00:21:23,040 --> 00:21:26,947
+Come on, Colonel.
+We're waiting. Tell us.
+
+263
+00:21:27,047 --> 00:21:30,589
+Who was it?
+Who killed Ellen?
+
+264
+00:21:32,200 --> 00:21:33,100
+l did.
+
+265
+00:21:34,520 --> 00:21:35,420
+l did.
+
+266
+00:21:38,880 --> 00:21:39,780
+l did.
+
+267
+00:21:44,680 --> 00:21:48,225
+She was giving information to the Cylons.
+
+268
+00:21:48,325 --> 00:21:53,850
+A lot of good men died.
+She was my wife, it was my responsibility.
+
+269
+00:21:55,200 --> 00:21:58,426
+She did it for me.
+That's what she said.
+
+270
+00:21:58,526 --> 00:22:03,066
+To save me from going back to prison
+so they could tear more pieces off me.
+
+271
+00:22:03,166 --> 00:22:05,355
+So l killed her.
+
+272
+00:22:07,160 --> 00:22:10,305
+All because of that thing over there.
+
+273
+00:22:10,920 --> 00:22:16,748
+All because Gaius frakking Baltar didn't
+have the guts to stand up to the Cylons.
+
+274
+00:22:16,848 --> 00:22:20,747
+Because he handed our fates
+over to the Cylons,
+
+275
+00:22:20,847 --> 00:22:23,229
+l had to kill my Ellen.
+
+276
+00:22:27,000 --> 00:22:31,269
+So Gaius Baltar made you kill your wife.
+
+277
+00:22:31,369 --> 00:22:33,346
+That's why you hate him,
+
+278
+00:22:33,446 --> 00:22:36,905
+and that's why you'd say anything
+to see him die.
+
+279
+00:22:37,005 --> 00:22:39,550
+You're godsdamn right, l would.
+
+280
+00:22:39,650 --> 00:22:41,865
+l would do anything,
+
+281
+00:22:41,965 --> 00:22:43,915
+say anything,
+
+282
+00:22:44,727 --> 00:22:47,787
+to see that man die a painful death.
+
+283
+00:22:47,920 --> 00:22:49,920
+No further questions.
+
+284
+00:22:55,200 --> 00:22:57,634
+<i>(static/haunting music)</i>
+
+285
+00:22:58,600 --> 00:23:01,187
+Will someone turn off that music?!
+
+286
+00:23:01,287 --> 00:23:05,027
+<i>(radio) Earlier today,</i>
+<i>eight protesters were arrested...</i>
+
+287
+00:23:05,127 --> 00:23:07,707
+- Are you hearing anything l'm saying?
+<i>- (laughs)</i>
+
+288
+00:23:07,807 --> 00:23:09,007
+My gods.
+
+289
+00:23:12,840 --> 00:23:15,949
+- What can l get you?
+- Uh, l don't know what l want.
+
+290
+00:23:16,049 --> 00:23:22,460
+- You figure it out. You're the bartender.
+- OK. Tell you what. l'll surprise you.
+
+291
+00:23:22,560 --> 00:23:26,025
+<i>- (Anders) Yes! Finally!</i>
+<i>- Thank you! (laughs)...</i>
+
+292
+00:23:26,125 --> 00:23:27,909
+l'm not a bad coach, huh?
+
+293
+00:23:28,009 --> 00:23:30,009
+<i>(static)...</i>
+
+294
+00:23:31,160 --> 00:23:33,674
+<i>(haunting music)...</i>
+
+295
+00:23:40,800 --> 00:23:42,800
+- One more time.
+- Yep.
+
+296
+00:23:47,920 --> 00:23:51,508
+l was grading papers in the schoolhouse
+that night and they came again.
+
+297
+00:23:51,608 --> 00:23:54,948
+Fortunately, the children were gone.
+It was after dark.
+
+298
+00:23:55,048 --> 00:24:01,028
+They took close to 200 of our people
+that night, under Baltar's direct orders.
+
+299
+00:24:01,128 --> 00:24:07,503
+As it turned out, all of our names
+were on a death list signed by Dr Baltar.
+
+300
+00:24:09,080 --> 00:24:12,146
+Let us be crystal clear on this fact.
+
+301
+00:24:12,246 --> 00:24:15,748
+You are saying that the defendant,
+Gaius Baltar,
+
+302
+00:24:15,848 --> 00:24:19,790
+ordered your execution
+and the execution of 200 other people?
+
+303
+00:24:19,890 --> 00:24:24,476
+Yes. Indeed.
+That's exactly what l'm saying.
+
+304
+00:24:25,640 --> 00:24:27,790
+We need to talk.
+
+305
+00:24:29,600 --> 00:24:32,905
+<i>(Baltar) We need to find something</i>
+to discredit her testimony.
+
+306
+00:24:33,005 --> 00:24:38,110
+She's a fanatic, right?
+And l don't know if that's gonna happen.
+
+307
+00:24:38,210 --> 00:24:42,120
+- You're awfully quiet.
+- l was just listening.
+
+308
+00:24:42,920 --> 00:24:48,748
+You see, your problem is is that
+l'm a really good liar and you're not.
+
+309
+00:24:48,848 --> 00:24:51,673
+- So let's have it.
+- Have what?
+
+310
+00:24:52,200 --> 00:24:57,666
+He's right. You do know something. You
+know something and you're not saying.
+
+311
+00:24:57,766 --> 00:24:59,666
+- It's probably not true.
+- l like it.
+
+312
+00:24:59,766 --> 00:25:02,108
+l doubt she would say anything
+in front of me.
+
+313
+00:25:02,208 --> 00:25:06,309
+She? She? This is about Laura Roslin?
+And you're not tell... Tell me!
+
+314
+00:25:06,409 --> 00:25:07,609
+Shut up.
+
+315
+00:25:12,920 --> 00:25:14,906
+Enjoying yourself so far, huh?
+
+316
+00:25:15,006 --> 00:25:18,428
+Having a good time sticking it to
+the old man, defending a hated man?
+
+317
+00:25:18,528 --> 00:25:22,550
+- That's not why l agreed to do this.
+- You just decided to stand up for justice...
+
+318
+00:25:22,650 --> 00:25:25,706
+and those other things
+we inscribe upon courtroom doors?
+
+319
+00:25:25,806 --> 00:25:30,665
+Yeah. That's exactly what l'm doing,
+because l believe in the system.
+
+320
+00:25:30,765 --> 00:25:35,348
+l really believe. l even believe
+that our lowlife pond scum of a client...
+
+321
+00:25:35,448 --> 00:25:38,557
+actually deserves a fair trial.
+
+322
+00:25:39,240 --> 00:25:42,748
+The system requires
+that you tell what you know,
+
+323
+00:25:42,848 --> 00:25:46,108
+which leaves you with
+one of two uncomfortable options.
+
+324
+00:25:46,208 --> 00:25:48,947
+First, share the information,
+and in so doing,
+
+325
+00:25:49,047 --> 00:25:52,149
+uphold the very principles
+that you claim to hold so dear.
+
+326
+00:25:52,249 --> 00:25:55,306
+Or second, keep 'em to yourself...
+
+327
+00:25:55,406 --> 00:25:58,189
+and prove once and for all
+your only purpose here...
+
+328
+00:25:58,289 --> 00:26:02,064
+is to jab your father in the eye and make
+a mockery of the justice system.
+
+329
+00:26:02,164 --> 00:26:04,029
+Very, very nice.
+
+330
+00:26:04,129 --> 00:26:07,425
+But l know why l'm here. l don't need
+to prove it to you or to anyone.
+
+331
+00:26:07,525 --> 00:26:12,188
+You're wrong. You need to prove it
+to yourself. Or you'll leave that courtroom...
+
+332
+00:26:12,288 --> 00:26:18,268
+knowing you kept a secret that could
+have saved that man's miserable life.
+
+333
+00:26:18,368 --> 00:26:20,149
+Unless l misjudge you,
+
+334
+00:26:20,249 --> 00:26:25,340
+that's not something that Lee Adama
+wishes on his conscience.
+
+335
+00:26:25,440 --> 00:26:27,468
+So, what'll it be, Major?
+
+336
+00:26:27,568 --> 00:26:30,908
+Sit on the sidelines mouthing pieties,
+
+337
+00:26:31,008 --> 00:26:36,703
+or are you gonna get in this trial
+and give us something we can use?
+
+338
+00:26:40,920 --> 00:26:43,667
+There we go. We made it.
+
+339
+00:26:43,767 --> 00:26:45,767
+- Come on.
+<i>- (groans)</i>
+
+340
+00:26:48,400 --> 00:26:50,348
+There we go. Come on.
+
+341
+00:26:50,448 --> 00:26:53,593
+- Come on. There we go.
+<i>- Oh. (coughs)</i>
+
+342
+00:26:55,600 --> 00:26:57,628
+There we go.
+
+343
+00:26:57,728 --> 00:27:02,867
+<i>(mumbles) You've had enough of that.</i>
+l know. l know.
+
+344
+00:27:02,967 --> 00:27:05,510
+- l'm all right.
+- Attaboy.
+
+345
+00:27:05,610 --> 00:27:07,586
+Got some good news today.
+
+346
+00:27:07,686 --> 00:27:12,146
+We found the radiation signature
+on the tylium ship...
+
+347
+00:27:12,246 --> 00:27:14,385
+like the Cylon prisoner said we would.
+
+348
+00:27:14,485 --> 00:27:17,335
+Good. That's great.
+
+349
+00:27:18,168 --> 00:27:22,147
+It's being repaired as we speak.
+
+350
+00:27:22,247 --> 00:27:27,510
+Mr Gaeta estimates the fleet's
+nine jumps away from the nebula.
+
+351
+00:27:27,610 --> 00:27:32,225
+Considering how long
+it's gonna take to fix the tylium ship,
+
+352
+00:27:32,325 --> 00:27:34,914
+we're out maybe three days.
+
+353
+00:27:36,000 --> 00:27:38,305
+Three days out...
+
+354
+00:27:38,405 --> 00:27:42,393
+from the next clue on the road to Earth.
+
+355
+00:27:45,120 --> 00:27:47,714
+l can't smell her.
+
+356
+00:27:48,520 --> 00:27:51,586
+l can't smell her any more, Bill.
+
+357
+00:27:51,686 --> 00:27:53,875
+l kept her clothes...
+
+358
+00:27:54,760 --> 00:27:56,970
+but her smell is gone now.
+
+359
+00:28:00,680 --> 00:28:02,680
+<i>(sighs)...</i>
+
+360
+00:28:04,280 --> 00:28:07,149
+l gotta go, Saul.
+l'm really tired.
+
+361
+00:28:07,249 --> 00:28:10,734
+l'm really sorry about all that in court.
+
+362
+00:28:10,960 --> 00:28:17,335
+- There's nothing to be sorry about.
+- l embarrassed you. Made you look bad.
+
+363
+00:28:17,720 --> 00:28:20,314
+You're my oldest friend, Saul.
+
+364
+00:28:23,440 --> 00:28:25,635
+You never embarrass me.
+
+365
+00:28:28,760 --> 00:28:30,760
+Get some rest.
+
+366
+00:28:36,160 --> 00:28:40,349
+Can the former CAG make
+a radical suggestion to the admiral?
+
+367
+00:28:40,449 --> 00:28:42,708
+What if we don't fix the tylium ship?
+
+368
+00:28:42,808 --> 00:28:46,909
+- Repairs have already started.
+- l realise that, but hear me out.
+
+369
+00:28:47,009 --> 00:28:51,466
+We're too close to the nebula to hope
+the Cylons can't guess where we're going.
+
+370
+00:28:51,566 --> 00:28:57,388
+So if we don't fix it, if we send the ship off
+on a new course with a couple of Raptors,
+
+371
+00:28:57,488 --> 00:29:01,706
+let her make a few jumps before rejoining
+the fleet, it might throw the Cylons off.
+
+372
+00:29:01,806 --> 00:29:04,467
+It's a good idea.
+
+373
+00:29:04,567 --> 00:29:09,350
+l'll take it into consideration.
+Is there anything else?
+
+374
+00:29:12,720 --> 00:29:15,184
+- How's the president?
+- What?
+
+375
+00:29:15,284 --> 00:29:20,129
+Is she OK? She looked
+a little rattled in court yesterday.
+
+376
+00:29:22,480 --> 00:29:24,480
+<i>(sighs)</i>
+
+377
+00:29:26,240 --> 00:29:31,467
+We can't talk about the trial outside
+of court. You know that, or you should.
+
+378
+00:29:31,567 --> 00:29:34,509
+l know. l wasn't asking...
+
+379
+00:29:34,609 --> 00:29:40,189
+After what you did to Tigh, you're the last
+person l would consider to confide in.
+
+380
+00:29:40,289 --> 00:29:43,665
+Me? l didn't do anything to Tigh.
+
+381
+00:29:43,765 --> 00:29:46,427
+He was drunk.
+That's really not my fault.
+
+382
+00:29:46,527 --> 00:29:50,028
+You told Lampkin about Ellen.
+
+383
+00:29:50,128 --> 00:29:53,266
+l didn't even know about Ellen.
+
+384
+00:29:53,366 --> 00:29:55,149
+Yeah, right.
+
+385
+00:29:55,249 --> 00:29:57,146
+Are you calling me a liar?
+
+386
+00:29:57,246 --> 00:29:59,870
+l'm calling you a liar and a coward,
+
+387
+00:29:59,970 --> 00:30:04,750
+one who doesn't have the guts
+to go after a man himself.
+
+388
+00:30:06,080 --> 00:30:10,785
+Instead, you hand the shiv to a stranger...
+
+389
+00:30:10,885 --> 00:30:13,620
+and let him stab Tigh in the back.
+
+390
+00:30:13,720 --> 00:30:15,546
+And for what?
+
+391
+00:30:15,646 --> 00:30:19,424
+The traitorous piece of garbage
+Gaius Baltar...
+
+392
+00:30:19,524 --> 00:30:22,329
+who doesn't even deserve a trial.
+
+393
+00:30:24,200 --> 00:30:26,200
+Are you done?
+
+394
+00:30:30,600 --> 00:30:31,350
+Yes.
+
+395
+00:30:32,366 --> 00:30:34,555
+Then so am I.
+
+396
+00:30:55,800 --> 00:31:00,475
+l will not serve under a man
+who questions my integrity.
+
+397
+00:31:01,000 --> 00:31:06,525
+And l won't have an officer under
+my command who doesn't have any.
+
+398
+00:31:14,080 --> 00:31:16,715
+l'll see you in court, Admiral.
+
+399
+00:31:38,240 --> 00:31:40,790
+- Let me do this.
+<i>- (Baltar) What?</i>
+
+400
+00:31:40,890 --> 00:31:43,068
+Are you sure, Major?
+
+401
+00:31:43,168 --> 00:31:46,865
+It's "Mr" now.
+And yeah, l'm sure. It should be me.
+
+402
+00:31:46,965 --> 00:31:53,765
+- You're not gonna let my security guard...
+<i>- (Franks) We're waiting, Mr Lampkin.</i>
+
+403
+00:31:55,040 --> 00:31:59,665
+If it please the court, my associate
+Mr Adama will question the witness.
+
+404
+00:31:59,765 --> 00:32:02,145
+His associate.
+
+405
+00:32:02,245 --> 00:32:06,325
+- The defence may proceed.
+<i>- (Lampkin) Thank you.</i>
+
+406
+00:32:19,320 --> 00:32:22,509
+Aren't you alive today
+because of Gaius Baltar?
+
+407
+00:32:22,609 --> 00:32:28,389
+l'm alive today because the insurgents
+managed to stop the execution.
+
+408
+00:32:28,680 --> 00:32:31,065
+They saved you from a Cylon firing squad,
+
+409
+00:32:31,165 --> 00:32:36,988
+but wasn't it Baltar who saved your life
+when you were dying from cancer?
+
+410
+00:32:37,088 --> 00:32:38,588
+Relevance?
+
+411
+00:32:40,280 --> 00:32:42,867
+Um... Your Honours...
+
+412
+00:32:42,967 --> 00:32:44,908
+Hostile witness, Your Honours.
+
+413
+00:32:45,008 --> 00:32:48,668
+If the court would grant us
+just a little latitude...
+
+414
+00:32:48,768 --> 00:32:50,768
+We'll allow it.
+
+415
+00:32:51,760 --> 00:32:53,760
+Thank you. Um...
+
+416
+00:32:55,040 --> 00:32:58,388
+Did Gaius Baltar save your life
+when you were dying from cancer?
+
+417
+00:32:58,488 --> 00:33:03,068
+Dr Baltar's scientific knowledge
+did save my life, indeed.
+
+418
+00:33:03,168 --> 00:33:06,705
+Can you be more specific? How did
+he save your life on that occasion?
+
+419
+00:33:06,805 --> 00:33:12,079
+He injected me with the blood
+of a half-Cylon, half-human baby.
+
+420
+00:33:13,480 --> 00:33:15,545
+And your cancer vanished?
+
+421
+00:33:15,645 --> 00:33:17,645
+Completely.
+
+422
+00:33:18,560 --> 00:33:22,307
+During your illness,
+what sort of medication were you on?
+
+423
+00:33:22,407 --> 00:33:25,030
+l was taking a lot of
+medications at the time...
+
+424
+00:33:25,130 --> 00:33:28,275
+and l don't remember all their names.
+
+425
+00:33:29,880 --> 00:33:33,790
+Did you take something
+called chamalla extract?
+
+426
+00:33:35,760 --> 00:33:36,510
+Hm.
+
+427
+00:33:38,208 --> 00:33:38,958
+Yes.
+
+428
+00:33:46,760 --> 00:33:50,507
+Isn't it true that one of the side effects
+of taking chamalla...
+
+429
+00:33:50,607 --> 00:33:53,985
+is a propensity
+to experience hallucinations?
+
+430
+00:33:54,085 --> 00:33:57,508
+Yes, that is one of the possible
+side effects of chamalla.
+
+431
+00:33:57,608 --> 00:33:59,905
+And isn't it also true...
+
+432
+00:34:00,005 --> 00:34:04,668
+that the visions that you once described
+as messages from the gods...
+
+433
+00:34:04,768 --> 00:34:06,905
+were actually the result...
+
+434
+00:34:07,005 --> 00:34:09,986
+of a pharmacological reaction
+from taking chamalla?
+
+435
+00:34:10,086 --> 00:34:13,827
+The chamalla enabled me to see
+things foretold by the scriptures,
+
+436
+00:34:13,927 --> 00:34:16,986
+things that will help this fleet
+find its way to Earth.
+
+437
+00:34:17,086 --> 00:34:19,986
+- You of all people should know that.
+- Your Honours?
+
+438
+00:34:20,086 --> 00:34:26,036
+- Where are you going with this?
+- Just one more question, Your Honour.
+
+439
+00:34:36,720 --> 00:34:39,786
+<i>(whispers) Please, don't do this.</i>
+
+440
+00:34:39,886 --> 00:34:40,936
+Please.
+
+441
+00:34:45,160 --> 00:34:49,756
+Madam President, are you taking
+chamalla at this time?
+
+442
+00:34:50,920 --> 00:34:53,980
+"Captain Apollo." You remember that?
+
+443
+00:34:55,960 --> 00:35:02,675
+l always thought that had such a nice ring
+to it. l am so, so sorry for you now.
+
+444
+00:35:08,200 --> 00:35:09,989
+Chamalla, Madam President.
+
+445
+00:35:10,089 --> 00:35:13,907
+Perhaps dissolved in your tea
+to mask the bitterness.
+
+446
+00:35:14,007 --> 00:35:16,427
+Don't answer.
+l'm putting a stop to this now.
+
+447
+00:35:16,527 --> 00:35:19,469
+If she is on drugs
+it goes to her credibility as a witness.
+
+448
+00:35:19,569 --> 00:35:21,146
+Witness is dismissed.
+
+449
+00:35:21,246 --> 00:35:25,024
+Your Honours, l have to object.
+He's trying to cover something up here.
+
+450
+00:35:25,124 --> 00:35:27,627
+One more word
+and you'll be held for contempt.
+
+451
+00:35:27,727 --> 00:35:30,866
+- Admiral!
+- l'd like to hear the witness answer.
+
+452
+00:35:30,966 --> 00:35:32,966
+As would I.
+
+453
+00:35:33,880 --> 00:35:37,839
+Madam President,
+are you taking chamalla again?
+
+454
+00:35:44,480 --> 00:35:45,980
+Yes, l am.
+
+455
+00:35:56,480 --> 00:35:58,907
+No further questions.
+
+456
+00:35:59,007 --> 00:36:02,675
+Mr Adama, aren't you going
+to ask me why?
+
+457
+00:36:03,120 --> 00:36:06,999
+- l'm sorry?
+- Why am l taking chamalla again?
+
+458
+00:36:07,800 --> 00:36:13,495
+- It's not strictly relevant.
+- Perhaps not to you, but it is to me.
+
+459
+00:36:15,360 --> 00:36:18,158
+Go ahead. Ask me why.
+
+460
+00:36:19,720 --> 00:36:22,075
+Finish what you started.
+
+461
+00:36:26,520 --> 00:36:31,196
+Why are you taking the chamalla again,
+Madam President?
+
+462
+00:36:34,280 --> 00:36:39,195
+l am taking chamalla again
+because my cancer has returned.
+
+463
+00:37:01,960 --> 00:37:06,905
+The fact that she's having hallucinations
+is relevant to Baltar's defence.
+
+464
+00:37:07,005 --> 00:37:09,225
+That's the way the system works, Dee.
+
+465
+00:37:09,325 --> 00:37:13,626
+The accused has a right to challenge
+the credibility of witnesses against them.
+
+466
+00:37:13,726 --> 00:37:16,184
+The system is broken, Lee.
+
+467
+00:37:16,284 --> 00:37:20,187
+The system elected that man to be
+president and it's trying to let him walk.
+
+468
+00:37:20,287 --> 00:37:23,506
+That system doesn't deserve
+to be defended, but taken apart...
+
+469
+00:37:23,606 --> 00:37:25,989
+and put back together again.
+
+470
+00:37:27,640 --> 00:37:29,640
+You know, l wish...
+
+471
+00:37:35,560 --> 00:37:39,307
+- l wish l could make you understand.
+- l do understand, Lee.
+
+472
+00:37:39,407 --> 00:37:41,595
+That's why l'm leaving.
+
+473
+00:37:43,200 --> 00:37:45,430
+No, you don't.
+
+474
+00:37:46,480 --> 00:37:48,480
+You frakking don't.
+
+475
+00:37:59,440 --> 00:38:01,628
+How long have you known
+about the cancer?
+
+476
+00:38:01,728 --> 00:38:04,669
+- About a week.
+- And how advanced is the disease?
+
+477
+00:38:04,769 --> 00:38:08,268
+Will you be getting more transfusions
+from the half-Cylon donor?
+
+478
+00:38:08,368 --> 00:38:13,268
+This is detail l'm not going into now. l'll let
+you know when we have a game plan.
+
+479
+00:38:13,368 --> 00:38:16,469
+How will the treatment
+impact your duties as president?
+
+480
+00:38:16,569 --> 00:38:19,945
+- So far, it hasn't at all.
+- Are you currently taking chamalla?
+
+481
+00:38:20,045 --> 00:38:22,105
+Don't answer that.
+
+482
+00:38:22,205 --> 00:38:24,228
+How often do you hallucinate?
+
+483
+00:38:24,328 --> 00:38:27,386
+- Enough of this crap. We're done here.
+- Tory.
+
+484
+00:38:27,486 --> 00:38:31,626
+- You can go pick over another carcass.
+- Tory! Come here.
+
+485
+00:38:31,726 --> 00:38:34,632
+l'll see you inside. Thank you.
+
+486
+00:38:39,040 --> 00:38:40,909
+<i>(laughs) l'm sorry.</i>
+
+487
+00:38:41,009 --> 00:38:44,625
+Temperatures are running a little high
+in the fleet these days.
+
+488
+00:38:44,725 --> 00:38:47,068
+Who's next? Karen?
+
+489
+00:38:47,168 --> 00:38:50,993
+Madam President,
+how long do you have to live?
+
+490
+00:38:51,760 --> 00:38:54,957
+How long do you have to live, Karen?
+
+491
+00:39:04,960 --> 00:39:08,106
+- You handled that well.
+- You didn't.
+
+492
+00:39:08,206 --> 00:39:12,905
+"Pick over another carcass"? As opposed
+to mine? That'll look good in the press.
+
+493
+00:39:13,005 --> 00:39:15,385
+I... l don't even know why l said that. I...
+
+494
+00:39:15,485 --> 00:39:18,307
+What is up with you?
+You've been off your game for days.
+
+495
+00:39:18,407 --> 00:39:22,147
+You're distracted, exhausted.
+Frankly, you're plain obnoxious.
+
+496
+00:39:22,247 --> 00:39:24,704
+l just haven't been sleeping very well.
+
+497
+00:39:24,804 --> 00:39:28,308
+You need to pull it together
+and focus on your job fast,
+
+498
+00:39:28,408 --> 00:39:30,987
+or l can find someone
+who can handle the press...
+
+499
+00:39:31,087 --> 00:39:35,592
+as well as pull a comb
+through their hair once a week.
+
+500
+00:39:40,760 --> 00:39:43,638
+<i>(static/haunting music)...</i>
+
+501
+00:40:00,200 --> 00:40:03,430
+<i>- (Helo) Lieutenant?</i>
+- Oh, morning, XO.
+
+502
+00:40:03,920 --> 00:40:06,949
+Morning. It's just temporary.
+
+503
+00:40:07,049 --> 00:40:09,504
+The colonel will pull it together.
+
+504
+00:40:09,604 --> 00:40:10,504
+Right.
+
+505
+00:40:11,526 --> 00:40:15,587
+We're using the tylium ship as a decoy
+to lead the Cylons along this course,
+
+506
+00:40:15,687 --> 00:40:17,506
+almost directly opposite to ours.
+
+507
+00:40:17,606 --> 00:40:21,507
+When they reach this point here
+they'll recalibrate their FTL...
+
+508
+00:40:21,607 --> 00:40:26,268
+and jump back to rendezvous with the rest
+of the fleet here at the lonian Nebula.
+
+509
+00:40:26,368 --> 00:40:28,628
+Any indication the Cylons are following?
+
+510
+00:40:28,728 --> 00:40:32,345
+Nothing yet. It would appear
+they've stopped following us as well.
+
+511
+00:40:32,445 --> 00:40:37,348
+Our Raptors have yet to pick up any sign
+of pursuit since the ship left the fleet.
+
+512
+00:40:37,448 --> 00:40:39,904
+How many jumps
+until we reach the nebula?
+
+513
+00:40:40,004 --> 00:40:41,108
+Uh...
+
+514
+00:40:41,208 --> 00:40:45,798
+it's hard to believe,
+but we're down to the last three.
+
+515
+00:40:46,520 --> 00:40:47,270
+Good.
+
+516
+00:40:49,409 --> 00:40:52,227
+Is there anything else, sir?
+
+517
+00:40:52,327 --> 00:40:54,515
+No. No, l was just, uh...
+
+518
+00:40:56,680 --> 00:41:00,464
+just remembering back on Caprica,
+when the weather was about to change,
+
+519
+00:41:00,564 --> 00:41:04,049
+you'd... you'd get this smell in the air.
+
+520
+00:41:05,280 --> 00:41:09,107
+The sun could be out, not a cloud
+in the sky, but you'd pick up this smell,
+
+521
+00:41:09,207 --> 00:41:14,307
+and you knew that, um...
+something was just over the horizon.
+
+522
+00:41:17,080 --> 00:41:19,747
+Weather's changing, Felix.
+
+523
+00:41:19,847 --> 00:41:22,229
+We need to be ready for it.
+
+524
+00:41:25,360 --> 00:41:27,555
+There's a storm coming.
+
+525
+00:41:36,560 --> 00:41:38,560
+<i>(haunting music)</i>
+
+526
+00:41:42,360 --> 00:41:44,555
+It's in the ship.
+
+527
+00:41:46,720 --> 00:41:49,917
+It's in the frakking ship!
+
+528
+00:42:40,680 --> 00:42:43,390
+<i>- (talks gibberish)</i>
+- He's doing it again.
+
+529
+00:42:43,490 --> 00:42:45,490
+- Thanks.
+<i>- (laughs)</i>

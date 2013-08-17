@@ -38,6 +38,7 @@ namespace SyncSubsByComparison
             InitializeComponent();
             plotter.AddLineGraph(ViewModel.ActualData, 1, "Sync Difference");
             plotter.AddLineGraph(ViewModel.BaselineData, 2, "Baseline");
+            plotter.AddLineGraph(ViewModel.RegressionData, 2, "L.Regression");
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -86,6 +87,7 @@ namespace SyncSubsByComparison
         //update graph
         private void button1_Click_1(object sender, RoutedEventArgs e)
         {
+            plotter.IsEnabled = true;
             ViewModel.SyncSubtitles();
         }
 

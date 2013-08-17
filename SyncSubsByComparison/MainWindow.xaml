@@ -1,12 +1,22 @@
 ﻿<Window x:Class="SyncSubsByComparison.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:vm="clr-namespace:SyncSubsByComparison"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="653" Width="1065" xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0" Closing="Window_Closing">
     <Window.DataContext>
         <vm:MainVM></vm:MainVM>
     </Window.DataContext>
+    
     <Window.Resources>
+        <ObjectDataProvider MethodName="GetValues"
+        ObjectType="{x:Type sys:Enum}"
+        x:Key="LineTypesEnum">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="vm:LineTypes" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        
         <!-- Animated Expander Button's Template-->
         <ControlTemplate x:Key="AnimatedExpanderButtonTemp" TargetType="{x:Type ToggleButton}">
             <Border x:Name="ExpanderButtonBorder"
@@ -210,6 +220,12 @@
                     <Slider Height="23" HorizontalAlignment="Left"  Margin="9,127,0,0" Maximum="5" Minimum="0.5" Name="sldAbnormalZoneAmp" SmallChange="0.1" Value="{Binding NormalZoneAmplitude}" VerticalAlignment="Top" Width="185" TickFrequency="0.1" IsSnapToTickEnabled="True" Grid.Column="1" />
                     <Label Content="{Binding Path=Value, ElementName=sldAbnormalZoneAmp}" Height="28" HorizontalAlignment="Left" Margin="131,106,0,0" Name="label6" VerticalAlignment="Top" Width="57" Grid.Column="1" />
                     <Label Content="Normal Zone Amp:" Height="28" HorizontalAlignment="Left" Margin="9,106,0,0" Name="label7" VerticalAlignment="Top" Width="123" Grid.Column="1" />
+                </Grid>
+            </Expander>
+            <Expander Header="Fix &amp; Save Subtitle" Margin="0,10,0,0" IsExpanded="True">
+                <Grid>
+                    <Label Margin="-1,0,0,0" HorizontalAlignment="Left" Width="52">use line:</Label>
+                    <ComboBox SelectedItem="{Binding SelectedLineType}" ItemsSource="{Binding Source={StaticResource LineTypesEnum}}" Margin="52,2,0,2"></ComboBox>
                 </Grid>
             </Expander>
         </StackPanel>

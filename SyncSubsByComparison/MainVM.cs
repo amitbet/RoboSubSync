@@ -17,9 +17,11 @@ namespace SyncSubsByComparison
         private bool _syncAccordingToMatch;
         private bool _removeAbnormalPoints;
         private BingTranslator _bingTranslator = new BingTranslator();
-        private SubtitleInfo _fixedSub;
+        //private SubtitleInfo _fixedSub;
         private ObservableDataSource<Point> _actualData = new ObservableDataSource<Point>();
         private ObservableDataSource<Point> _baselineData = new ObservableDataSource<Point>();
+        private ObservableDataSource<Point> _regressionData = new ObservableDataSource<Point>();
+
         private double _orderedLetterSimilarityTreshold = 0.65;
         private int _linesToSearchForward = 18;
         private int _minimumLettersForMatch = 9;
@@ -43,6 +45,19 @@ namespace SyncSubsByComparison
                 _countMatchPoints = value;
                 if (PropertyChanged != null)
                     PropertyChanged.Invoke(this, new PropertyChangedEventArgs("CountMatchPoints"));
+            }
+        }
+        LineTypes _selectedLineType = LineTypes.OriginalMatch;
+        public LineTypes SelectedLineType
+        {
+            get { return _selectedLineType; }
+            set
+            {
+                _selectedLineType = value;
+
+
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("SelectedLineType"));
             }
         }
 
@@ -179,15 +194,20 @@ namespace SyncSubsByComparison
             }
         }
 
-        public SubtitleInfo FixedSub
+        public ObservableDataSource<Point> RegressionData
         {
-            get { return _fixedSub; }
+            get { return _regressionData; }
             set
             {
-                _fixedSub = value;
+                _regressionData = value;
                 if (PropertyChanged != null)
-                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("FixedSub"));
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("RegressionData"));
             }
+        }
+
+        public SubtitleInfo FixedSub
+        {
+            get { return SelectedLineForSubtitleFix.CreateFixedSubtitle(_langSub); }
         }
 
         public string TranslationText
@@ -216,6 +236,7 @@ namespace SyncSubsByComparison
         {
             _actualData.SetXYMapping(p => p);
             _baselineData.SetXYMapping(p => p);
+            _regressionData.SetXYMapping(p => p);
         }
 
         public void AutoSyncSubtitles()
@@ -274,41 +295,99 @@ namespace SyncSubsByComparison
             UpdateGraph(timesForXAxis, diffs.Select(p => (double)p), _actualData);
 
             //TODO: move to save button
-            _fixedSub = GetFixedSubtitle(langSub, orderedMatchPoints, averages);
+            //_fixedSub = GetFixedSubtitle(langSub, orderedMatchPoints, averages);
         }
+
+
+        private SampleCollection _lnBaseline = null;
+        private SampleCollection _lnOriginal = null;
+        private SampleCollection _lnRegression = null;
+        private SampleCollection _selectedLineForSubtitleFix = null;
+
+        public SampleCollection SelectedLineForSubtitleFix
+        {
+            get
+            {
+                //get selected line for subtitle
+                _selectedLineForSubtitleFix = _lnOriginal;
+                switch (SelectedLineType)
+                {
+                    case LineTypes.Baseline:
+                        _selectedLineForSubtitleFix = _lnBaseline;
+                        break;
+                    case LineTypes.LinearRegression:
+                        _selectedLineForSubtitleFix = _lnRegression;
+                        break;
+                    case LineTypes.OriginalMatch:
+                        _selectedLineForSubtitleFix = _lnOriginal;
+                        break;
+                }
+
+                return _selectedLineForSubtitleFix;
+            }
+        }
+        private SubtitleInfo _langSub;
+        private SubtitleInfo _timingSub;
 
         public void SyncSubtitles()
         {
-            SubtitleInfo langSub;
-            SubtitleInfo timingSub;
+
             try
             {
 
-                PrepareInputSubs(out langSub, out timingSub);
+                PrepareInputSubs(out _langSub, out _timingSub);
             }
             catch
             {
                 return;
             }
 
-            Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(langSub, timingSub);
+            Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(_langSub, _timingSub);
 
             //update the counter.
-            CountMatchPoints = matchedLangLines2timingLines.Count() + " of " + langSub.Lines.Count();
+            CountMatchPoints = matchedLangLines2timingLines.Count() + " of " + _langSub.Lines.Count();
 
             var orderedMatchPoints = matchedLangLines2timingLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
-            List<long> diffs;
-            List<double> averages;
-            IEnumerable<long> timesForXAxis;
-            orderedMatchPoints = CalculateDiffAndBaseline(orderedMatchPoints, out diffs, out averages);
+            //List<long> diffs;
+            //List<double> averages;
+            //IEnumerable<long> timesForXAxis;
 
-            timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime);
-            UpdateGraph(timesForXAxis, averages, _baselineData);
-            UpdateGraph(timesForXAxis, diffs.Select(p => (double)p), _actualData);
+            /////////////////////////
 
-            //TODO: move to save button
-            _fixedSub = GetFixedSubtitle(langSub, orderedMatchPoints, averages);
+            var diffPoints = orderedMatchPoints.Select(x => (double)(x.Value.TimeStamp.FromTime - x.Key.TimeStamp.FromTime)).ToList();
+            var timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime).ToList();
+            var mypoints = diffPoints.Select((p, i) => new MyPoint(timesForXAxis[i], p));
+
+            _lnOriginal = new SampleCollection(mypoints);
+
+            if (RemoveAbnormalPoints)
+            {
+                _lnOriginal = _lnOriginal.FilterAbnormalsByBaseline(BaselineAlgAlpha, NormalZoneAmplitude, (int)StartSectionLength);
+                //_lnOriginal = _lnOriginal.FilterAbnormalsByRegression();
+            }
+
+            _lnBaseline = _lnOriginal.GetBaseline(BaselineAlgAlpha, NormalZoneAmplitude, (int)StartSectionLength);
+            _lnRegression = _lnOriginal.GetLinearRegression();
+            UpdateGraph(_lnBaseline, _baselineData);
+            UpdateGraph(_lnRegression, _regressionData);
+            UpdateGraph(_lnOriginal, _actualData);
+
+            //_selectedLineForSubtitleFix = _lnOriginal;
+
+            //_fixedSub = SelectedLineForSubtitleFix.CreateFixedSubtitle(_langSub);
+            /////////////////////////
+            ////orderedMatchPoints = CalculateDiffAndBaseline(orderedMatchPoints, out diffs, out averages);
+            ////timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime);
+            ////UpdateGraph(timesForXAxis, averages, _baselineData);
+            //UpdateGraph(timesForXAxis, diffPoints.Select(p => (double)p), _actualData);
+
+            //////TODO: move to save button
+            //_fixedSub = GetFixedSubtitle(langSub, orderedMatchPoints, averages);
         }
+
+        //private SubtitleInfo GetFixedSubtitle(SubtitleInfo subtitlToFix, List<KeyValuePair<LineInfo, LineInfo>> orderedMatchPoints)
+        //{
+        //}
 
         private SubtitleInfo GetFixedSubtitle(SubtitleInfo subtitlToFix, List<KeyValuePair<LineInfo, LineInfo>> orderedMatchPoints, List<double> matchPointsDiffsFromGoodSync)
         {
@@ -363,10 +442,10 @@ namespace SyncSubsByComparison
 
         private List<KeyValuePair<LineInfo, LineInfo>> CalculateDiffAndBaseline(List<KeyValuePair<LineInfo, LineInfo>> ordered, out List<long> dataset2, out List<double> averages)
         {
-            var lastTimeStamForSync = ordered.Last().Value.TimeStamp.FromTime;
+            //var lastTimeStamForSync = ordered.Last().Value.TimeStamp.FromTime;
             dataset2 = ordered.Select(x => x.Value.TimeStamp.FromTime - x.Key.TimeStamp.FromTime).ToList();
 
-            var baseline = CreateBaseline(dataset2, 7, (int)StartSectionLength, BaselineAlgAlpha, NormalZoneAmplitude);
+            var baseline = Baseline.CreateBaseline(dataset2, 7, (int)StartSectionLength, BaselineAlgAlpha, NormalZoneAmplitude);
             averages = baseline.Averages;
             //List<KeyValuePair<LineInfo, LineInfo> ordered1;
             //fix collections to remove abnormal values in preperation for using them in the sync later
@@ -375,7 +454,7 @@ namespace SyncSubsByComparison
                 averages = averages.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
                 ordered = ordered.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
                 dataset2 = dataset2.Where((p, i) => (!baseline.AbnormalPoints.Contains(i))).ToList();
-                baseline = CreateBaseline(dataset2, 7, (int)StartSectionLength, BaselineAlgAlpha, 3);
+                baseline = Baseline.CreateBaseline(dataset2, 7, (int)StartSectionLength, BaselineAlgAlpha, 3);
                 averages = baseline.Averages;
             }
 
@@ -437,77 +516,12 @@ namespace SyncSubsByComparison
                 File.WriteAllText(LanguageSrtFile + ".trans", TranslationText);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="series"></param>
-        /// <param name="numErrorsToBacktrackOn"></param>
-        /// <param name="initialSectionLength"></param>
-        /// <param name="algAlpha">the forgetfullness constant, controls the impact of every new sample on the average and deviation, as well as the (much smaller) impact of abnormal samples (should be between 0.01 and 0.05)</param>
-        /// <param name="normalcyAmplitudeConstant">the number of standart deviations from the average line in which a sample is considered ok to include in calculation, this creates a zone surrounding the average from above and below which is the allowed zone for samples, should usually be 3</param>
-        /// <returns></returns>
-        public Baseline CreateBaseline(List<long> series, int numErrorsToBacktrackOn, int initialSectionLength, double algAlpha = 0.02d, double normalcyAmplitudeConstant = 3)
+        private void UpdateGraph(SampleCollection col, ObservableDataSource<Point> dataSourceToUpdate)
         {
-            List<double> averageValues = new List<double>();
-            var leadIn = series.Take(initialSectionLength);
-            double average = CalcAverage(leadIn);
-            double sumOfSquares = CalcSumOfSquares(leadIn, average);
-            for (int i = 0; i < initialSectionLength; i++)
-                averageValues.Add(average);
+            var points = col.Select(p => new Point(p.X, p.Y));
 
-            //algAlpha = 0.02d;
-            double alpha = algAlpha;
-            int errorCount = 0;
-
-            List<long> abnormalValuePositions = new List<long>();
-
-            for (int i = initialSectionLength; i < series.Count(); ++i)
-            {
-                var sample = series[i];
-                var stdDeviation = CalcStddev(sumOfSquares, average);
-                double distanceFromAvg = Math.Abs(sample - average);
-
-                //an abnormal value is found
-                if (distanceFromAvg > normalcyAmplitudeConstant * stdDeviation)
-                {
-                    alpha = Math.Pow(algAlpha, (distanceFromAvg / (stdDeviation)) - (normalcyAmplitudeConstant - 1));
-
-                    ++errorCount;
-                    abnormalValuePositions.Add(i);
-
-                    //if too many errors occured, go back to where we lost it, and clear the averages, so we start fresh.
-                    if (errorCount >= numErrorsToBacktrackOn)
-                    {
-                        //release all errors tags in list until the rollback point
-                        abnormalValuePositions.RemoveRange(abnormalValuePositions.Count - numErrorsToBacktrackOn, numErrorsToBacktrackOn);
-                        averageValues.RemoveRange(averageValues.Count - numErrorsToBacktrackOn, numErrorsToBacktrackOn);
-                        errorCount = 0;
-
-                        //rollback i
-                        i -= (numErrorsToBacktrackOn + 1);
-
-                        var errSamples = series.Where((x, idx) => idx > i && idx <= numErrorsToBacktrackOn + i);
-                        //reset values
-                        average = CalcAverage(errSamples);
-                        sumOfSquares = CalcSumOfSquares(errSamples, average);
-
-                        continue;
-                    }
-                }
-                //normal values
-                else
-                {
-                    errorCount = 0;
-                    alpha = algAlpha;
-                }
-                averageValues.Add(average);
-
-                average = alpha * sample + (1 - alpha) * average;
-                sumOfSquares = alpha * Math.Pow(sample, 2) + (1 - alpha) * sumOfSquares;
-            }
-            var abnormalPointsHash = new HashSet<long>();
-            abnormalValuePositions.ForEach(a => abnormalPointsHash.Add(a));
-            return new Baseline() { AbnormalPoints = abnormalPointsHash, Averages = averageValues };
+            dataSourceToUpdate.Collection.Clear();
+            dataSourceToUpdate.AppendMany(points);
         }
 
         private void UpdateGraph(IEnumerable<long> xAxis, IEnumerable<double> values, ObservableDataSource<Point> dataSourceToUpdate)
@@ -568,27 +582,7 @@ namespace SyncSubsByComparison
             return matchedLangLines2timingLines;
         }
 
-        double CalcSumOfSquares(IEnumerable<long> series, double average)
-        {
-            double sumOfSquares = 0;
-            foreach (var item in series)
-            {
-                sumOfSquares += Math.Pow(item - average, 2);
-            }
-            return sumOfSquares;
-        }
 
-        double CalcAverage(IEnumerable<long> series)
-        {
-            return ((double)series.Aggregate((a, b) => a + b) / (double)series.Count());
-        }
-
-
-        ///Note: Stddev[t] = sqrt(sumOfSquares[t] – average[t]^2)
-        private double CalcStddev(double sumOfSquares, double average)
-        {
-            return Math.Sqrt(sumOfSquares - Math.Pow(average, 2));
-        }
 
     }
 }

@@ -67,7 +67,9 @@
     <Compile Include="Baseline.cs" />
     <Compile Include="INotifyPropertyChaged.cs" />
     <Compile Include="ITranslator.cs" />
+    <Compile Include="LineTypes.cs" />
     <Compile Include="MainVM.cs" />
+    <Compile Include="MyPoint.cs" />
     <Compile Include="SrtParserTranslator.cs" />
     <Compile Include="WndPasteTranslation.xaml.cs">
       <DependentUpon>WndPasteTranslation.xaml</DependentUpon>
@@ -77,6 +79,7 @@
     <Compile Include="LineInfo.cs" />
     <Compile Include="SubtitleInfo.cs" />
     <Compile Include="TimeStamp.cs" />
+    <Compile Include="SampleCollection.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
