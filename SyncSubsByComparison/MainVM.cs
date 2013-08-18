@@ -14,10 +14,8 @@ namespace SyncSubsByComparison
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private bool _syncAccordingToMatch;
-        private bool _removeAbnormalPoints;
+        private bool _removeAbnormalPoints = true;
         private BingTranslator _bingTranslator = new BingTranslator();
-        //private SubtitleInfo _fixedSub;
         private ObservableDataSource<Point> _actualData = new ObservableDataSource<Point>();
         private ObservableDataSource<Point> _baselineData = new ObservableDataSource<Point>();
         private ObservableDataSource<Point> _regressionData = new ObservableDataSource<Point>();
@@ -28,8 +26,6 @@ namespace SyncSubsByComparison
         private string _translationText;
         private double _alpha = 0.35d;
         private double _startSectionLength = 6;
-        //private string _languageSrt = @"c:\TEST\Battlestar.Galactica.S03E10.The.Passage.WS.DSR.XviD-ORENJi.srt";
-        //private string _timingSrt = @"c:\TEST\battlestar_galactica.3x10.the_passage.dvdrip_xvid-fov.srt";
         private string _languageSrt = @"c:\TEST\BG - 3x20\heb.srt";
         private string _timingSrt = @"c:\TEST\BG - 3x20\synced.srt";
         private double _normalZoneAmplitude = 3;
@@ -83,6 +79,27 @@ namespace SyncSubsByComparison
             }
         }
 
+        string _selectedEncodingName = "Hebrew (Windows)";
+        public string SelectedEncodingName
+        {
+            get { return _selectedEncodingName; }
+            set
+            {
+                _selectedEncodingName = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("SelectedEncodingName"));
+            }
+        }
+
+        public Encoding SelectedEncoding
+        {
+            get { return Encoding.GetEncodings().Where(e => e.DisplayName == _selectedEncodingName).First().GetEncoding(); }
+        }
+
+        public IEnumerable<string> AllEncodings
+        {
+            get { return Encoding.GetEncodings().Select(e => e.DisplayName).OrderBy(e => e); }
+        }
 
         public double MatchSimilarityThreshold
         {
@@ -146,18 +163,6 @@ namespace SyncSubsByComparison
                 _languageSrt = value;
                 if (PropertyChanged != null)
                     PropertyChanged.Invoke(this, new PropertyChangedEventArgs("LanguageSrtFile"));
-            }
-        }
-
-        public bool SyncAccordingToMatch
-        {
-            get { return _syncAccordingToMatch; }
-            set
-            {
-                _syncAccordingToMatch = value;
-                RemoveAbnormalPoints = value;
-                if (PropertyChanged != null)
-                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("SyncAccordingToMatch"));
             }
         }
 
@@ -277,25 +282,21 @@ namespace SyncSubsByComparison
             MatchLinesToSearchForward = bestMatchLinesToSearchForward;
             MatchMinimumLettersForMatch = bestMatchMinimumLettersForMatch;
 
+            SyncSubtitles();
+
             //update the counter.
-            CountMatchPoints = bestMatchedLines.Count + " of " + langSub.Lines.Count();
+            //CountMatchPoints = bestMatchedLines.Count + " of " + langSub.Lines.Count();
+            
+            //var orderedMatchPoints = bestMatchedLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
+            //List<long> diffs;
+            //List<double> averages;
+            //IEnumerable<long> timesForXAxis;
 
-            var orderedMatchPoints = bestMatchedLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
-            List<long> diffs;
-            List<double> averages;
-            IEnumerable<long> timesForXAxis;
+            //orderedMatchPoints = CalculateDiffAndBaseline(orderedMatchPoints, out diffs, out averages);
 
-            //BaselineAlgAlpha = 0.3;
-            //BaselineAlgAlpha += 0.05;
-
-            orderedMatchPoints = CalculateDiffAndBaseline(orderedMatchPoints, out diffs, out averages);
-
-            timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime);
-            UpdateGraph(timesForXAxis, averages, _baselineData);
-            UpdateGraph(timesForXAxis, diffs.Select(p => (double)p), _actualData);
-
-            //TODO: move to save button
-            //_fixedSub = GetFixedSubtitle(langSub, orderedMatchPoints, averages);
+            //timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime);
+            //UpdateGraph(timesForXAxis, averages, _baselineData);
+            //UpdateGraph(timesForXAxis, diffs.Select(p => (double)p), _actualData);
         }
 
 
@@ -331,7 +332,6 @@ namespace SyncSubsByComparison
 
         public void SyncSubtitles()
         {
-
             try
             {
 
@@ -348,11 +348,6 @@ namespace SyncSubsByComparison
             CountMatchPoints = matchedLangLines2timingLines.Count() + " of " + _langSub.Lines.Count();
 
             var orderedMatchPoints = matchedLangLines2timingLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
-            //List<long> diffs;
-            //List<double> averages;
-            //IEnumerable<long> timesForXAxis;
-
-            /////////////////////////
 
             var diffPoints = orderedMatchPoints.Select(x => (double)(x.Value.TimeStamp.FromTime - x.Key.TimeStamp.FromTime)).ToList();
             var timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime).ToList();
@@ -363,31 +358,16 @@ namespace SyncSubsByComparison
             if (RemoveAbnormalPoints)
             {
                 _lnOriginal = _lnOriginal.FilterAbnormalsByBaseline(BaselineAlgAlpha, NormalZoneAmplitude, (int)StartSectionLength);
-                //_lnOriginal = _lnOriginal.FilterAbnormalsByRegression();
             }
 
             _lnBaseline = _lnOriginal.GetBaseline(BaselineAlgAlpha, NormalZoneAmplitude, (int)StartSectionLength);
             _lnRegression = _lnOriginal.GetLinearRegression();
+
+            //update the graphs
             UpdateGraph(_lnBaseline, _baselineData);
             UpdateGraph(_lnRegression, _regressionData);
             UpdateGraph(_lnOriginal, _actualData);
-
-            //_selectedLineForSubtitleFix = _lnOriginal;
-
-            //_fixedSub = SelectedLineForSubtitleFix.CreateFixedSubtitle(_langSub);
-            /////////////////////////
-            ////orderedMatchPoints = CalculateDiffAndBaseline(orderedMatchPoints, out diffs, out averages);
-            ////timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime);
-            ////UpdateGraph(timesForXAxis, averages, _baselineData);
-            //UpdateGraph(timesForXAxis, diffPoints.Select(p => (double)p), _actualData);
-
-            //////TODO: move to save button
-            //_fixedSub = GetFixedSubtitle(langSub, orderedMatchPoints, averages);
         }
-
-        //private SubtitleInfo GetFixedSubtitle(SubtitleInfo subtitlToFix, List<KeyValuePair<LineInfo, LineInfo>> orderedMatchPoints)
-        //{
-        //}
 
         private SubtitleInfo GetFixedSubtitle(SubtitleInfo subtitlToFix, List<KeyValuePair<LineInfo, LineInfo>> orderedMatchPoints, List<double> matchPointsDiffsFromGoodSync)
         {
@@ -442,12 +422,11 @@ namespace SyncSubsByComparison
 
         private List<KeyValuePair<LineInfo, LineInfo>> CalculateDiffAndBaseline(List<KeyValuePair<LineInfo, LineInfo>> ordered, out List<long> dataset2, out List<double> averages)
         {
-            //var lastTimeStamForSync = ordered.Last().Value.TimeStamp.FromTime;
             dataset2 = ordered.Select(x => x.Value.TimeStamp.FromTime - x.Key.TimeStamp.FromTime).ToList();
 
             var baseline = Baseline.CreateBaseline(dataset2, 7, (int)StartSectionLength, BaselineAlgAlpha, NormalZoneAmplitude);
             averages = baseline.Averages;
-            //List<KeyValuePair<LineInfo, LineInfo> ordered1;
+            
             //fix collections to remove abnormal values in preperation for using them in the sync later
             if (RemoveAbnormalPoints)
             {
@@ -458,16 +437,6 @@ namespace SyncSubsByComparison
                 averages = baseline.Averages;
             }
 
-            if (SyncAccordingToMatch)
-            {
-                for (int i = 0; i < averages.Count(); ++i)
-                    averages[i] = ordered[i].Value.TimeStamp.FromTime - ordered[i].Key.TimeStamp.FromTime;
-            }
-            //var actualPoints = dataset2.Select((p, i) => new Point(i, p));
-            //_actualData.Collection.Clear();
-            //_actualData.AppendMany(actualPoints);
-
-            //timesForXAxis = ordered.Select(p => p.Key.TimeStamp.FromTime);
             return ordered;
         }
 
@@ -494,11 +463,9 @@ namespace SyncSubsByComparison
             langSub = new SubtitleInfo(translator);
             timingSub = new SubtitleInfo(translator);
 
-            langSub.LoadSrtFile(LanguageSrtFile);
-            timingSub.LoadSrtFile(TimingSrtFile);
+            langSub.LoadSrtFile(LanguageSrtFile, Encoding.ASCII);
+            timingSub.LoadSrtFile(TimingSrtFile, SelectedEncoding);
 
-            //langSub.Translate(Google.API.Translate.Language.English);
-            //timingSub.Translate(Google.API.Translate.Language.English);
             try
             {
                 langSub.Translate();
@@ -506,11 +473,8 @@ namespace SyncSubsByComparison
             catch (Exception ex)
             {
                 MessageBox.Show("Translation error: " + ex.Message);
-                //return;
             }
 
-
-            //timingSub.Translate();
             TranslationText = langSub.GetTranslatedSrtString();
             if (!transFileExists)
                 File.WriteAllText(LanguageSrtFile + ".trans", TranslationText);
@@ -526,7 +490,6 @@ namespace SyncSubsByComparison
 
         private void UpdateGraph(IEnumerable<long> xAxis, IEnumerable<double> values, ObservableDataSource<Point> dataSourceToUpdate)
         {
-            //var points = values.Select((p, i) => new Point(i, (double)p));
             var points = values.Select((p, i) => new Point(xAxis.ElementAt(i), (double)p));
 
             dataSourceToUpdate.Collection.Clear();

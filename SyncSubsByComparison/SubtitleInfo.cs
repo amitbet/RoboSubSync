@@ -94,9 +94,9 @@ namespace SyncSubsByComparison
         }
 
 
-        public void LoadSrtFile(string file)
+        public void LoadSrtFile(string file, Encoding enc)
         {
-            string text = File.ReadAllText(file, Encoding.GetEncoding("Windows-1255"));
+            string text = File.ReadAllText(file, enc);
             LoadSrtFileContent(text);
         }
 
