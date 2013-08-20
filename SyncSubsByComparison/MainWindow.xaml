@@ -173,7 +173,7 @@
         <Label Content="timing srt:" Height="28" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label1" VerticalAlignment="Top" />
         <Label Content="language srt:" Height="28" HorizontalAlignment="Left" Margin="10,46,0,0" Name="label2" VerticalAlignment="Top" />
         <Button Content="Add Translation" HorizontalAlignment="Right" Margin="0,48,12,0" Name="button3" Width="109" Height="23" VerticalAlignment="Top" Click="button3_Click" />
-        <d3:ChartPlotter Margin="12,77,203,12" Name="plotter" IsEnabled="False" />
+        <d3:ChartPlotter Margin="12,77,203,12" Name="plotter" IsEnabled="False" IsMouseDirectlyOverChanged="plotter_IsMouseDirectlyOverChanged" MouseDown="plotter_MouseDown" MouseUp="plotter_MouseUp" MouseMove="plotter_MouseMove" PreviewMouseDown="plotter_PreviewMouseDown" />
         <Button Content="Save File" Height="23" HorizontalAlignment="Right" Margin="0,0,12,12" Name="btnSave" VerticalAlignment="Bottom" Width="109" Click="btnSave_Click" />
         <StackPanel  Orientation="Vertical" Margin="0,116,0,0" Height="498" VerticalAlignment="Top" HorizontalAlignment="Right" Width="197">
             <Expander Template="{StaticResource StretchyExpanderTemp}"

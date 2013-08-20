@@ -14,8 +14,7 @@ namespace SyncSubsByComparison
 {
     public class BingTranslator : ITranslator
     {
-        //static string _clientId = "c8016bfc-11fc-4905-8630-fd9bfd00e697";
-        //static string _clientSecret = "zRrUfDpO57x/9tnx16m/2oEpXzK6amgydzKi7tEBJXw";
+      
         static string _clientId = "shutmail";
         static string _clientSecret = "uXZPslmVER9d5lnjYN2efBE4Ljh0DCxYQ7br9yM7uSM=";
         AdmAccessToken admToken;
@@ -26,95 +25,17 @@ namespace SyncSubsByComparison
             admToken = admAuth.GetAccessToken();
         }
 
+      
         /// <summary>
-        /// 
+        /// translates lines by using TranslateArray function with batches of X lines each time, so not to exceed the limit.,
         /// </summary>
-        /// <param name="text">the text to translate</param>
-        /// <param name="targetLanguage">ar,bg,ca,zh-CHS,zh-CHT,cs,da,nl,en,et,fi,fr,de,el,ht,he,hi,mww,hu,id,it,ja,tlh,tlh-QON,ko,lv,lt,ms,no,fa,pl,pt,ro,ru,sk,sl,es,sv,th,tr,uk,ur,vi</param>
+        /// <param name="translateArraySourceTexts"></param>
+        /// <param name="toLang"></param>
+        /// <param name="fromLang"></param>
         /// <returns></returns>
-        //public IEnumerable<string> TranslateArray(IEnumerable<string> lines, string targetLanguage, string sourceLanguage)
-        //{
-        //    //AdmAccessToken admToken;
-        //    //string headerValue;
-        //    //Get Client Id and Client Secret from https://datamarket.azure.com/developer/applications/
-        //    //Refer obtaining AccessToken (http://msdn.microsoft.com/en-us/library/hh454950.aspx) 
-        //    //string clientId = "c8016bfc-11fc-4905-8630-fd9bfd00e697";
-        //    //string clientSecret = "zRrUfDpO57x/9tnx16m/2oEpXzK6amgydzKi7tEBJXw";
-
-        //    //var lines = text.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-        //    //List<string> translationBuckets = new List<string>();
-        //    //StringBuilder currentBucket = new StringBuilder();
-        //    ////string currentBucket = "";
-        //    //foreach (var line in lines)
-        //    //{
-        //    //    currentBucket.AppendLine(line);
-        //    //    //currentBucket+=line.Length;
-        //    //    if (currentBucket.Length > 2000)
-        //    //    {
-        //    //        translationBuckets.Add(currentBucket.ToString());
-        //    //        currentBucket = new StringBuilder();
-        //    //    }
-        //    //}
-        //    //string currentBucket = "";
-        //    ////string currentBucket = "";
-        //    //foreach (var line in lines)
-        //    //{
-        //    //    currentBucket += line + "\n";
-        //    //    //currentBucket+=line.Length;
-        //    //    if (currentBucket.Length > 2000)
-        //    //    {
-        //    //        translationBuckets.Add(currentBucket);
-        //    //        currentBucket = "";
-        //    //    }
-        //    //}
-        //    //AdmAccessToken admToken;
-        //    //string headerValue;
-        //    //Get Client Id and Client Secret from https://datamarket.azure.com/developer/applications/
-        //    //Refer obtaining AccessToken (http://msdn.microsoft.com/en-us/library/hh454950.aspx) 
-        //    //AdmAuthentication admAuth = new AdmAuthentication(clientId, clientSecret);
-        //    try
-        //    {
-        //        //admToken = admAuth.GetAccessToken();
-        //        // Create a header with the access_token property of the returned token
-        //        //headerValue = "Bearer " + admToken.access_token;
-        //        //return TranslateArrayMethod(headerValue, lines, targetLanguage, sourceLanguage);
-        //        return TranslateArrayMethod(lines, targetLanguage, sourceLanguage);
-        //    }
-
-
-        //    //StringBuilder sbTranslation = new StringBuilder();
-        //    //AdmAuthentication admAuth = new AdmAuthentication(clientId, clientSecret);
-        //    //try
-        //    //{
-        //    //    //foreach (string bucket in translationBuckets)
-        //    //    ////foreach (var line in lines)
-        //    //    //{
-        //    //    //    //admToken = admAuth.GetAccessToken();
-        //    //    //    // Create a header with the access_token property of the returned token
-        //    //    //    //headerValue = "Bearer " + admToken.access_token;
-        //    //    //    BingTranslationAdapter adapter = new BingTranslationAdapter();
-        //    //    //    //string translation = TranslateInternal(targetLanguage, headerValue, line);
-        //    //    //    string translation = adapter.Translate(bucket, targetLanguage, sourceLanguage);
-        //    //    //    sbTranslation.AppendLine(translation.Trim("\n\r".ToCharArray()));
-        //    //    //}
-        //    //    //return sbTranslation.ToString();
-
-        //    //}
-        //    catch (WebException e)
-        //    {
-        //        ProcessWebException(e);
-        //    }
-        //    return null;
-        //}
-
         public IEnumerable<string> TranslateLines(IEnumerable<string> translateArraySourceTexts, string toLang, string fromLang = null)
         {
-            //string from = "en";
-            //string to = "es";
-            //string[] translateArraySourceTexts = { "The answer lies in machine translation.", "the best machine translation technology cannot always provide translations tailored to a site or users like a human ", "Simply copy and paste a code snippet anywhere " };
             StringBuilder sb = new StringBuilder();
-            //System.Uri.EscapeDataString(l)
-            //var translationLines = translateArraySourceTexts.Select(l => "<string xmlns:ar=\"http://schemas.microsoft.com/2003/10/Serialization/Arrays\">" + System.Web.HttpUtility.HtmlEncode(l) + "</string>");
             var translationLines = translateArraySourceTexts.Select(l => "<ar:string>" + System.Web.HttpUtility.HtmlEncode(l) + "</ar:string>");
 
             var translationGroups = translationLines
@@ -127,7 +48,6 @@ namespace SyncSubsByComparison
                 batches.Add(group.Aggregate((a, b) => a + "\n" + b));
             }
             List<string> translatedLines = new List<string>();
-            
 
             string authToken = "Bearer " + admToken.access_token;
 
@@ -148,9 +68,6 @@ namespace SyncSubsByComparison
                                  "</Options>\n" +
                                  "<Texts xmlns:ar=\"http://schemas.microsoft.com/2003/10/Serialization/Arrays\">\n" +
                                     batch +
-                    //"<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/Arrays\">{2}</string>" +
-                    //"<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/Arrays\">{3}</string>" +
-                    //"<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/Arrays\">{4}</string>" +
                                  "\n</Texts>\n" +
                                  "<To>{2}</To>\n" +
                               "</TranslateArrayRequest>";
@@ -187,15 +104,12 @@ namespace SyncSubsByComparison
 
                                 foreach (var node in xe.Elements(ns + "TranslatedText"))
                                 {
-                                    translatedLines.Add(node.Value);//Console.WriteLine("\n\nSource text: {0}\nTranslated Text: {1}", translateArraySourceTexts[soureceTextCounter], node.Value);
+                                    translatedLines.Add(node.Value);
                                 }
-                                //soureceTextCounter++;
+                            
                             }
-                            //Console.WriteLine("Press any key to continue...");
-                            //Console.ReadKey(true);
                         }
                     }
-                    //response.Close();
                     
                 }
                 catch (WebException e)
@@ -270,17 +184,10 @@ namespace SyncSubsByComparison
 
         public string DetectLanguage(string text)
         {
-            //AdmAccessToken admToken;
             string headerValue;
-            //Get Client Id and Client Secret from https://datamarket.azure.com/developer/applications/
-            //Refer obtaining AccessToken (http://msdn.microsoft.com/en-us/library/hh454950.aspx) 
-            //string clientId = "c8016bfc-11fc-4905-8630-fd9bfd00e697";
-            //string clientSecret = "zRrUfDpO57x/9tnx16m/2oEpXzK6amgydzKi7tEBJXw";
-
-            //AdmAuthentication admAuth = new AdmAuthentication(clientId, clientSecret);
+            
             try
             {
-                //admToken = admAuth.GetAccessToken();
                 // Create a header with the access_token property of the returned token
                 headerValue = "Bearer " + admToken.access_token;
                 return DetectLangInternal(headerValue, text);
@@ -292,14 +199,8 @@ namespace SyncSubsByComparison
             return null;
         }
 
-
-
-
-
         private static string DetectLangInternal(string authToken, string textToDetect)
         {
-            //Console.WriteLine("Enter Text to detect language:");
-            //string textToDetect = Console.ReadLine();
             //Keep appId parameter blank as we are sending access token in authorization header.
             string uri = "http://api.microsofttranslator.com/v2/Http.svc/Detect?text=" + textToDetect;
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
@@ -355,6 +256,7 @@ namespace SyncSubsByComparison
             get { return !string.IsNullOrWhiteSpace(_clientId) && !string.IsNullOrWhiteSpace(_clientSecret); }
         }
     }
+ 
     [DataContract]
     public class AdmAccessToken
     {

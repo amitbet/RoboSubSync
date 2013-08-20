@@ -15,7 +15,7 @@ namespace SyncSubsByComparison
         public event PropertyChangedEventHandler PropertyChanged;
 
         private bool _removeAbnormalPoints = true;
-        private BingTranslator _bingTranslator = new BingTranslator();
+        private BingTranslator _bingTranslator = null;
         private ObservableDataSource<Point> _actualData = new ObservableDataSource<Point>();
         private ObservableDataSource<Point> _baselineData = new ObservableDataSource<Point>();
         private ObservableDataSource<Point> _regressionData = new ObservableDataSource<Point>();
@@ -286,7 +286,7 @@ namespace SyncSubsByComparison
 
             //update the counter.
             //CountMatchPoints = bestMatchedLines.Count + " of " + langSub.Lines.Count();
-            
+
             //var orderedMatchPoints = bestMatchedLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
             //List<long> diffs;
             //List<double> averages;
@@ -303,28 +303,27 @@ namespace SyncSubsByComparison
         private SampleCollection _lnBaseline = null;
         private SampleCollection _lnOriginal = null;
         private SampleCollection _lnRegression = null;
-        private SampleCollection _selectedLineForSubtitleFix = null;
+        //private SampleCollection _selectedLineForSubtitleFix = null;
 
         public SampleCollection SelectedLineForSubtitleFix
         {
             get
             {
                 //get selected line for subtitle
-                _selectedLineForSubtitleFix = _lnOriginal;
+                //_selectedLineForSubtitleFix = _lnOriginal;
                 switch (SelectedLineType)
                 {
                     case LineTypes.Baseline:
-                        _selectedLineForSubtitleFix = _lnBaseline;
+                        return _lnBaseline;
                         break;
                     case LineTypes.LinearRegression:
-                        _selectedLineForSubtitleFix = _lnRegression;
+                        return _lnRegression;
                         break;
                     case LineTypes.OriginalMatch:
-                        _selectedLineForSubtitleFix = _lnOriginal;
+                        return _lnOriginal;
                         break;
                 }
-
-                return _selectedLineForSubtitleFix;
+                return null;
             }
         }
         private SubtitleInfo _langSub;
@@ -426,7 +425,7 @@ namespace SyncSubsByComparison
 
             var baseline = Baseline.CreateBaseline(dataset2, 7, (int)StartSectionLength, BaselineAlgAlpha, NormalZoneAmplitude);
             averages = baseline.Averages;
-            
+
             //fix collections to remove abnormal values in preperation for using them in the sync later
             if (RemoveAbnormalPoints)
             {
@@ -457,6 +456,9 @@ namespace SyncSubsByComparison
             }
             else
             {
+                if (_bingTranslator == null)
+                    _bingTranslator = new BingTranslator();
+
                 translator = _bingTranslator;
             }
 
@@ -478,6 +480,14 @@ namespace SyncSubsByComparison
             TranslationText = langSub.GetTranslatedSrtString();
             if (!transFileExists)
                 File.WriteAllText(LanguageSrtFile + ".trans", TranslationText);
+        }
+
+
+        public void EditTargetGraph(Point newPoint, ObservableDataSource<Point> dataSourceToUpdate)
+        {
+            var pt = SelectedLineForSubtitleFix.Where(s => newPoint.X == s.X).First();
+            pt.Y = newPoint.Y;
+            UpdateGraph(SelectedLineForSubtitleFix, dataSourceToUpdate);
         }
 
         private void UpdateGraph(SampleCollection col, ObservableDataSource<Point> dataSourceToUpdate)
