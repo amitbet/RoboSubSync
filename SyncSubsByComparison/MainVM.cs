@@ -465,8 +465,8 @@ namespace SyncSubsByComparison
             langSub = new SubtitleInfo(translator);
             timingSub = new SubtitleInfo(translator);
 
-            langSub.LoadSrtFile(LanguageSrtFile, Encoding.ASCII);
-            timingSub.LoadSrtFile(TimingSrtFile, SelectedEncoding);
+            langSub.LoadSrtFile(LanguageSrtFile, SelectedEncoding);
+            timingSub.LoadSrtFile(TimingSrtFile, Encoding.ASCII);
 
             try
             {

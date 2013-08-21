@@ -76,6 +76,7 @@ namespace SyncSubsByComparison
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            //var yTest = ViewModel.SelectedLineForSubtitleFix.ComputeYforXbyInterpolation(230000);
             string newSrtFile = Path.GetDirectoryName(txtLanguageSrt.Text) + "\\fixed_" + Path.GetFileName(txtLanguageSrt.Text);
 
             if (File.Exists(newSrtFile))
@@ -171,14 +172,14 @@ namespace SyncSubsByComparison
             var pos = e.GetPosition(cursorCoordinateGraph);
             var data = plotter.Viewport.Transform.ScreenToData(pos);
             var dataSource = (ObservableDataSource<Point>)_editableGraph.DataSource;
-            double distClosestX = dataSource.Collection.Min(p => Math.Abs(p.X - data.X));
+            double distClosestPoint = dataSource.Collection.Min(p => Math.Pow(p.X - data.X, 2) + Math.Pow(p.Y - data.Y, 2));
 
             if (plotter.Cursor != Cursors.Hand)
                 return;
 
             e.Handled = true;
 
-            Point pt = dataSource.Collection.Where(p => Math.Abs(p.X - data.X) == distClosestX).FirstOrDefault();
+            Point pt = dataSource.Collection.Where(p => Math.Pow(p.X - data.X, 2) + Math.Pow(p.Y - data.Y, 2) == distClosestPoint).FirstOrDefault();
             _selectedPointIndex = dataSource.Collection.IndexOf(pt);
 
 

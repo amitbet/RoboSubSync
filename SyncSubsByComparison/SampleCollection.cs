@@ -23,7 +23,7 @@ namespace SyncSubsByComparison
 
         public override string ToString()
         {
-            string str = _points.Select(p => p.X + " " + p.Y).Aggregate((y1, y2) => y1 + "\n" + y2);
+            string str = _points.Select(p => "(" + p.X + "," + p.Y + ")").Aggregate((y1, y2) => y1 + " " + y2);
             return str;
         }
 
@@ -73,6 +73,18 @@ namespace SyncSubsByComparison
         }
 
         public SubtitleInfo CreateFixedSubtitle(SubtitleInfo subtitle)
+        {
+            var resultSub = subtitle.CloneSub();
+            foreach (var time in resultSub.TimeMarkers)
+            {
+                time.IsOffsetCorrected = true;
+                time.Correction = (long)ComputeYforXbyInterpolation(time.FromTime);
+            }
+            return resultSub;
+
+        }
+
+        private SubtitleInfo xCreateFixedSubtitle(SubtitleInfo subtitle)
         {
             var resultSub = subtitle.CloneSub();
             var correctionsByTimePos = new Dictionary<double, double>();
@@ -189,11 +201,39 @@ namespace SyncSubsByComparison
             return col;
         }
 
-        public double ComputeRegressionYforX(double x, MyLine regressionLine)
+        private double ComputeRegressionYforX(double x, MyLine regressionLine)
         {
             return x * regressionLine.Slope + regressionLine.YIntersect;
         }
 
+        public double ComputeYforXbyInterpolation(double x)
+        {
+            var sectEndPoint = _points.FirstOrDefault(p => p.X > x);
+            MyPoint sectStartPoint = null;
+            if (sectEndPoint == null)
+            {
+                sectStartPoint = _points[_points.Count - 2];
+                sectEndPoint = _points[_points.Count - 1];
+            }
+            else
+            {
+                int starPointIdx = _points.IndexOf(sectEndPoint) - 1;
+
+                if (starPointIdx == -1)
+                {
+                    return sectEndPoint.Y;
+                }
+
+                sectStartPoint = _points[starPointIdx];
+            }
+            //var precent = (x - sectStartPoint.X) / sectEndPoint.X;
+            double slope = (sectEndPoint.Y - sectStartPoint.Y) / (sectEndPoint.X - sectStartPoint.X);
+            double yIntersect = sectEndPoint.Y - slope * sectEndPoint.X;
+
+            //var newPointY1 = sectStartPoint.Y * (1d - precent) + sectEndPoint.Y * precent;
+            var newPointY = slope * x + yIntersect;//sectStartPoint.Y * (1d - precent) + sectEndPoint.Y * precent;
+            return newPointY;
+        }
 
 
         public MyLine ComputeRegressionLine()
