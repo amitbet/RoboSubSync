@@ -6,6 +6,7 @@ using System.ComponentModel;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace SyncSubsByComparison
 {
@@ -261,7 +262,10 @@ namespace SyncSubsByComparison
             int bestMatchLinesToSearchForward = 0;
             int maxMatchLines = 0;
             Dictionary<LineInfo, LineInfo> bestMatchedLines = null;
-            for (int i = 6; i <= 7; ++i)
+            
+            //TODO: run match in parallel, need to remove use of properties from match alg...
+            //object locker = new object();
+            for (int i = 6; i <= 6; ++i)
             {
                 for (int j = 10; j <= 14; ++j)
                 {
@@ -555,7 +559,9 @@ namespace SyncSubsByComparison
             return matchedLangLines2timingLines;
         }
 
-
-
+        internal void UpdateEditableLine(int _selectedPointIndex, double x, double y)
+        {
+            _lnOriginal[_selectedPointIndex].Y = y;
+        }
     }
 }

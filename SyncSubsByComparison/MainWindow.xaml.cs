@@ -16,6 +16,7 @@ using System.Threading;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
+using Microsoft.Research.DynamicDataDisplay.PointMarkers;
 namespace SyncSubsByComparison
 {
     /// <summary>
@@ -35,16 +36,27 @@ namespace SyncSubsByComparison
         }
 
         CursorCoordinateGraph cursorCoordinateGraph = new CursorCoordinateGraph();
-        LineGraph _editableGraph = null;
+        LineAndMarker<MarkerPointsGraph> _editableGraph = null;
         public MainWindow()
         {
             InitializeComponent();
             //cursorCoordinateGraph.Visibility = System.Windows.Visibility.Hidden;
             plotter.Children.Add(cursorCoordinateGraph);
 
-            _editableGraph = plotter.AddLineGraph(ViewModel.ActualData, 1, "Sync Difference");
-            plotter.AddLineGraph(ViewModel.BaselineData, 2, "Baseline");
-            plotter.AddLineGraph(ViewModel.RegressionData, 2, "L.Regression");
+            //_editableGraph = plotter.AddLineGraph(ViewModel.ActualData, 1, "Sync Difference");
+            _editableGraph = plotter.AddLineGraph(ViewModel.ActualData,
+                                                    new Pen(Brushes.BlueViolet, 2),
+                                                    new CirclePointMarker { Size = 5, Fill = Brushes.BlueViolet, Pen = new Pen(Brushes.Black, 1) },
+                                                    new PenDescription("Sync Difference"));
+
+            plotter.AddLineGraph(ViewModel.BaselineData, new Pen(Brushes.DodgerBlue, 2), new PenDescription("Baseline"));
+            //plotter.AddLineGraph(ViewModel.BaselineData,
+            //                                        new Pen(Brushes.Magenta, 2),
+            //                                        new CirclePointMarker { Size = 5, Fill = Brushes.YellowGreen, Pen = new Pen(Brushes.Black, 1) },
+            //                                        new PenDescription("Baseline"));
+
+            //plotter.AddLineGraph(ViewModel.RegressionData, 2, "L.Regression");
+            plotter.AddLineGraph(ViewModel.RegressionData, new Pen(Brushes.Maroon, 2), new PenDescription("L.Regression"));
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -134,15 +146,16 @@ namespace SyncSubsByComparison
         List<DependencyObject> hitTestList = new List<DependencyObject>();
         private void plotter_MouseMove(object sender, MouseEventArgs e)
         {
+            //TODO: add showing marker's tooltip
             if (_selectedPointIndex != int.MinValue)
             {
                 var pos = e.GetPosition(cursorCoordinateGraph);
                 var data = plotter.Viewport.Transform.ScreenToData(pos);
 
-                var dataSource = ((ObservableDataSource<Point>)_editableGraph.DataSource);
+                var dataSource = ((ObservableDataSource<Point>)_editableGraph.LineGraph.DataSource);
                 var ptx = dataSource.Collection[_selectedPointIndex].X;
                 dataSource.Collection[_selectedPointIndex] = new Point(ptx, data.Y);
-
+                ViewModel.UpdateEditableLine(_selectedPointIndex, ptx, data.Y);
 
             }
             else
@@ -151,7 +164,7 @@ namespace SyncSubsByComparison
                 hitTestList.Clear();
                 VisualTreeHelper.HitTest(plotter, null, CollectAllVisuals_Callback, new PointHitTestParameters(position));
 
-                if (hitTestList.Contains(_editableGraph))
+                if (hitTestList.Contains(_editableGraph.LineGraph))
                 {
                     plotter.Cursor = Cursors.Hand;
                 }
@@ -171,7 +184,7 @@ namespace SyncSubsByComparison
             VisualTreeHelper.HitTest(plotter, null, CollectAllVisuals_Callback, new PointHitTestParameters(position));
             var pos = e.GetPosition(cursorCoordinateGraph);
             var data = plotter.Viewport.Transform.ScreenToData(pos);
-            var dataSource = (ObservableDataSource<Point>)_editableGraph.DataSource;
+            var dataSource = (ObservableDataSource<Point>)_editableGraph.LineGraph.DataSource;
             double distClosestPoint = dataSource.Collection.Min(p => Math.Pow(p.X - data.X, 2) + Math.Pow(p.Y - data.Y, 2));
 
             if (plotter.Cursor != Cursors.Hand)
@@ -195,7 +208,7 @@ namespace SyncSubsByComparison
 
             //// Initialize currently selected data point
             //selectedDataPoint = null;
-            if (hitTestList.Contains(_editableGraph))
+            if (hitTestList.Contains(_editableGraph.LineGraph))
             {
                 //    selectedDataPoint = (DataPoint)hitResult.Object;
 

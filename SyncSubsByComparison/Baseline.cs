@@ -46,7 +46,7 @@ namespace SyncSubsByComparison
             List<double> averageValues = new List<double>();
             var leadIn = series.Take(initialSectionLength);
             double average = CalcAverage(leadIn);
-            double sumOfSquares = CalcSumOfSquares(leadIn, average);
+            double sumOfSquares = CalcSumOfSquares(leadIn, average) / (double)leadIn.Count();
             for (int i = 0; i < initialSectionLength; i++)
                 averageValues.Add(average);
 
@@ -84,7 +84,7 @@ namespace SyncSubsByComparison
                         var errSamples = series.Where((x, idx) => idx > i && idx <= numErrorsToBacktrackOn + i);
                         //reset values
                         average = CalcAverage(errSamples);
-                        sumOfSquares = CalcSumOfSquares(errSamples, average);
+                        sumOfSquares = CalcSumOfSquares(errSamples, average) / (double)errSamples.Count();
 
                         continue;
                     }
