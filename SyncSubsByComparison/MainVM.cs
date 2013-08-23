@@ -21,7 +21,6 @@ namespace SyncSubsByComparison
         private ObservableDataSource<Point> _actualData = new ObservableDataSource<Point>();
         private ObservableDataSource<Point> _baselineData = new ObservableDataSource<Point>();
         private ObservableDataSource<Point> _regressionData = new ObservableDataSource<Point>();
-
         private double _orderedLetterSimilarityTreshold = 0.65;
         private int _linesToSearchForward = 18;
         private int _minimumLettersForMatch = 9;
@@ -32,9 +31,16 @@ namespace SyncSubsByComparison
         private string _timingSrt = @"c:\TEST\BG - 3x20\synced.srt";
         private double _normalZoneAmplitude = 3;
         private double _timeStampDurationMultiplyer = 1.0d;
-
         private string _countMatchPoints = "0";
+        private LineTypes _selectedLineType = LineTypes.OriginalMatch;
+        private string _selectedEncodingName = "Hebrew (Windows)";
+        private SampleCollection _lnBaseline = null;
+        private SampleCollection _lnOriginal = null;
+        private SampleCollection _lnRegression = null;
+        private SubtitleInfo _langSub;
+        private SubtitleInfo _timingSub;
 
+        #region properties
         public string CountMatchPoints
         {
             get { return _countMatchPoints; }
@@ -45,7 +51,7 @@ namespace SyncSubsByComparison
                     PropertyChanged.Invoke(this, new PropertyChangedEventArgs("CountMatchPoints"));
             }
         }
-        LineTypes _selectedLineType = LineTypes.OriginalMatch;
+
         public LineTypes SelectedLineType
         {
             get { return _selectedLineType; }
@@ -81,7 +87,6 @@ namespace SyncSubsByComparison
             }
         }
 
-        string _selectedEncodingName = "Hebrew (Windows)";
         public string SelectedEncodingName
         {
             get { return _selectedEncodingName; }
@@ -212,32 +217,7 @@ namespace SyncSubsByComparison
             }
         }
 
-        public SubtitleInfo FixedSub
-        {
-            get { return SelectedLineForSubtitleFix.CreateFixedSubtitle(_langSub); }
-        }
-
-        public string TranslationText
-        {
-            get { return _translationText; }
-            set
-            {
-                _translationText = value;
-                if (PropertyChanged != null)
-                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("TranslationText"));
-            }
-        }
-
-        public bool RemoveAbnormalPoints
-        {
-            get { return _removeAbnormalPoints; }
-            set
-            {
-                _removeAbnormalPoints = value;
-                if (PropertyChanged != null)
-                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("RemoveAbnormalPoints"));
-            }
-        }
+        #endregion
 
         public MainVM()
         {
@@ -246,129 +226,7 @@ namespace SyncSubsByComparison
             _regressionData.SetXYMapping(p => p);
         }
 
-        public void AutoSyncSubtitles()
-        {
-            SubtitleInfo langSub;
-            SubtitleInfo timingSub;
-            object locker = new object();
-            try
-            {
-                PrepareInputSubs(out langSub, out timingSub);
-            }
-            catch
-            {
-                return;
-            }
-
-            int bestMatchMinimumLettersForMatch = 0;
-            int bestMatchLinesToSearchForward = 0;
-            int maxMatchLines = 0;
-            Dictionary<LineInfo, LineInfo> bestMatchedLines = null;
-
-            for (int i = 6; i <= 7; ++i)
-            {
-                Parallel.For(10, 19, j =>
-                {
-                    {
-                        Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(langSub, timingSub, j, i, MatchSimilarityThreshold);
-                        int numMatches = matchedLangLines2timingLines.Count();
-                        lock (locker)
-                        {
-                            if (numMatches > maxMatchLines)
-                            {
-                                maxMatchLines = numMatches;
-                                bestMatchedLines = matchedLangLines2timingLines;
-                                bestMatchMinimumLettersForMatch = i;
-                                bestMatchLinesToSearchForward = j;
-                            }
-                        }
-                    }
-                });
-            }
-            MatchLinesToSearchForward = bestMatchLinesToSearchForward;
-            MatchMinimumLettersForMatch = bestMatchMinimumLettersForMatch;
-
-            SyncSubtitles();
-        }
-
-
-        private SampleCollection _lnBaseline = null;
-        private SampleCollection _lnOriginal = null;
-        private SampleCollection _lnRegression = null;
-
-        public SampleCollection SelectedLineForSubtitleFix
-        {
-            get
-            {
-                //get selected line for subtitle
-                switch (SelectedLineType)
-                {
-                    case LineTypes.Baseline:
-                        return _lnBaseline;
-                        break;
-                    case LineTypes.LinearRegression:
-                        return _lnRegression;
-                        break;
-                    case LineTypes.OriginalMatch:
-                        return _lnOriginal;
-                        break;
-                }
-                return null;
-            }
-        }
-        private SubtitleInfo _langSub;
-        private SubtitleInfo _timingSub;
-
-        public void SyncSubtitles()
-        {
-            try
-            {
-
-                PrepareInputSubs(out _langSub, out _timingSub);
-            }
-            catch
-            {
-                return;
-            }
-
-            Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(_langSub, _timingSub, MatchLinesToSearchForward, MatchMinimumLettersForMatch, MatchSimilarityThreshold);
-
-            //update the counter.
-            CountMatchPoints = matchedLangLines2timingLines.Count() + " of " + _langSub.Lines.Count();
-
-            var orderedMatchPoints = matchedLangLines2timingLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
-
-            var diffPoints = orderedMatchPoints.Select(x => (double)(x.Value.TimeStamp.FromTime - x.Key.TimeStamp.FromTime)).ToList();
-            var timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime).ToList();
-            var mypoints = diffPoints.Select((p, i) => new MyPoint(timesForXAxis[i], p));
-
-            _lnOriginal = new SampleCollection(mypoints);
-
-            Dictionary<double, string> descsByX = new Dictionary<double, string>();
-
-            //get desc for each x
-            var listOfDescs = orderedMatchPoints.Select(m => new { x = m.Key.TimeStamp.FromTime, desc = m.Key.Line + "\n" + m.Value.Line }).ToList();
-            listOfDescs.ForEach(p =>
-            {
-                if (!descsByX.ContainsKey(p.x))
-                    descsByX.Add(p.x, p.desc);
-            });
-            _lnOriginal.PointDescByXValue = descsByX;
-
-            if (RemoveAbnormalPoints)
-            {
-                _lnOriginal = _lnOriginal.FilterAbnormalsByBaseline(BaselineAlgAlpha, NormalZoneAmplitude, (int)StartSectionLength);
-            }
-
-            _lnBaseline = _lnOriginal.GetBaseline(BaselineAlgAlpha, NormalZoneAmplitude, (int)StartSectionLength);
-            _lnRegression = _lnOriginal.GetLinearRegression();
-
-            //update the graphs
-            UpdateGraph(_lnBaseline, _baselineData);
-            UpdateGraph(_lnRegression, _regressionData);
-            UpdateGraph(_lnOriginal, _actualData);
-        }
-
+        #region private functions
         private SubtitleInfo GetFixedSubtitle(SubtitleInfo subtitlToFix, List<KeyValuePair<LineInfo, LineInfo>> orderedMatchPoints, List<double> matchPointsDiffsFromGoodSync)
         {
             var subtitle = subtitlToFix.CloneSub();
@@ -483,25 +341,9 @@ namespace SyncSubsByComparison
                 File.WriteAllText(LanguageSrtFile + ".trans", TranslationText);
         }
 
-
-        public void EditTargetGraph(Point newPoint, ObservableDataSource<Point> dataSourceToUpdate)
-        {
-            var pt = SelectedLineForSubtitleFix.Where(s => newPoint.X == s.X).First();
-            pt.Y = newPoint.Y;
-            UpdateGraph(SelectedLineForSubtitleFix, dataSourceToUpdate);
-        }
-
         private void UpdateGraph(SampleCollection col, ObservableDataSource<Point> dataSourceToUpdate)
         {
             var points = col.Select(p => new Point(p.X, p.Y));
-
-            dataSourceToUpdate.Collection.Clear();
-            dataSourceToUpdate.AppendMany(points);
-        }
-
-        private void UpdateGraph(IEnumerable<long> xAxis, IEnumerable<double> values, ObservableDataSource<Point> dataSourceToUpdate)
-        {
-            var points = values.Select((p, i) => new Point(xAxis.ElementAt(i), (double)p));
 
             dataSourceToUpdate.Collection.Clear();
             dataSourceToUpdate.AppendMany(points);
@@ -555,6 +397,157 @@ namespace SyncSubsByComparison
             }
             return matchedLangLines2timingLines;
         }
+        #endregion private functions
+
+        internal SubtitleInfo FixedSub
+        {
+            get { return SelectedLineForSubtitleFix.CreateFixedSubtitle(_langSub); }
+        }
+
+        internal string TranslationText
+        {
+            get { return _translationText; }
+            set
+            {
+                _translationText = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("TranslationText"));
+            }
+        }
+
+        internal bool RemoveAbnormalPoints
+        {
+            get { return _removeAbnormalPoints; }
+            set
+            {
+                _removeAbnormalPoints = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("RemoveAbnormalPoints"));
+            }
+        }
+
+        internal void AutoSyncSubtitles()
+        {
+            SubtitleInfo langSub;
+            SubtitleInfo timingSub;
+            object locker = new object();
+            try
+            {
+                PrepareInputSubs(out langSub, out timingSub);
+            }
+            catch
+            {
+                return;
+            }
+
+            int bestMatchMinimumLettersForMatch = 0;
+            int bestMatchLinesToSearchForward = 0;
+            int maxMatchLines = 0;
+            Dictionary<LineInfo, LineInfo> bestMatchedLines = null;
+
+            for (int i = 6; i <= 7; ++i)
+            {
+                Parallel.For(10, 19, j =>
+                {
+                    {
+                        Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(langSub, timingSub, j, i, MatchSimilarityThreshold);
+                        int numMatches = matchedLangLines2timingLines.Count();
+                        lock (locker)
+                        {
+                            if (numMatches > maxMatchLines)
+                            {
+                                maxMatchLines = numMatches;
+                                bestMatchedLines = matchedLangLines2timingLines;
+                                bestMatchMinimumLettersForMatch = i;
+                                bestMatchLinesToSearchForward = j;
+                            }
+                        }
+                    }
+                });
+            }
+            MatchLinesToSearchForward = bestMatchLinesToSearchForward;
+            MatchMinimumLettersForMatch = bestMatchMinimumLettersForMatch;
+
+            SyncSubtitles();
+        }
+
+        internal SampleCollection SelectedLineForSubtitleFix
+        {
+            get
+            {
+                //get selected line for subtitle
+                switch (SelectedLineType)
+                {
+                    case LineTypes.Baseline:
+                        return _lnBaseline;
+                        break;
+                    case LineTypes.LinearRegression:
+                        return _lnRegression;
+                        break;
+                    case LineTypes.OriginalMatch:
+                        return _lnOriginal;
+                        break;
+                }
+                return null;
+            }
+        }
+
+        internal void SyncSubtitles()
+        {
+            try
+            {
+
+                PrepareInputSubs(out _langSub, out _timingSub);
+            }
+            catch
+            {
+                return;
+            }
+
+            Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(_langSub, _timingSub, MatchLinesToSearchForward, MatchMinimumLettersForMatch, MatchSimilarityThreshold);
+
+            //update the counter.
+            CountMatchPoints = matchedLangLines2timingLines.Count() + " of " + _langSub.Lines.Count();
+
+            var orderedMatchPoints = matchedLangLines2timingLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
+
+            var diffPoints = orderedMatchPoints.Select(x => (double)(x.Value.TimeStamp.FromTime - x.Key.TimeStamp.FromTime)).ToList();
+            var timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime).ToList();
+            var mypoints = diffPoints.Select((p, i) => new MyPoint(timesForXAxis[i], p));
+
+            _lnOriginal = new SampleCollection(mypoints);
+
+            Dictionary<double, string> descsByX = new Dictionary<double, string>();
+
+            //get desc for each x
+            var listOfDescs = orderedMatchPoints.Select(m => new { x = m.Key.TimeStamp.FromTime, desc = m.Key.Line + "\n" + m.Value.Line }).ToList();
+            listOfDescs.ForEach(p =>
+            {
+                if (!descsByX.ContainsKey(p.x))
+                    descsByX.Add(p.x, p.desc);
+            });
+            _lnOriginal.PointDescByXValue = descsByX;
+
+            if (RemoveAbnormalPoints)
+            {
+                _lnOriginal = _lnOriginal.FilterAbnormalsByBaseline(BaselineAlgAlpha, NormalZoneAmplitude, (int)StartSectionLength);
+            }
+
+            _lnBaseline = _lnOriginal.GetBaseline(BaselineAlgAlpha, NormalZoneAmplitude, (int)StartSectionLength);
+            _lnRegression = _lnOriginal.GetLinearRegression();
+
+            //update the graphs
+            UpdateGraph(_lnBaseline, _baselineData);
+            UpdateGraph(_lnRegression, _regressionData);
+            UpdateGraph(_lnOriginal, _actualData);
+        }
+
+        internal void EditTargetGraph(Point newPoint, ObservableDataSource<Point> dataSourceToUpdate)
+        {
+            var pt = SelectedLineForSubtitleFix.Where(s => newPoint.X == s.X).First();
+            pt.Y = newPoint.Y;
+            UpdateGraph(SelectedLineForSubtitleFix, dataSourceToUpdate);
+        }
 
         internal void UpdateEditableLine(int _selectedPointIndex, double x, double y)
         {
@@ -567,5 +560,6 @@ namespace SyncSubsByComparison
             string retStr = "(" + TimeSpan.FromMilliseconds(pt.X).ToString(@"hh\:mm\:ss\.ff") + ", correction= " + pt.Y.ToString("0.0") + "):\n" + desc;
             return retStr;
         }
+
     }
 }

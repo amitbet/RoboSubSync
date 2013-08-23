@@ -166,7 +166,7 @@
 
     </Window.Resources>
     <Grid >
-        <Popup Name="TestPopup" IsOpen="False" AllowsTransparency="True" Placement="Mouse"  MouseEnter="TestPopup_MouseEnter" >
+        <Popup Name="EditorInfoPopup" IsOpen="False" AllowsTransparency="True" Placement="Mouse"  MouseEnter="EditorInfoPopup_MouseEnter" >
             <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="WhiteSmoke">
                 <!--<TextBox Background="Transparent" Name="PopupText" BorderThickness="0" ></TextBox>-->
                 <TextBlock Background="WhiteSmoke" Width="200" Name="PopupText" TextWrapping="NoWrap">
@@ -183,7 +183,7 @@
         <Label Content="timing srt:" Height="28" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label1" VerticalAlignment="Top" />
         <Label Content="language srt:" Height="28" HorizontalAlignment="Left" Margin="10,46,0,0" Name="label2" VerticalAlignment="Top" />
         <Button Content="Add Translation" HorizontalAlignment="Right" Margin="0,48,12,0" Name="button3" Width="109" Height="23" VerticalAlignment="Top" Click="button3_Click" />
-        <d3:ChartPlotter Margin="12,77,203,12" Name="plotter" IsEnabled="False" IsMouseDirectlyOverChanged="plotter_IsMouseDirectlyOverChanged"  PreviewMouseUp="plotter_MouseUp"  MouseDown="plotter_MouseDown" MouseMove="plotter_MouseMove" PreviewMouseDown="plotter_PreviewMouseDown" />
+        <d3:ChartPlotter Margin="12,77,203,12" Name="plotter" IsEnabled="False" PreviewMouseUp="plotter_MouseUp" MouseMove="plotter_MouseMove" PreviewMouseDown="plotter_PreviewMouseDown" />
         
         <StackPanel  Orientation="Vertical" Margin="0,116,0,0" Height="498" VerticalAlignment="Top" HorizontalAlignment="Right" Width="197">
             <Expander Template="{StaticResource StretchyExpanderTemp}"

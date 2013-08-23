@@ -26,7 +26,7 @@ namespace SyncSubsByComparison
     public partial class MainWindow : Window
     {
 
-        private MainVM myViewModel;
+        int _selectedPointIndex = int.MinValue;
 
         public MainVM ViewModel
         {
@@ -36,9 +36,11 @@ namespace SyncSubsByComparison
             }
         }
 
-
         CursorCoordinateGraph cursorCoordinateGraph = new CursorCoordinateGraph();
         LineAndMarker<MarkerPointsGraph> _editableGraph = null;
+        List<DependencyObject> hitTestList = new List<DependencyObject>();
+        WndPasteTranslation _wndTranslation = new WndPasteTranslation();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -60,14 +62,16 @@ namespace SyncSubsByComparison
             plotter.AddLineGraph(ViewModel.BaselineData, new Pen(Brushes.DodgerBlue, 2), new PenDescription("Baseline"));
         }
 
+        /// <summary>
+        /// auto sync
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.AutoSyncSubtitles();
             plotter.IsEnabled = true;
         }
-
-
-        WndPasteTranslation _wndTranslation = new WndPasteTranslation();
 
         /// <summary>
         /// add translation from google translate
@@ -82,6 +86,11 @@ namespace SyncSubsByComparison
 
         }
 
+        /// <summary>
+        /// save to file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             //var yTest = ViewModel.SelectedLineForSubtitleFix.ComputeYforXbyInterpolation(230000);
@@ -93,52 +102,35 @@ namespace SyncSubsByComparison
             ViewModel.FixedSub.WriteSrt(newSrtFile);
         }
 
+        /// <summary>
+        /// closing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //workaround some bug of the graph component (application won't close properly)
             Application.Current.Shutdown();
         }
 
-        //update graph
+        /// <summary>
+        /// update graph button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click_1(object sender, RoutedEventArgs e)
         {
             plotter.IsEnabled = true;
             ViewModel.SyncSubtitles();
         }
 
-        private void plotter_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
-        int _selectedPointIndex = int.MinValue;
-        private void plotter_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-        }
-
         private void plotter_MouseUp(object sender, MouseButtonEventArgs e)
         {
             _selectedPointIndex = int.MinValue;
             plotter.Cursor = Cursors.Arrow;
-            TestPopup.IsOpen = false;
+            EditorInfoPopup.IsOpen = false;
         }
 
-        HitTestResultBehavior CollectAllVisuals_Callback(HitTestResult result)
-        {
-            if (result == null || result.VisualHit == null)
-                return HitTestResultBehavior.Stop;
-
-            hitTestList.Add(result.VisualHit);
-            return HitTestResultBehavior.Continue;
-        }
-
-        private void ChangePopupLocation(object sender, MouseEventArgs e)
-        {
-            this.TestPopup.ClearValue(Popup.IsOpenProperty);
-            this.TestPopup.IsOpen = true;
-        }
-
-        List<DependencyObject> hitTestList = new List<DependencyObject>();
         private void plotter_MouseMove(object sender, MouseEventArgs e)
         {
 
@@ -152,7 +144,7 @@ namespace SyncSubsByComparison
                 var ptx = dataSource.Collection[_selectedPointIndex].X;
                 dataSource.Collection[_selectedPointIndex] = new Point(ptx, data.Y);
                 ViewModel.UpdateEditableLine(_selectedPointIndex, ptx, data.Y);
-                TestPopup.Placement = PlacementMode.Mouse;
+                EditorInfoPopup.Placement = PlacementMode.Mouse;
                 PopupText.Text = ViewModel.GetTextForPoint(new Point(ptx, data.Y));
             }
             else
@@ -192,7 +184,7 @@ namespace SyncSubsByComparison
                 _selectedPointIndex = dataSource.Collection.IndexOf(pt);
 
                 PopupText.Text = ViewModel.GetTextForPoint(pt);
-                TestPopup.IsOpen = true;
+                EditorInfoPopup.IsOpen = true;
 
                 if (hitTestList.Contains(_editableGraph.LineGraph))
                 {
@@ -203,19 +195,19 @@ namespace SyncSubsByComparison
 
         }
 
-        private void plotter_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void EditorInfoPopup_MouseEnter(object sender, MouseEventArgs e)
         {
-            _selectedPointIndex = int.MinValue;
-            plotter.Cursor = Cursors.Arrow;
+            EditorInfoPopup.ClearValue(Popup.IsOpenProperty);
+            EditorInfoPopup.IsOpen = true;
         }
 
-
-        private void TestPopup_MouseEnter(object sender, MouseEventArgs e)
+        HitTestResultBehavior CollectAllVisuals_Callback(HitTestResult result)
         {
-            TestPopup.ClearValue(Popup.IsOpenProperty);
-            TestPopup.IsOpen = true;
+            if (result == null || result.VisualHit == null)
+                return HitTestResultBehavior.Stop;
+
+            hitTestList.Add(result.VisualHit);
+            return HitTestResultBehavior.Continue;
         }
-
-
     }
 }
