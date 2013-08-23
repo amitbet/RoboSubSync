@@ -244,9 +244,6 @@ namespace SyncSubsByComparison
             _actualData.SetXYMapping(p => p);
             _baselineData.SetXYMapping(p => p);
             _regressionData.SetXYMapping(p => p);
-            //_actualData.AddMapping(ShapeElementPointMarker.ToolTipTextProperty, p => string.Format("({0},{1})", p.X, p.Y));
-            //_actualData.AddMapping(CirclePointMarker.ToolTipTextProperty, p => string.Format("({0},{1})", p.X, p.Y));
-
         }
 
         public void AutoSyncSubtitles()
@@ -268,16 +265,11 @@ namespace SyncSubsByComparison
             int maxMatchLines = 0;
             Dictionary<LineInfo, LineInfo> bestMatchedLines = null;
 
-            //TODO: run match in parallel, need to remove use of properties from match alg...
-            //object locker = new object();
             for (int i = 6; i <= 7; ++i)
             {
                 Parallel.For(10, 19, j =>
                 {
                     {
-                        //MatchMinimumLettersForMatch = i;
-                        //MatchLinesToSearchForward = j;
-
                         Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(langSub, timingSub, j, i, MatchSimilarityThreshold);
                         int numMatches = matchedLangLines2timingLines.Count();
                         lock (locker)
@@ -297,34 +289,18 @@ namespace SyncSubsByComparison
             MatchMinimumLettersForMatch = bestMatchMinimumLettersForMatch;
 
             SyncSubtitles();
-
-            //update the counter.
-            //CountMatchPoints = bestMatchedLines.Count + " of " + langSub.Lines.Count();
-
-            //var orderedMatchPoints = bestMatchedLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
-            //List<long> diffs;
-            //List<double> averages;
-            //IEnumerable<long> timesForXAxis;
-
-            //orderedMatchPoints = CalculateDiffAndBaseline(orderedMatchPoints, out diffs, out averages);
-
-            //timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime);
-            //UpdateGraph(timesForXAxis, averages, _baselineData);
-            //UpdateGraph(timesForXAxis, diffs.Select(p => (double)p), _actualData);
         }
 
 
         private SampleCollection _lnBaseline = null;
         private SampleCollection _lnOriginal = null;
         private SampleCollection _lnRegression = null;
-        //private SampleCollection _selectedLineForSubtitleFix = null;
 
         public SampleCollection SelectedLineForSubtitleFix
         {
             get
             {
                 //get selected line for subtitle
-                //_selectedLineForSubtitleFix = _lnOriginal;
                 switch (SelectedLineType)
                 {
                     case LineTypes.Baseline:

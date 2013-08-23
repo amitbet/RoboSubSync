@@ -45,11 +45,8 @@ namespace SyncSubsByComparison
             cursorCoordinateGraph.Visibility = System.Windows.Visibility.Hidden;
             plotter.Children.Add(cursorCoordinateGraph);
 
-            //this.plotter.Children.Remove(this.plotter.MouseNavigation);
-
             plotter.AddLineGraph(ViewModel.RegressionData, new Pen(Brushes.LightGreen, 2), new PenDescription("L.Regression"));
 
-            //_editableGraph = plotter.AddLineGraph(ViewModel.ActualData, 1, "Sync Difference");
             _editableGraph = plotter.AddLineGraph(ViewModel.ActualData,
                                                     new Pen(Brushes.Violet, 2),
                                                     new CirclePointMarker
@@ -57,18 +54,10 @@ namespace SyncSubsByComparison
                                                         Size = 6,
                                                         Fill = Brushes.Violet,
                                                         Pen = new Pen(Brushes.BlueViolet, 2),
-                                                        //Brush = Brushes.BlueViolet   
                                                     },
                                                     new PenDescription("Sync Difference"));
-            ///_editableGraph.MarkerGraph.
+
             plotter.AddLineGraph(ViewModel.BaselineData, new Pen(Brushes.DodgerBlue, 2), new PenDescription("Baseline"));
-            //plotter.AddLineGraph(ViewModel.BaselineData,
-            //                                        new Pen(Brushes.Magenta, 2),
-            //                                        new CirclePointMarker { Size = 5, Fill = Brushes.YellowGreen, Pen = new Pen(Brushes.Black, 1) },
-            //                                        new PenDescription("Baseline"));
-
-            //plotter.AddLineGraph(ViewModel.RegressionData, 2, "L.Regression");
-
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -77,11 +66,6 @@ namespace SyncSubsByComparison
             plotter.IsEnabled = true;
         }
 
-        //private void button2_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //string lang=  BingTranslator.DetectLanguage("Dror had some pie");
-        //    //string translated = BingTranslator.Translate("דרור אכל גלידה", "en");
-        //}
 
         WndPasteTranslation _wndTranslation = new WndPasteTranslation();
 
@@ -158,7 +142,6 @@ namespace SyncSubsByComparison
         private void plotter_MouseMove(object sender, MouseEventArgs e)
         {
 
-            //TODO: add showing marker's tooltip
             if (_selectedPointIndex != int.MinValue)
             {
                 var pos = e.GetPosition(cursorCoordinateGraph);
@@ -170,10 +153,7 @@ namespace SyncSubsByComparison
                 dataSource.Collection[_selectedPointIndex] = new Point(ptx, data.Y);
                 ViewModel.UpdateEditableLine(_selectedPointIndex, ptx, data.Y);
                 TestPopup.Placement = PlacementMode.Mouse;
-                //TestPopup.IsOpen = false;
-                //PopupText.Text = (string.Format("({0},{1})", ptx.ToString("00.0"), data.Y.ToString("00.0")));
                 PopupText.Text = ViewModel.GetTextForPoint(new Point(ptx, data.Y));
-                //TestPopup.IsOpen = true;
             }
             else
             {
