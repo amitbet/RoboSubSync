@@ -17,6 +17,7 @@ using Microsoft.Research.DynamicDataDisplay.DataSources;
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
 using Microsoft.Research.DynamicDataDisplay.PointMarkers;
+using System.Windows.Controls.Primitives;
 namespace SyncSubsByComparison
 {
     /// <summary>
@@ -35,20 +36,31 @@ namespace SyncSubsByComparison
             }
         }
 
+
         CursorCoordinateGraph cursorCoordinateGraph = new CursorCoordinateGraph();
         LineAndMarker<MarkerPointsGraph> _editableGraph = null;
         public MainWindow()
         {
             InitializeComponent();
-            //cursorCoordinateGraph.Visibility = System.Windows.Visibility.Hidden;
+            cursorCoordinateGraph.Visibility = System.Windows.Visibility.Hidden;
             plotter.Children.Add(cursorCoordinateGraph);
+
+            //this.plotter.Children.Remove(this.plotter.MouseNavigation);
+
+            plotter.AddLineGraph(ViewModel.RegressionData, new Pen(Brushes.LightGreen, 2), new PenDescription("L.Regression"));
 
             //_editableGraph = plotter.AddLineGraph(ViewModel.ActualData, 1, "Sync Difference");
             _editableGraph = plotter.AddLineGraph(ViewModel.ActualData,
-                                                    new Pen(Brushes.BlueViolet, 2),
-                                                    new CirclePointMarker { Size = 5, Fill = Brushes.BlueViolet, Pen = new Pen(Brushes.Black, 1) },
+                                                    new Pen(Brushes.Violet, 2),
+                                                    new CirclePointMarker
+                                                    {
+                                                        Size = 6,
+                                                        Fill = Brushes.Violet,
+                                                        Pen = new Pen(Brushes.BlueViolet, 2),
+                                                        //Brush = Brushes.BlueViolet   
+                                                    },
                                                     new PenDescription("Sync Difference"));
-
+            ///_editableGraph.MarkerGraph.
             plotter.AddLineGraph(ViewModel.BaselineData, new Pen(Brushes.DodgerBlue, 2), new PenDescription("Baseline"));
             //plotter.AddLineGraph(ViewModel.BaselineData,
             //                                        new Pen(Brushes.Magenta, 2),
@@ -56,7 +68,7 @@ namespace SyncSubsByComparison
             //                                        new PenDescription("Baseline"));
 
             //plotter.AddLineGraph(ViewModel.RegressionData, 2, "L.Regression");
-            plotter.AddLineGraph(ViewModel.RegressionData, new Pen(Brushes.Maroon, 2), new PenDescription("L.Regression"));
+
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -122,16 +134,9 @@ namespace SyncSubsByComparison
 
         private void plotter_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            {
-                //Point p = ((Visual)sender).PointToScreen(Mouse.GetPosition((IInputElement)sender));
-                //var a = plotter.Viewport.Transform.ScreenToData(p);
-                //var pos = e.GetPosition(cursorCoordinateGraph);
-                //var scrPoint = plotter.Viewport.Transform.ViewportToScreen(pos);
-                //var data = plotter.Viewport.Transform.ScreenToData(pos);
-
-                _selectedPointIndex = int.MinValue;
-                plotter.Cursor = Cursors.Arrow;
-            }
+            _selectedPointIndex = int.MinValue;
+            plotter.Cursor = Cursors.Arrow;
+            TestPopup.IsOpen = false;
         }
 
         HitTestResultBehavior CollectAllVisuals_Callback(HitTestResult result)
@@ -143,20 +148,32 @@ namespace SyncSubsByComparison
             return HitTestResultBehavior.Continue;
         }
 
+        private void ChangePopupLocation(object sender, MouseEventArgs e)
+        {
+            this.TestPopup.ClearValue(Popup.IsOpenProperty);
+            this.TestPopup.IsOpen = true;
+        }
+
         List<DependencyObject> hitTestList = new List<DependencyObject>();
         private void plotter_MouseMove(object sender, MouseEventArgs e)
         {
+
             //TODO: add showing marker's tooltip
             if (_selectedPointIndex != int.MinValue)
             {
                 var pos = e.GetPosition(cursorCoordinateGraph);
+                
                 var data = plotter.Viewport.Transform.ScreenToData(pos);
 
                 var dataSource = ((ObservableDataSource<Point>)_editableGraph.LineGraph.DataSource);
                 var ptx = dataSource.Collection[_selectedPointIndex].X;
                 dataSource.Collection[_selectedPointIndex] = new Point(ptx, data.Y);
                 ViewModel.UpdateEditableLine(_selectedPointIndex, ptx, data.Y);
-
+                TestPopup.Placement = PlacementMode.Mouse;
+                //TestPopup.IsOpen = false;
+                //PopupText.Text = (string.Format("({0},{1})", ptx.ToString("00.0"), data.Y.ToString("00.0")));
+                PopupText.Text = ViewModel.GetTextForPoint(new Point(ptx, data.Y));
+                //TestPopup.IsOpen = true;
             }
             else
             {
@@ -187,38 +204,36 @@ namespace SyncSubsByComparison
             var dataSource = (ObservableDataSource<Point>)_editableGraph.LineGraph.DataSource;
             double distClosestPoint = dataSource.Collection.Min(p => Math.Pow(p.X - data.X, 2) + Math.Pow(p.Y - data.Y, 2));
 
-            if (plotter.Cursor != Cursors.Hand)
-                return;
-
-            e.Handled = true;
-
-            Point pt = dataSource.Collection.Where(p => Math.Pow(p.X - data.X, 2) + Math.Pow(p.Y - data.Y, 2) == distClosestPoint).FirstOrDefault();
-            _selectedPointIndex = dataSource.Collection.IndexOf(pt);
-
-
-            ////dataSource.Collection[_selectedPointIndex] = new Point(pt.X, pt.Y + 1000);
-
-            //dataSource.Collection.Add(new Point(pt.X, pt.Y + 1000));
-
-            //ViewModel.EditTargetGraph(new Point(pt.X, pt.Y + 1000), dataSource);
-
-            //var newsource = new ObservableDataSource<Point>();
-            //newsource.AppendMany(dataSource.Collection);
-            //_editableGraph.DataSource = newsource;
-
-            //// Initialize currently selected data point
-            //selectedDataPoint = null;
-            if (hitTestList.Contains(_editableGraph.LineGraph))
+            if (plotter.Cursor == Cursors.Hand)
             {
-                //    selectedDataPoint = (DataPoint)hitResult.Object;
+                e.Handled = true;
 
-                //    // Show point value as label
-                //    selectedDataPoint.IsValueShownAsLabel = true;
+                Point pt = dataSource.Collection.Where(p => Math.Pow(p.X - data.X, 2) + Math.Pow(p.Y - data.Y, 2) == distClosestPoint).FirstOrDefault();
+                _selectedPointIndex = dataSource.Collection.IndexOf(pt);
 
-                // Set cursor shape
-                plotter.Cursor = Cursors.SizeNS;
+                PopupText.Text = ViewModel.GetTextForPoint(pt);
+                TestPopup.IsOpen = true;
+
+                if (hitTestList.Contains(_editableGraph.LineGraph))
+                {
+                    // Set cursor shape
+                    plotter.Cursor = Cursors.SizeNS;
+                }
             }
 
+        }
+
+        private void plotter_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            _selectedPointIndex = int.MinValue;
+            plotter.Cursor = Cursors.Arrow;
+        }
+
+
+        private void TestPopup_MouseEnter(object sender, MouseEventArgs e)
+        {
+            TestPopup.ClearValue(Popup.IsOpenProperty);
+            TestPopup.IsOpen = true;
         }
 
 

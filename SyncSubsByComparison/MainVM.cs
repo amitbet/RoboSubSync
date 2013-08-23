@@ -7,6 +7,7 @@ using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.Research.DynamicDataDisplay.PointMarkers;
 
 namespace SyncSubsByComparison
 {
@@ -243,12 +244,16 @@ namespace SyncSubsByComparison
             _actualData.SetXYMapping(p => p);
             _baselineData.SetXYMapping(p => p);
             _regressionData.SetXYMapping(p => p);
+            //_actualData.AddMapping(ShapeElementPointMarker.ToolTipTextProperty, p => string.Format("({0},{1})", p.X, p.Y));
+            //_actualData.AddMapping(CirclePointMarker.ToolTipTextProperty, p => string.Format("({0},{1})", p.X, p.Y));
+
         }
 
         public void AutoSyncSubtitles()
         {
             SubtitleInfo langSub;
             SubtitleInfo timingSub;
+            object locker = new object();
             try
             {
                 PrepareInputSubs(out langSub, out timingSub);
@@ -262,26 +267,31 @@ namespace SyncSubsByComparison
             int bestMatchLinesToSearchForward = 0;
             int maxMatchLines = 0;
             Dictionary<LineInfo, LineInfo> bestMatchedLines = null;
-            
+
             //TODO: run match in parallel, need to remove use of properties from match alg...
             //object locker = new object();
-            for (int i = 6; i <= 6; ++i)
+            for (int i = 6; i <= 7; ++i)
             {
-                for (int j = 10; j <= 14; ++j)
+                Parallel.For(10, 19, j =>
                 {
-                    MatchMinimumLettersForMatch = i;
-                    MatchLinesToSearchForward = j;
-
-                    Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(langSub, timingSub);
-                    int numMatches = matchedLangLines2timingLines.Count();
-                    if (numMatches > maxMatchLines)
                     {
-                        maxMatchLines = numMatches;
-                        bestMatchedLines = matchedLangLines2timingLines;
-                        bestMatchMinimumLettersForMatch = MatchMinimumLettersForMatch;
-                        bestMatchLinesToSearchForward = MatchLinesToSearchForward;
+                        //MatchMinimumLettersForMatch = i;
+                        //MatchLinesToSearchForward = j;
+
+                        Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(langSub, timingSub, j, i, MatchSimilarityThreshold);
+                        int numMatches = matchedLangLines2timingLines.Count();
+                        lock (locker)
+                        {
+                            if (numMatches > maxMatchLines)
+                            {
+                                maxMatchLines = numMatches;
+                                bestMatchedLines = matchedLangLines2timingLines;
+                                bestMatchMinimumLettersForMatch = i;
+                                bestMatchLinesToSearchForward = j;
+                            }
+                        }
                     }
-                }
+                });
             }
             MatchLinesToSearchForward = bestMatchLinesToSearchForward;
             MatchMinimumLettersForMatch = bestMatchMinimumLettersForMatch;
@@ -345,7 +355,7 @@ namespace SyncSubsByComparison
                 return;
             }
 
-            Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(_langSub, _timingSub);
+            Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = FindBestMatch(_langSub, _timingSub, MatchLinesToSearchForward, MatchMinimumLettersForMatch, MatchSimilarityThreshold);
 
             //update the counter.
             CountMatchPoints = matchedLangLines2timingLines.Count() + " of " + _langSub.Lines.Count();
@@ -357,6 +367,17 @@ namespace SyncSubsByComparison
             var mypoints = diffPoints.Select((p, i) => new MyPoint(timesForXAxis[i], p));
 
             _lnOriginal = new SampleCollection(mypoints);
+
+            Dictionary<double, string> descsByX = new Dictionary<double, string>();
+
+            //get desc for each x
+            var listOfDescs = orderedMatchPoints.Select(m => new { x = m.Key.TimeStamp.FromTime, desc = m.Key.Line + "\n" + m.Value.Line }).ToList();
+            listOfDescs.ForEach(p =>
+            {
+                if (!descsByX.ContainsKey(p.x))
+                    descsByX.Add(p.x, p.desc);
+            });
+            _lnOriginal.PointDescByXValue = descsByX;
 
             if (RemoveAbnormalPoints)
             {
@@ -510,10 +531,10 @@ namespace SyncSubsByComparison
             dataSourceToUpdate.AppendMany(points);
         }
 
-        private Dictionary<LineInfo, LineInfo> FindBestMatch(SubtitleInfo langSub, SubtitleInfo timingSub)
+        private Dictionary<LineInfo, LineInfo> FindBestMatch(SubtitleInfo langSub, SubtitleInfo timingSub, int matchLinesToSearchForward, int matchMinimumLettersForMatch, double matchSimilarityThreshold)
         {
-            Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines1 = FindMatch(langSub, timingSub);
-            Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines2 = ReverseKeyVal(FindMatch(timingSub, langSub));
+            Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines1 = FindMatch(langSub, timingSub, matchLinesToSearchForward, matchMinimumLettersForMatch, matchSimilarityThreshold);
+            Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines2 = ReverseKeyVal(FindMatch(timingSub, langSub, matchLinesToSearchForward, matchMinimumLettersForMatch, matchSimilarityThreshold));
             Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines;
 
             if (matchedLangLines2timingLines1.Count() > matchedLangLines2timingLines2.Count())
@@ -533,7 +554,7 @@ namespace SyncSubsByComparison
             return reversed;
         }
 
-        private Dictionary<LineInfo, LineInfo> FindMatch(SubtitleInfo langSub, SubtitleInfo timingSub)
+        private Dictionary<LineInfo, LineInfo> FindMatch(SubtitleInfo langSub, SubtitleInfo timingSub, int matchLinesToSearchForward, int matchMinimumLettersForMatch, double matchSimilarityThreshold)
         {
             Dictionary<LineInfo, LineInfo> matchedLangLines2timingLines = new Dictionary<LineInfo, LineInfo>();
             int timingSrtPos = 0;
@@ -542,13 +563,13 @@ namespace SyncSubsByComparison
             for (int i = 0; i < langSub.Lines.Count(); ++i)
             {
                 var sline = langSub.Lines[i];
-                int endSearch = Math.Min(timingSub.Lines.Count(), timingSrtPos + this.MatchLinesToSearchForward);
+                int endSearch = Math.Min(timingSub.Lines.Count(), timingSrtPos + matchLinesToSearchForward);
                 for (int j = timingSrtPos; j < endSearch; ++j)
                 {
                     var tline = timingSub.Lines[j];
 
                     //if we have a match
-                    if (tline.CalcIsWordMatch(sline, MatchMinimumLettersForMatch, MatchSimilarityThreshold))
+                    if (tline.CalcIsWordMatch(sline, matchMinimumLettersForMatch, matchSimilarityThreshold))
                     {
                         if (!matchedLangLines2timingLines.ContainsKey(sline))
                             matchedLangLines2timingLines.Add(sline, tline);
@@ -562,6 +583,13 @@ namespace SyncSubsByComparison
         internal void UpdateEditableLine(int _selectedPointIndex, double x, double y)
         {
             _lnOriginal[_selectedPointIndex].Y = y;
+        }
+
+        internal string GetTextForPoint(Point pt)
+        {
+            string desc = _lnOriginal.PointDescByXValue[pt.X];
+            string retStr = "(" + TimeSpan.FromMilliseconds(pt.X).ToString(@"hh\:mm\:ss\.ff") + ", correction= " + pt.Y.ToString("0.0") + "):\n" + desc;
+            return retStr;
         }
     }
 }

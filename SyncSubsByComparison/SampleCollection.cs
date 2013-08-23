@@ -21,6 +21,14 @@ namespace SyncSubsByComparison
                 Add(point);
         }
 
+        private Dictionary<double, string> _pointDescByXValue;
+
+        public Dictionary<double, string> PointDescByXValue
+        {
+            get { return _pointDescByXValue; }
+            set { _pointDescByXValue = value; }
+        }
+
         public override string ToString()
         {
             string str = _points.Select(p => "(" + p.X + "," + p.Y + ")").Aggregate((y1, y2) => y1 + " " + y2);
@@ -172,6 +180,8 @@ namespace SyncSubsByComparison
             }
 
             var col = new SampleCollection(points);
+            col._pointDescByXValue = this._pointDescByXValue;
+
             return col;
         }
 

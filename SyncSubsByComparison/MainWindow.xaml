@@ -165,7 +165,17 @@
         </ControlTemplate>
 
     </Window.Resources>
-    <Grid>
+    <Grid >
+        <Popup Name="TestPopup" IsOpen="False" AllowsTransparency="True" Placement="Mouse"  MouseEnter="TestPopup_MouseEnter" >
+            <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="LightGray" SnapsToDevicePixels="True" Background="WhiteSmoke">
+                <!--<TextBox Background="Transparent" Name="PopupText" BorderThickness="0" ></TextBox>-->
+                <TextBlock Background="WhiteSmoke" Width="200" Name="PopupText" TextWrapping="NoWrap">
+                </TextBlock>
+            </Border>
+            
+        </Popup>
+        <!--<TextBlock Background="Wheat" Width="150" Name="PopupText" TextWrapping="NoWrap">
+            </TextBlock>-->
         <Button Content="Auto Sync" Height="23" Margin="0,77,12,0" Name="btnSync" VerticalAlignment="Top" Click="button1_Click" HorizontalAlignment="Right" Width="84" />
         <TextBox Height="23" Text="{Binding TimingSrtFile}" Name="txtTimingSrt" Margin="92,14,12,0" VerticalAlignment="Top" />
         <TextBox Height="23" Text="{Binding LanguageSrtFile}"  Name="txtLanguageSrt" Margin="92,48,254,0" VerticalAlignment="Top" />
@@ -173,8 +183,8 @@
         <Label Content="timing srt:" Height="28" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label1" VerticalAlignment="Top" />
         <Label Content="language srt:" Height="28" HorizontalAlignment="Left" Margin="10,46,0,0" Name="label2" VerticalAlignment="Top" />
         <Button Content="Add Translation" HorizontalAlignment="Right" Margin="0,48,12,0" Name="button3" Width="109" Height="23" VerticalAlignment="Top" Click="button3_Click" />
-        <d3:ChartPlotter Margin="12,77,203,12" Name="plotter" IsEnabled="False" IsMouseDirectlyOverChanged="plotter_IsMouseDirectlyOverChanged" MouseDown="plotter_MouseDown" MouseUp="plotter_MouseUp" MouseMove="plotter_MouseMove" PreviewMouseDown="plotter_PreviewMouseDown" />
-        <Button Content="Save File" Height="23" HorizontalAlignment="Right" Margin="0,0,12,12" Name="btnSave" VerticalAlignment="Bottom" Width="109" Click="btnSave_Click" />
+        <d3:ChartPlotter Margin="12,77,203,12" Name="plotter" IsEnabled="False" IsMouseDirectlyOverChanged="plotter_IsMouseDirectlyOverChanged"  PreviewMouseUp="plotter_MouseUp"  MouseDown="plotter_MouseDown" MouseMove="plotter_MouseMove" PreviewMouseDown="plotter_PreviewMouseDown" />
+        
         <StackPanel  Orientation="Vertical" Margin="0,116,0,0" Height="498" VerticalAlignment="Top" HorizontalAlignment="Right" Width="197">
             <Expander Template="{StaticResource StretchyExpanderTemp}"
                   OverridesDefaultStyle="True"
@@ -232,8 +242,10 @@
             <Expander Header="Fix &amp; Save Subtitle" Margin="0,10,0,0" IsExpanded="True">
                 <Grid>
                     <Label Margin="-1,0,0,0" HorizontalAlignment="Left" Width="52">use line:</Label>
-                    <ComboBox SelectedItem="{Binding SelectedLineType}" ItemsSource="{Binding Source={StaticResource LineTypesEnum}}" Margin="52,2,0,2"></ComboBox>
+                    <ComboBox SelectedItem="{Binding SelectedLineType}" ItemsSource="{Binding Source={StaticResource LineTypesEnum}}" Margin="52,2,0,0" Height="22" VerticalAlignment="Top"></ComboBox>
+                    <Button Content="Save Srt File" Height="23" HorizontalAlignment="Left"  Name="btnSave" VerticalAlignment="Top" Width="183" Click="btnSave_Click" Margin="6,35,0,0" />
                 </Grid>
+                
             </Expander>
         </StackPanel>
         <Button Content="Update Graph" Height="23" Margin="0,77,102,0" Name="button1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="95" Click="button1_Click_1" />
