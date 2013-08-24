@@ -217,6 +217,54 @@ namespace SyncSubsByComparison
             }
         }
 
+        public SubtitleInfo FixedSub
+        {
+            get { return SelectedLineForSubtitleFix.CreateFixedSubtitle(_langSub); }
+        }
+
+        public string TranslationText
+        {
+            get { return _translationText; }
+            set
+            {
+                _translationText = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("TranslationText"));
+            }
+        }
+
+        public bool RemoveAbnormalPoints
+        {
+            get { return _removeAbnormalPoints; }
+            set
+            {
+                _removeAbnormalPoints = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("RemoveAbnormalPoints"));
+            }
+        }
+
+        public SampleCollection SelectedLineForSubtitleFix
+        {
+            get
+            {
+                //get selected line for subtitle
+                switch (SelectedLineType)
+                {
+                    case LineTypes.Baseline:
+                        return _lnBaseline;
+                        break;
+                    case LineTypes.LinearRegression:
+                        return _lnRegression;
+                        break;
+                    case LineTypes.OriginalMatch:
+                        return _lnOriginal;
+                        break;
+                }
+                return null;
+            }
+        }
+
         #endregion
 
         public MainVM()
@@ -399,33 +447,6 @@ namespace SyncSubsByComparison
         }
         #endregion private functions
 
-        internal SubtitleInfo FixedSub
-        {
-            get { return SelectedLineForSubtitleFix.CreateFixedSubtitle(_langSub); }
-        }
-
-        internal string TranslationText
-        {
-            get { return _translationText; }
-            set
-            {
-                _translationText = value;
-                if (PropertyChanged != null)
-                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("TranslationText"));
-            }
-        }
-
-        internal bool RemoveAbnormalPoints
-        {
-            get { return _removeAbnormalPoints; }
-            set
-            {
-                _removeAbnormalPoints = value;
-                if (PropertyChanged != null)
-                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("RemoveAbnormalPoints"));
-            }
-        }
-
         internal void AutoSyncSubtitles()
         {
             SubtitleInfo langSub;
@@ -469,27 +490,6 @@ namespace SyncSubsByComparison
             MatchMinimumLettersForMatch = bestMatchMinimumLettersForMatch;
 
             SyncSubtitles();
-        }
-
-        internal SampleCollection SelectedLineForSubtitleFix
-        {
-            get
-            {
-                //get selected line for subtitle
-                switch (SelectedLineType)
-                {
-                    case LineTypes.Baseline:
-                        return _lnBaseline;
-                        break;
-                    case LineTypes.LinearRegression:
-                        return _lnRegression;
-                        break;
-                    case LineTypes.OriginalMatch:
-                        return _lnOriginal;
-                        break;
-                }
-                return null;
-            }
         }
 
         internal void SyncSubtitles()
