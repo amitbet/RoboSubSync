@@ -219,7 +219,7 @@ namespace SyncSubsByComparison
 
         public SubtitleInfo FixedSub
         {
-            get { return SelectedLineForSubtitleFix.CreateFixedSubtitle(_langSub); }
+            get { return SelectedLineForSubtitleFix != null ? SelectedLineForSubtitleFix.CreateFixedSubtitle(_langSub) : null; }
         }
 
         public string TranslationText

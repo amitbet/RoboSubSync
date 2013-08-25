@@ -93,9 +93,12 @@ namespace SyncSubsByComparison
         /// <param name="e"></param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            if (ViewModel.FixedSub == null)
+                return;
+
             //var yTest = ViewModel.SelectedLineForSubtitleFix.ComputeYforXbyInterpolation(230000);
             string newSrtFile = Path.GetDirectoryName(txtLanguageSrt.Text) + "\\fixed_" + Path.GetFileName(txtLanguageSrt.Text);
-
+            
             if (File.Exists(newSrtFile))
                 File.Delete(newSrtFile);
 
