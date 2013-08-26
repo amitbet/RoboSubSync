@@ -1,7 +1,7 @@
 ﻿<Window x:Class="SyncSubsByComparison.WndPasteTranslation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Paste Google Translation Here" Height="394" Width="429" Loaded="Window_Loaded">
+        Title="Paste Google Translation Here" Height="394" Width="429" Loaded="Window_Loaded" Icon="Untitled - 5.ico">
     <Grid>
         <Label>paste your google translation here:</Label>
         <TextBox Name="textBlock1" Text="" Margin="0,28,0,41" AcceptsReturn="True" AcceptsTab="True" />
