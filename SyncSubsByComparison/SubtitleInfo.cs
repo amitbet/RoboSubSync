@@ -162,15 +162,28 @@ Subtitles downloaded from www.OpenSubtitles.org
 PLAYlNG ON VlDEO GAME)
              */
 
-            //TODO: truncate duration so it will not overlap next sub
+
             StringBuilder sb = new StringBuilder();
             int globalLineCounter = 1;
-            foreach (var time in TimeMarkers)
+            for (int i = 0; i < TimeMarkers.Count(); ++i)
             {
+                var time = TimeMarkers[i];
                 sb.AppendLine(globalLineCounter.ToString());
                 string strFromTime = TimespanToString(TimeSpan.FromMilliseconds(time.FromTime + time.Correction));//.ToString("hh\\:mm\\:ss\\,fff");
-                string strToTime = TimespanToString(TimeSpan.FromMilliseconds(time.FromTime + time.Correction + time.Duration));//.ToString("hh\\:mm\\:ss\\,fff");
+                var ToTime = TimeSpan.FromMilliseconds(time.FromTime + time.Correction + time.Duration);
+
+                //truncate duration so it will not overlap next sub
+                if (i < (TimeMarkers.Count() - 1))
+                {
+                    var ntime = TimeMarkers[i + 1];
+                    var nToTime = TimeSpan.FromMilliseconds(ntime.FromTime + ntime.Correction);
+                    ToTime = (ToTime <= nToTime) ? ToTime : nToTime - TimeSpan.FromMilliseconds(100);
+                }
+
+                string strToTime = TimespanToString(ToTime);
+
                 sb.AppendLine(strFromTime + " --> " + strToTime);
+
                 foreach (var lineinf in time.Lines)
                 {
                     sb.AppendLine(lineinf.Line);
