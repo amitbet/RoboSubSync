@@ -11,6 +11,9 @@ using Microsoft.Research.DynamicDataDisplay.PointMarkers;
 
 namespace SyncSubsByComparison
 {
+    //TODO: create a batch mode and a commandline mode.
+    //TODO: make it easier to sync by auto downloading english sub, and auto finding lang sub when given a video filename.
+
     public class MainVM : INotifyPropertyChanged
     {
 
@@ -253,13 +256,10 @@ namespace SyncSubsByComparison
                 {
                     case LineTypes.Baseline:
                         return _lnBaseline;
-                        break;
                     case LineTypes.LinearRegression:
                         return _lnRegression;
-                        break;
                     case LineTypes.OriginalMatch:
                         return _lnOriginal;
-                        break;
                 }
                 return null;
             }

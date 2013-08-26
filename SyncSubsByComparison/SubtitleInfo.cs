@@ -145,7 +145,7 @@ namespace SyncSubsByComparison
             return sb.ToString();
         }
 
-        internal void WriteSrt(string p)
+        internal void WriteSrt(string p, Encoding chosenEncoding)
         {
             /*
 1
@@ -161,6 +161,8 @@ Subtitles downloaded from www.OpenSubtitles.org
 (TAKE ME OUT TO THE BALL GAME
 PLAYlNG ON VlDEO GAME)
              */
+
+            //TODO: truncate duration so it will not overlap next sub
             StringBuilder sb = new StringBuilder();
             int globalLineCounter = 1;
             foreach (var time in TimeMarkers)
@@ -173,10 +175,11 @@ PLAYlNG ON VlDEO GAME)
                 {
                     sb.AppendLine(lineinf.Line);
                 }
+                sb.AppendLine();
 
                 ++globalLineCounter;
             }
-            File.WriteAllText(p, sb.ToString());
+            File.WriteAllText(p, sb.ToString(), chosenEncoding);
         }
 
         private string TimespanToString(TimeSpan timeSpan)

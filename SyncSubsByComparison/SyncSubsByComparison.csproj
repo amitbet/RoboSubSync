@@ -130,15 +130,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Untitled - 2.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Untitled - 3.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Untitled - 4.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Untitled - 5.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

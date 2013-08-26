@@ -102,7 +102,7 @@ namespace SyncSubsByComparison
             if (File.Exists(newSrtFile))
                 File.Delete(newSrtFile);
 
-            ViewModel.FixedSub.WriteSrt(newSrtFile);
+            ViewModel.FixedSub.WriteSrt(newSrtFile, ViewModel.SelectedEncoding);
         }
 
         /// <summary>

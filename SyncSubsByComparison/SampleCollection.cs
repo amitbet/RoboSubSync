@@ -8,6 +8,7 @@ using System.Text;
 
 namespace SyncSubsByComparison
 {
+
     public class SampleCollection : IList<MyPoint>
     {
 
@@ -79,9 +80,9 @@ namespace SyncSubsByComparison
         {
             _points.Clear();
         }
-
         public SubtitleInfo CreateFixedSubtitle(SubtitleInfo subtitle)
         {
+            
             var resultSub = subtitle.CloneSub();
             foreach (var time in resultSub.TimeMarkers)
             {
