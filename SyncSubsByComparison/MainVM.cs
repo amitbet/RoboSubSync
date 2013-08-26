@@ -275,56 +275,56 @@ namespace SyncSubsByComparison
         }
 
         #region private functions
-        private SubtitleInfo GetFixedSubtitle(SubtitleInfo subtitlToFix, List<KeyValuePair<LineInfo, LineInfo>> orderedMatchPoints, List<double> matchPointsDiffsFromGoodSync)
-        {
-            var subtitle = subtitlToFix.CloneSub();
-            int idx = 0;
-            //attach average to actual timestamps
-            foreach (var item in orderedMatchPoints)
-            {
-                item.Key.TimeStamp.IsOffsetCorrected = true;
-                item.Key.TimeStamp.Correction = (long)matchPointsDiffsFromGoodSync[idx];
-                ++idx;
-            }
+        //private SubtitleInfo GetFixedSubtitle(SubtitleInfo subtitlToFix, List<KeyValuePair<LineInfo, LineInfo>> orderedMatchPoints, List<double> matchPointsDiffsFromGoodSync)
+        //{
+        //    var subtitle = subtitlToFix.CloneSub();
+        //    int idx = 0;
+        //    //attach average to actual timestamps
+        //    foreach (var item in orderedMatchPoints)
+        //    {
+        //        item.Key.TimeStamp.IsOffsetCorrected = true;
+        //        item.Key.TimeStamp.Correction = (long)matchPointsDiffsFromGoodSync[idx];
+        //        ++idx;
+        //    }
 
-            //spread correction to all timestamps (including the ones not attached)
-            long prevOffset = (long)matchPointsDiffsFromGoodSync[0];
-            TimeStamp prev = null;
+        //    //spread correction to all timestamps (including the ones not attached)
+        //    long prevOffset = (long)matchPointsDiffsFromGoodSync[0];
+        //    TimeStamp prev = null;
 
-            foreach (var time in subtitle.TimeMarkers)
-            {
-                if (!time.IsOffsetCorrected)
-                {
-                    var next = subtitle.Lines.Where(p => p.TimeStamp.FromTime > time.FromTime).FirstOrDefault(x => x.TimeStamp.IsOffsetCorrected);
-                    var currTime = time;
-                    var prevTime = prev;
-                    double newOffset = prevOffset;
+        //    foreach (var time in subtitle.TimeMarkers)
+        //    {
+        //        if (!time.IsOffsetCorrected)
+        //        {
+        //            var next = subtitle.Lines.Where(p => p.TimeStamp.FromTime > time.FromTime).FirstOrDefault(x => x.TimeStamp.IsOffsetCorrected);
+        //            var currTime = time;
+        //            var prevTime = prev;
+        //            double newOffset = prevOffset;
 
-                    if (prevTime != null && next != null)
-                    {
-                        var nextTime = next.TimeStamp;
+        //            if (prevTime != null && next != null)
+        //            {
+        //                var nextTime = next.TimeStamp;
 
-                        //timeAfterPrev / timeInterval (=next-prev) = the precentage of movement in the X axis between the two points
-                        double part = ((double)currTime.FromTime - (double)prevTime.FromTime) / ((double)nextTime.FromTime - (double)prevTime.FromTime);
+        //                //timeAfterPrev / timeInterval (=next-prev) = the precentage of movement in the X axis between the two points
+        //                double part = ((double)currTime.FromTime - (double)prevTime.FromTime) / ((double)nextTime.FromTime - (double)prevTime.FromTime);
 
-                        //(change in corrections between prev -> next) * (calculated place between them =part) + (the base correction of prev =the stating point of this correction)
-                        newOffset = (((double)nextTime.Correction - (double)prev.Correction) * part) + (double)prevTime.Correction;
-                    }
+        //                //(change in corrections between prev -> next) * (calculated place between them =part) + (the base correction of prev =the stating point of this correction)
+        //                newOffset = (((double)nextTime.Correction - (double)prev.Correction) * part) + (double)prevTime.Correction;
+        //            }
 
-                    time.IsOffsetCorrected = true;
-                    time.Correction = (long)newOffset;
-                }
-                else
-                {
-                    prevOffset = time.Correction;
-                    prev = time;
-                }
+        //            time.IsOffsetCorrected = true;
+        //            time.Correction = (long)newOffset;
+        //        }
+        //        else
+        //        {
+        //            prevOffset = time.Correction;
+        //            prev = time;
+        //        }
 
-                //extend duration for all subs
-                time.Duration = (long)(TimeStampDurationMultiplyer * (double)time.Duration);
-            }
-            return subtitle;
-        }
+        //        //extend duration for all subs
+        //        time.Duration = (long)(TimeStampDurationMultiplyer * (double)time.Duration);
+        //    }
+        //    return subtitle;
+        //}
 
         private List<KeyValuePair<LineInfo, LineInfo>> CalculateDiffAndBaseline(List<KeyValuePair<LineInfo, LineInfo>> ordered, out List<long> dataset2, out List<double> averages)
         {
@@ -512,6 +512,22 @@ namespace SyncSubsByComparison
             var orderedMatchPoints = matchedLangLines2timingLines.OrderBy(x => x.Key.TimeStamp.FromTime).ToList();
 
             var diffPoints = orderedMatchPoints.Select(x => (double)(x.Value.TimeStamp.FromTime - x.Key.TimeStamp.FromTime)).ToList();
+
+            ////correct for line in sub diff
+            //for (int i = 0; i < orderedMatchPoints.Count(); ++i)
+            //{
+            //    var keyval = orderedMatchPoints[i];
+            //    var langLine = keyval.Key;
+            //    var syncLine = keyval.Value;
+            //    int shift = langLine.LineNumberInSub - syncLine.LineNumberInSub;
+            //    if (shift != 0)
+            //    {
+            //        double timeForOneLine = (double)syncLine.TimeStamp.Duration / (double)syncLine.TimeStamp.Lines.Count();
+            //        double shiftCorrection = shift * timeForOneLine;
+            //        diffPoints[i] -= shiftCorrection;
+            //    }
+            //}
+
             var timesForXAxis = orderedMatchPoints.Select(p => p.Key.TimeStamp.FromTime).ToList();
             var mypoints = diffPoints.Select((p, i) => new MyPoint(timesForXAxis[i], p));
 

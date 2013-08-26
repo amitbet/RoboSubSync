@@ -93,62 +93,62 @@ namespace SyncSubsByComparison
 
         }
 
-        private SubtitleInfo xCreateFixedSubtitle(SubtitleInfo subtitle)
-        {
-            var resultSub = subtitle.CloneSub();
-            var correctionsByTimePos = new Dictionary<double, double>();
-            _points.ForEach(p => correctionsByTimePos.Add(p.X, p.Y));
+        //private SubtitleInfo xCreateFixedSubtitle(SubtitleInfo subtitle)
+        //{
+        //    var resultSub = subtitle.CloneSub();
+        //    var correctionsByTimePos = new Dictionary<double, double>();
+        //    _points.ForEach(p => correctionsByTimePos.Add(p.X, p.Y));
 
-            //place all known corrections on the subtitle
-            resultSub.TimeMarkers.ForEach(t =>
-                {
-                    if (correctionsByTimePos.ContainsKey((double)t.FromTime))
-                    {
-                        var correction = correctionsByTimePos[(double)t.FromTime];
-                        t.Correction = (long)correction;
-                        t.IsOffsetCorrected = true;
-                    }
-                });
+        //    //place all known corrections on the subtitle
+        //    resultSub.TimeMarkers.ForEach(t =>
+        //        {
+        //            if (correctionsByTimePos.ContainsKey((double)t.FromTime))
+        //            {
+        //                var correction = correctionsByTimePos[(double)t.FromTime];
+        //                t.Correction = (long)correction;
+        //                t.IsOffsetCorrected = true;
+        //            }
+        //        });
 
-            //spread correction to all timestamps (including the ones not attached)
-            long prevOffset = (long)_points[0].Y;
-            TimeStamp prev = null;
+        //    //spread correction to all timestamps (including the ones not attached)
+        //    long prevOffset = (long)_points[0].Y;
+        //    TimeStamp prev = null;
 
-            foreach (var time in resultSub.TimeMarkers)
-            {
-                if (!time.IsOffsetCorrected)
-                {
-                    var next = subtitle.Lines.Where(p => p.TimeStamp.FromTime > time.FromTime).FirstOrDefault(x => x.TimeStamp.IsOffsetCorrected);
-                    var currTime = time;
-                    var prevTime = prev;
-                    double newOffset = prevOffset;
+        //    foreach (var time in resultSub.TimeMarkers)
+        //    {
+        //        if (!time.IsOffsetCorrected)
+        //        {
+        //            var next = subtitle.Lines.Where(p => p.TimeStamp.FromTime > time.FromTime).FirstOrDefault(x => x.TimeStamp.IsOffsetCorrected);
+        //            var currTime = time;
+        //            var prevTime = prev;
+        //            double newOffset = prevOffset;
 
-                    if (prevTime != null && next != null)
-                    {
-                        var nextTime = next.TimeStamp;
+        //            if (prevTime != null && next != null)
+        //            {
+        //                var nextTime = next.TimeStamp;
 
-                        //timeAfterPrev / timeInterval (=next-prev) = the precentage of movement in the X axis between the two points
-                        double part = ((double)currTime.FromTime - (double)prevTime.FromTime) / ((double)nextTime.FromTime - (double)prevTime.FromTime);
+        //                //timeAfterPrev / timeInterval (=next-prev) = the precentage of movement in the X axis between the two points
+        //                double part = ((double)currTime.FromTime - (double)prevTime.FromTime) / ((double)nextTime.FromTime - (double)prevTime.FromTime);
 
-                        //(change in corrections between prev -> next) * (calculated place between them =part) + (the base correction of prev =the stating point of this correction)
-                        newOffset = (((double)nextTime.Correction - (double)prev.Correction) * part) + (double)prevTime.Correction;
-                    }
+        //                //(change in corrections between prev -> next) * (calculated place between them =part) + (the base correction of prev =the stating point of this correction)
+        //                newOffset = (((double)nextTime.Correction - (double)prev.Correction) * part) + (double)prevTime.Correction;
+        //            }
 
-                    time.IsOffsetCorrected = true;
-                    time.Correction = (long)newOffset;
-                }
-                else
-                {
-                    prevOffset = time.Correction;
-                    prev = time;
-                }
+        //            time.IsOffsetCorrected = true;
+        //            time.Correction = (long)newOffset;
+        //        }
+        //        else
+        //        {
+        //            prevOffset = time.Correction;
+        //            prev = time;
+        //        }
 
-                //extend duration for all subs
-                time.Duration = (long)((double)time.Duration);
-            }
-            return resultSub;
+        //        //extend duration for all subs
+        //        time.Duration = (long)((double)time.Duration);
+        //    }
+        //    return resultSub;
 
-        }
+        //}
 
         public SampleCollection FilterAbnormalsByRegression()
         {

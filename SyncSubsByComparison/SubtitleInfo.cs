@@ -112,7 +112,7 @@ namespace SyncSubsByComparison
                 var to = ParseDateToMiliseconds(m.Groups["toTime"].Value);
 
                 TimeStamp currentTimeStamp = new TimeStamp() { FromTime = from, Duration = to - from };
-                currentTimeStamp.Lines.AddRange(m.Groups["lines"].Value.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(l => new LineInfo() { Line = l, TimeStamp = currentTimeStamp }));
+                currentTimeStamp.Lines.AddRange(m.Groups["lines"].Value.Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(l => new LineInfo() { Line = l, TimeStamp = currentTimeStamp}));
                 _listOfTimeMarkers.Add(currentTimeStamp);
                 _listOfLines.AddRange(currentTimeStamp.Lines);
             }

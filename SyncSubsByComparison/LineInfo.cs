@@ -24,6 +24,7 @@ namespace SyncSubsByComparison
         }
 
 
+        public int LineNumberInSub { get { return TimeStamp.Lines.IndexOf(this); } }
 
         public override string ToString()
         {
