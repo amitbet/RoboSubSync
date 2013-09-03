@@ -9,6 +9,7 @@ namespace SyncSubsByComparison
     {
         LinearRegression,
         Baseline,
-        OriginalMatch
+        OriginalMatch,
+        StepsClustering
     }
 }

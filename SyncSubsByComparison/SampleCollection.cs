@@ -82,7 +82,7 @@ namespace SyncSubsByComparison
         }
         public SubtitleInfo CreateFixedSubtitle(SubtitleInfo subtitle)
         {
-            
+
             var resultSub = subtitle.CloneSub();
             foreach (var time in resultSub.TimeMarkers)
             {
@@ -93,62 +93,270 @@ namespace SyncSubsByComparison
 
         }
 
-        //private SubtitleInfo xCreateFixedSubtitle(SubtitleInfo subtitle)
-        //{
-        //    var resultSub = subtitle.CloneSub();
-        //    var correctionsByTimePos = new Dictionary<double, double>();
-        //    _points.ForEach(p => correctionsByTimePos.Add(p.X, p.Y));
+        /// <summary>
+        /// creates a step line by clutering the points.
+        /// </summary>
+        /// <param name="k">the number of steps we will end up with</param>
+        /// <param name="numberOfPointsInNextLineToEndCurrentLine">the number of consecutive points which belong to the next group required in order to climb to the next step</param>
+        /// <returns></returns>
+        public SampleCollection GetStepLineByKMeans(int k, int numberOfPointsInNextLineToEndCurrentLine = 3)
+        {
+            var yVals = _points.Select(p => p.Y);
+            var kmeans = OneDimentinalKMeans(yVals, k);
+            List<MyPoint> stepLinePoints = new List<MyPoint>();
 
-        //    //place all known corrections on the subtitle
-        //    resultSub.TimeMarkers.ForEach(t =>
-        //        {
-        //            if (correctionsByTimePos.ContainsKey((double)t.FromTime))
-        //            {
-        //                var correction = correctionsByTimePos[(double)t.FromTime];
-        //                t.Correction = (long)correction;
-        //                t.IsOffsetCorrected = true;
-        //            }
-        //        });
+            kmeans = RemoveRedundantClusters(kmeans);
 
-        //    //spread correction to all timestamps (including the ones not attached)
-        //    long prevOffset = (long)_points[0].Y;
-        //    TimeStamp prev = null;
+            //var groups = _points.GroupBy(p => groupAssignments[p.Y]);
+            var listOfPoints = _points.Select(p => new { Point = p, Cluster = kmeans.GroupAssignments[p.Y] }).ToList();
 
-        //    foreach (var time in resultSub.TimeMarkers)
-        //    {
-        //        if (!time.IsOffsetCorrected)
-        //        {
-        //            var next = subtitle.Lines.Where(p => p.TimeStamp.FromTime > time.FromTime).FirstOrDefault(x => x.TimeStamp.IsOffsetCorrected);
-        //            var currTime = time;
-        //            var prevTime = prev;
-        //            double newOffset = prevOffset;
+            stepLinePoints.Add(new MyPoint(listOfPoints.First().Point.X, kmeans.Means[0]));
 
-        //            if (prevTime != null && next != null)
-        //            {
-        //                var nextTime = next.TimeStamp;
+            int climbStepCounter = 0;
+            int currentCluster = 0;
+            //estimate an end points for each line
+            for (int i = 0; i < listOfPoints.Count; ++i)
+            {
+                //count next cluster points, towards switch
+                if (listOfPoints[i].Cluster == currentCluster + 1)
+                    ++climbStepCounter;
 
-        //                //timeAfterPrev / timeInterval (=next-prev) = the precentage of movement in the X axis between the two points
-        //                double part = ((double)currTime.FromTime - (double)prevTime.FromTime) / ((double)nextTime.FromTime - (double)prevTime.FromTime);
+                //we said consecutive...
+                if (listOfPoints[i].Cluster == currentCluster)
+                    climbStepCounter = 0;
 
-        //                //(change in corrections between prev -> next) * (calculated place between them =part) + (the base correction of prev =the stating point of this correction)
-        //                newOffset = (((double)nextTime.Correction - (double)prev.Correction) * part) + (double)prevTime.Correction;
-        //            }
+                //go to next step
+                if (climbStepCounter == numberOfPointsInNextLineToEndCurrentLine)
+                {
+                    stepLinePoints.Add(new MyPoint(listOfPoints[i].Point.X, kmeans.Means[currentCluster]));
 
-        //            time.IsOffsetCorrected = true;
-        //            time.Correction = (long)newOffset;
-        //        }
-        //        else
-        //        {
-        //            prevOffset = time.Correction;
-        //            prev = time;
-        //        }
+                    ++currentCluster;
+                    stepLinePoints.Add(new MyPoint(listOfPoints[i].Point.X + 0.00001, kmeans.Means[currentCluster]));
+                    climbStepCounter = 0;
+                }
+            }
+            stepLinePoints.Add(new MyPoint(listOfPoints.Last().Point.X, kmeans.Means[currentCluster]));
 
-        //        //extend duration for all subs
-        //        time.Duration = (long)((double)time.Duration);
-        //    }
-        //    return resultSub;
+            var retVal = new SampleCollection(stepLinePoints);
+            return retVal;
 
-        //}
+        }
+
+        private KMeansResult RemoveRedundantClusters(KMeansResult kmeans, int precentOfSamplesConsideredTooSmall = 5)
+        {
+
+            var fivePercent = ((double)kmeans.GroupAssignments.Count()) * ((double)precentOfSamplesConsideredTooSmall / 100d);
+            var groups = kmeans.GroupAssignments.GroupBy(p => p.Value);
+            var removedGroups = groups.Where(g => g.Count() < fivePercent).Select(g => g.Key);
+            var remainingGroups = groups.Where(g => g.Count() >= fivePercent).Select(g => g.Key);
+            var switchMap = new Dictionary<int, int>();
+
+            //create a map so we can reassign the points
+            foreach (var group in removedGroups)
+            {
+                for (int i = group - 1; i >= 0; i--)
+                    if (remainingGroups.Contains(i))
+                    {
+                        switchMap.Add(group, i);
+                        break;
+                    }
+
+                if (!switchMap.ContainsKey(group))
+                    for (int i = group + 1; i <= kmeans.Means.Count; i++)
+                        if (remainingGroups.Contains(i))
+                        {
+                            switchMap.Add(group, i);
+                            break;
+                        }
+            }
+
+            int idx = 0;
+            foreach (var group in remainingGroups)
+            {
+                switchMap.Add(group, idx);
+                ++idx;
+            }
+
+            //unpdate switchmap with the index changes of the remaining groups
+            foreach (var key in switchMap.Keys.ToList())
+            {
+                if (removedGroups.Contains(key))
+                {
+                    switchMap[key] = switchMap[switchMap[key]];
+                }
+            }
+
+            //remove groups from means list
+            List<double> newMeans = kmeans.Means.Where((m, i) => remainingGroups.Contains(i)).ToList();
+
+            Dictionary<double, int> gAssignments = new Dictionary<double, int>();
+            kmeans.GroupAssignments.ToList().ForEach(a =>
+            {
+                gAssignments.Add(a.Key, switchMap[a.Value]);
+            });
+
+            return new KMeansResult() { Means = newMeans, GroupAssignments = gAssignments };
+        }
+
+        public class KMeansResult
+        {
+            public Dictionary<double, int> GroupAssignments { get; set; }
+            public List<double> Means { get; set; }
+        }
+
+        private KMeansResult OneDimentinalKMeans(IEnumerable<double> values, int k)
+        {
+
+            var ordered = values.OrderBy(x => x);
+            var first = ordered.First();
+            var last = ordered.Last();
+            var sampleRange = last - first;
+            var partitionSize = sampleRange / (double)k;
+            List<double> means = Enumerable.Repeat(0.0, k).ToList();
+
+            for (int i = 0; i < k; i++)
+            {
+                means[i] = i * partitionSize + first;
+            }
+
+            double iterChange = double.PositiveInfinity;
+
+            //iterate until little has changed
+            while (iterChange > 0.001)
+            {
+                var newMeans = PerformKMeansIteration(values, k, means);
+
+                iterChange = 0;
+                for (int i = 0; i < means.Count; ++i)
+                {
+                    iterChange += Math.Abs(newMeans[i] - means[i]);
+                }
+
+                means = newMeans;
+            }
+
+            KMeansResult res = new KMeansResult() { GroupAssignments = GetCluseters(values, means), Means = means };
+
+            return res;
+        }
+
+        private Dictionary<double, int> GetCluseters(IEnumerable<double> values, List<double> means)
+        {
+            var groupping = new Dictionary<double, int>();
+
+            //go over all vals 
+            foreach (var val in values)
+            {
+                int bestMeanIdx = 0;
+                double minDiff = double.PositiveInfinity;
+                //find the best mean for val
+                for (int i = 0; i < means.Count; ++i)
+                {
+                    var mean = means[i];
+                    double diff = Math.Abs(mean - val);
+                    if (minDiff > diff)
+                    {
+                        minDiff = diff;
+                        bestMeanIdx = i;
+                    }
+                }
+                if (!groupping.ContainsKey(val))
+                    groupping.Add(val, bestMeanIdx);
+            }
+
+            return groupping;
+        }
+
+        private List<double> PerformKMeansIteration(IEnumerable<double> values, int k, List<double> means)
+        {
+            List<double> newMeans = Enumerable.Repeat(0.0, k).ToList();
+            List<double> newMeansCount = Enumerable.Repeat(0.0, k).ToList();
+
+            //go over all vals 
+            foreach (var val in values)
+            {
+                int bestMeanIdx = 0;
+                double minDiff = double.PositiveInfinity;
+                //find the best mean for val
+                for (int i = 0; i < means.Count; ++i)
+                {
+                    var mean = means[i];
+                    double diff = Math.Abs(mean - val);
+                    if (minDiff > diff)
+                    {
+                        minDiff = diff;
+                        bestMeanIdx = i;
+                    }
+                }
+                newMeansCount[bestMeanIdx]++;
+                newMeans[bestMeanIdx] += val;
+            }
+
+            for (int i = 0; i < means.Count; ++i)
+            {
+                newMeans[i] = newMeans[i] / newMeansCount[i];
+            }
+
+            return newMeans;
+        }
+
+
+        private SubtitleInfo xCreateFixedSubtitle(SubtitleInfo subtitle)
+        {
+            var resultSub = subtitle.CloneSub();
+            var correctionsByTimePos = new Dictionary<double, double>();
+            _points.ForEach(p => correctionsByTimePos.Add(p.X, p.Y));
+
+            //place all known corrections on the subtitle
+            resultSub.TimeMarkers.ForEach(t =>
+                {
+                    if (correctionsByTimePos.ContainsKey((double)t.FromTime))
+                    {
+                        var correction = correctionsByTimePos[(double)t.FromTime];
+                        t.Correction = (long)correction;
+                        t.IsOffsetCorrected = true;
+                    }
+                });
+
+            //spread correction to all timestamps (including the ones not attached)
+            long prevOffset = (long)_points[0].Y;
+            TimeStamp prev = null;
+
+            foreach (var time in resultSub.TimeMarkers)
+            {
+                if (!time.IsOffsetCorrected)
+                {
+                    var next = subtitle.Lines.Where(p => p.TimeStamp.FromTime > time.FromTime).FirstOrDefault(x => x.TimeStamp.IsOffsetCorrected);
+                    var currTime = time;
+                    var prevTime = prev;
+                    double newOffset = prevOffset;
+
+                    if (prevTime != null && next != null)
+                    {
+                        var nextTime = next.TimeStamp;
+
+                        //timeAfterPrev / timeInterval (=next-prev) = the precentage of movement in the X axis between the two points
+                        double part = ((double)currTime.FromTime - (double)prevTime.FromTime) / ((double)nextTime.FromTime - (double)prevTime.FromTime);
+
+                        //(change in corrections between prev -> next) * (calculated place between them =part) + (the base correction of prev =the stating point of this correction)
+                        newOffset = (((double)nextTime.Correction - (double)prev.Correction) * part) + (double)prevTime.Correction;
+                    }
+
+                    time.IsOffsetCorrected = true;
+                    time.Correction = (long)newOffset;
+                }
+                else
+                {
+                    prevOffset = time.Correction;
+                    prev = time;
+                }
+
+                //extend duration for all subs
+                time.Duration = (long)((double)time.Duration);
+            }
+            return resultSub;
+
+        }
 
         public SampleCollection FilterAbnormalsByRegression()
         {

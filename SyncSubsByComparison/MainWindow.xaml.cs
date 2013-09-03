@@ -48,6 +48,7 @@ namespace SyncSubsByComparison
             plotter.Children.Add(cursorCoordinateGraph);
 
             plotter.AddLineGraph(ViewModel.RegressionData, new Pen(Brushes.LightGreen, 2), new PenDescription("L.Regression"));
+            plotter.AddLineGraph(ViewModel.StepsData, new Pen(Brushes.Orange, 2), new PenDescription("Steps by Clustering"));
 
             _editableGraph = plotter.AddLineGraph(ViewModel.ActualData,
                                                     new Pen(Brushes.Violet, 2),

@@ -24,14 +24,18 @@ namespace SyncSubsByComparison
         private ObservableDataSource<Point> _actualData = new ObservableDataSource<Point>();
         private ObservableDataSource<Point> _baselineData = new ObservableDataSource<Point>();
         private ObservableDataSource<Point> _regressionData = new ObservableDataSource<Point>();
+        private ObservableDataSource<Point> _stepsData = new ObservableDataSource<Point>();
         private double _orderedLetterSimilarityTreshold = 0.65;
         private int _linesToSearchForward = 18;
         private int _minimumLettersForMatch = 9;
         private string _translationText;
         private double _alpha = 0.35d;
         private double _startSectionLength = 6;
-        private string _languageSrt = @"c:\TEST\BG - 3x20\heb.srt";
-        private string _timingSrt = @"c:\TEST\BG - 3x20\synced.srt";
+        //private string _languageSrt = @"c:\TEST\BG - 3x20\heb.srt";
+        //private string _timingSrt = @"c:\TEST\BG - 3x20\synced.srt";
+        private string _languageSrt = @"c:\TEST\Arrow 20\heb.srt";
+        private string _timingSrt = @"c:\TEST\Arrow 20\synced.srt";
+
         private double _normalZoneAmplitude = 3;
         private double _timeStampDurationMultiplyer = 1.0d;
         private string _countMatchPoints = "0";
@@ -40,6 +44,7 @@ namespace SyncSubsByComparison
         private SampleCollection _lnBaseline = null;
         private SampleCollection _lnOriginal = null;
         private SampleCollection _lnRegression = null;
+        private SampleCollection _lnSteps = null;
         private SubtitleInfo _langSub;
         private SubtitleInfo _timingSub;
 
@@ -220,6 +225,17 @@ namespace SyncSubsByComparison
             }
         }
 
+        public ObservableDataSource<Point> StepsData
+        {
+            get { return _stepsData; }
+            set
+            {
+                _stepsData = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("StepsData"));
+            }
+        }
+
         public SubtitleInfo FixedSub
         {
             get { return SelectedLineForSubtitleFix != null ? SelectedLineForSubtitleFix.CreateFixedSubtitle(_langSub) : null; }
@@ -260,6 +276,9 @@ namespace SyncSubsByComparison
                         return _lnRegression;
                     case LineTypes.OriginalMatch:
                         return _lnOriginal;
+                    case LineTypes.StepsClustering:
+                        return _lnSteps;
+
                 }
                 return null;
             }
@@ -272,6 +291,7 @@ namespace SyncSubsByComparison
             _actualData.SetXYMapping(p => p);
             _baselineData.SetXYMapping(p => p);
             _regressionData.SetXYMapping(p => p);
+            _stepsData.SetXYMapping(p => p);
         }
 
         #region private functions
@@ -552,9 +572,12 @@ namespace SyncSubsByComparison
             _lnBaseline = _lnOriginal.GetBaseline(BaselineAlgAlpha, NormalZoneAmplitude, (int)StartSectionLength);
             _lnRegression = _lnOriginal.GetLinearRegression();
 
+            _lnSteps = _lnOriginal.GetStepLineByKMeans(6);
+
             //update the graphs
             UpdateGraph(_lnBaseline, _baselineData);
             UpdateGraph(_lnRegression, _regressionData);
+            UpdateGraph(_lnSteps, _stepsData);
             UpdateGraph(_lnOriginal, _actualData);
         }
 
