@@ -159,6 +159,78 @@ namespace SyncSubsByComparison
             }
         }
 
+        private int _numberOfPointsToJumpStep = 3;
+        public int NumberOfPointsToJumpStep
+        {
+            get { return _numberOfPointsToJumpStep; }
+            set
+            {
+                _numberOfPointsToJumpStep = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("NumberOfPointsToJumpStep"));
+            }
+        }
+
+        private int _numberOfStepLines = 6;
+        public int NumberOfStepLines
+        {
+            get { return _numberOfStepLines; }
+            set
+            {
+                _numberOfStepLines = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("NumberOfStepLines"));
+            }
+        }
+
+        private bool _stepsAlgRequiresConsecutive = true;
+        public bool StepsAlgRequiresConsecutive
+        {
+            get { return _stepsAlgRequiresConsecutive; }
+            set
+            {
+                _stepsAlgRequiresConsecutive = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("StepsAlgRequiresConsecutive"));
+            }
+        }
+
+        private bool _stepsAlgRemoveRedundentLines = true;
+        public bool StepsAlgRemoveRedundentLines
+        {
+            get { return _stepsAlgRemoveRedundentLines; }
+            set
+            {
+                _stepsAlgRemoveRedundentLines = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("StepsAlgRemoveRedundentLines"));
+            }
+        }
+
+        private string _msSearchClientID;
+        public string MSSearchClientID
+        {
+            get { return _msSearchClientID; }
+            set
+            {
+                _msSearchClientID = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("MSSearchClientID"));
+            }
+        }
+
+        private string _msSearchSecret;
+        public string MSSearchSecret
+        {
+            get { return _msSearchSecret; }
+            set
+            {
+                _msSearchSecret = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("MSSearchSecret"));
+            }
+        }
+
         public double StartSectionLength
         {
             get { return _startSectionLength; }
@@ -572,7 +644,7 @@ namespace SyncSubsByComparison
             _lnBaseline = _lnOriginal.GetBaseline(BaselineAlgAlpha, NormalZoneAmplitude, (int)StartSectionLength);
             _lnRegression = _lnOriginal.GetLinearRegression();
 
-            _lnSteps = _lnOriginal.GetStepLineByKMeans(6);
+            _lnSteps = _lnOriginal.GetStepLineByKMeans(NumberOfStepLines, NumberOfPointsToJumpStep, StepsAlgRequiresConsecutive, StepsAlgRemoveRedundentLines);
 
             //update the graphs
             UpdateGraph(_lnBaseline, _baselineData);

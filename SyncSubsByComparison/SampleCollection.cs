@@ -99,30 +99,36 @@ namespace SyncSubsByComparison
         /// <param name="k">the number of steps we will end up with</param>
         /// <param name="numberOfPointsInNextLineToEndCurrentLine">the number of consecutive points which belong to the next group required in order to climb to the next step</param>
         /// <returns></returns>
-        public SampleCollection GetStepLineByKMeans(int k, int numberOfPointsInNextLineToEndCurrentLine = 3)
+        public SampleCollection GetStepLineByKMeans(int k, int numberOfPointsInNextLineToEndCurrentLine = 3, bool requireConsecutivePointsToClimb = true, bool removeRedundantStepLines = true)
         {
             var yVals = _points.Select(p => p.Y);
             var kmeans = OneDimentinalKMeans(yVals, k);
             List<MyPoint> stepLinePoints = new List<MyPoint>();
-
-            kmeans = RemoveRedundantClusters(kmeans);
+            if (removeRedundantStepLines)
+                kmeans = RemoveRedundantClusters(kmeans);
 
             //var groups = _points.GroupBy(p => groupAssignments[p.Y]);
             var listOfPoints = _points.Select(p => new { Point = p, Cluster = kmeans.GroupAssignments[p.Y] }).ToList();
 
-            stepLinePoints.Add(new MyPoint(listOfPoints.First().Point.X, kmeans.Means[0]));
 
+
+            int increment = listOfPoints.First().Cluster == 0 ? 1 : -1;
+            int startCluster = listOfPoints.First().Cluster == 0 ? 0 : kmeans.Means.Count - 1;
+            int start = listOfPoints.First().Cluster == 0 ? 0 : listOfPoints.Count - 1;
             int climbStepCounter = 0;
-            int currentCluster = 0;
+            int currentCluster = startCluster;
+
+            stepLinePoints.Add(new MyPoint(listOfPoints.First().Point.X, kmeans.Means[startCluster]));
+
             //estimate an end points for each line
-            for (int i = 0; i < listOfPoints.Count; ++i)
+            for (int i = 0; i < listOfPoints.Count; i++)
             {
                 //count next cluster points, towards switch
-                if (listOfPoints[i].Cluster == currentCluster + 1)
+                if (listOfPoints[i].Cluster == currentCluster + increment)
                     ++climbStepCounter;
 
                 //we said consecutive...
-                if (listOfPoints[i].Cluster == currentCluster)
+                if (listOfPoints[i].Cluster == currentCluster && requireConsecutivePointsToClimb)
                     climbStepCounter = 0;
 
                 //go to next step
@@ -130,7 +136,7 @@ namespace SyncSubsByComparison
                 {
                     stepLinePoints.Add(new MyPoint(listOfPoints[i].Point.X, kmeans.Means[currentCluster]));
 
-                    ++currentCluster;
+                    currentCluster += increment;
                     stepLinePoints.Add(new MyPoint(listOfPoints[i].Point.X + 0.00001, kmeans.Means[currentCluster]));
                     climbStepCounter = 0;
                 }
@@ -171,7 +177,7 @@ namespace SyncSubsByComparison
             }
 
             int idx = 0;
-            foreach (var group in remainingGroups)
+            foreach (var group in remainingGroups.OrderBy(g => g))
             {
                 switchMap.Add(group, idx);
                 ++idx;
