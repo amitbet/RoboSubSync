@@ -4,7 +4,9 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:sysText="clr-namespace:System.Text;assembly=mscorlib"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="653" Width="1065" xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0" Closing="Window_Closing" Icon="Untitled - 5.ico">
+        Title="MainWindow" Height="653" Width="1065" 
+        xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+        Closing="Window_Closing" Icon="Untitled - 5.ico">
     <Window.DataContext>
         <vm:MainVM></vm:MainVM>
     </Window.DataContext>
