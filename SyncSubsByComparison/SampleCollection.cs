@@ -111,10 +111,10 @@ namespace SyncSubsByComparison
             var listOfPoints = _points.Select(p => new { Point = p, Cluster = kmeans.GroupAssignments[p.Y] }).ToList();
 
 
-
-            int increment = listOfPoints.First().Cluster == 0 ? 1 : -1;
-            int startCluster = listOfPoints.First().Cluster == 0 ? 0 : kmeans.Means.Count - 1;
-            int start = listOfPoints.First().Cluster == 0 ? 0 : listOfPoints.Count - 1;
+            bool goOverClustersInReversedOrder = listOfPoints.Take(4).Any(p => p.Cluster == kmeans.Means.Count - 1);
+            int increment = goOverClustersInReversedOrder ? -1 : 1;
+            int startCluster = goOverClustersInReversedOrder ? kmeans.Means.Count - 1 : 0;
+            int start = goOverClustersInReversedOrder ? listOfPoints.Count - 1 : 0;
             int climbStepCounter = 0;
             int currentCluster = startCluster;
 
@@ -134,10 +134,10 @@ namespace SyncSubsByComparison
                 //go to next step
                 if (climbStepCounter == numberOfPointsInNextLineToEndCurrentLine)
                 {
-                    stepLinePoints.Add(new MyPoint(listOfPoints[i - numberOfPointsInNextLineToEndCurrentLine+1].Point.X, kmeans.Means[currentCluster]));
+                    stepLinePoints.Add(new MyPoint(listOfPoints[i - numberOfPointsInNextLineToEndCurrentLine + 1].Point.X, kmeans.Means[currentCluster]));
 
                     currentCluster += increment;
-                    stepLinePoints.Add(new MyPoint(listOfPoints[i - numberOfPointsInNextLineToEndCurrentLine+1].Point.X + 0.00001, kmeans.Means[currentCluster]));
+                    stepLinePoints.Add(new MyPoint(listOfPoints[i - numberOfPointsInNextLineToEndCurrentLine + 1].Point.X + 0.00001, kmeans.Means[currentCluster]));
                     climbStepCounter = 0;
                 }
             }

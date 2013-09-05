@@ -30,11 +30,18 @@ namespace SyncSubsByComparison
             set { _clientSecret = value; }
         }
         AdmAccessToken admToken;
+        
 
-        public BingTranslator()
+
+        public BingTranslator(string MSSearchClientID, string MSSearchSecret)
         {
+            // TODO: Complete member initialization
+            _clientId = MSSearchClientID;
+            _clientSecret = MSSearchSecret;
+
             AdmAuthentication admAuth = new AdmAuthentication(_clientId, _clientSecret);
             admToken = admAuth.GetAccessToken();
+
         }
 
 

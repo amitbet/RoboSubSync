@@ -491,8 +491,8 @@ namespace SyncSubsByComparison
             }
             else
             {
-                if (_bingTranslator == null)
-                    _bingTranslator = new BingTranslator();
+                if (_bingTranslator == null && !string.IsNullOrWhiteSpace(MSSearchSecret))
+                    _bingTranslator = new BingTranslator(MSSearchClientID, MSSearchSecret);
 
                 _bingTranslator.ClientSecret = MSSearchSecret;
                 _bingTranslator.ClientId = MSSearchClientID;
@@ -508,15 +508,16 @@ namespace SyncSubsByComparison
             try
             {
                 langSub.Translate();
+
+                TranslationText = langSub.GetTranslatedSrtString();
+                if (!transFileExists)
+                    File.WriteAllText(LanguageSrtFile + ".trans", TranslationText);
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Translation error: " + ex.Message);
             }
-
-            TranslationText = langSub.GetTranslatedSrtString();
-            if (!transFileExists)
-                File.WriteAllText(LanguageSrtFile + ".trans", TranslationText);
         }
 
         private void UpdateGraph(SampleCollection col, ObservableDataSource<Point> dataSourceToUpdate)
