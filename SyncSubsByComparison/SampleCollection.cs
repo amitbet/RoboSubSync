@@ -134,10 +134,10 @@ namespace SyncSubsByComparison
                 //go to next step
                 if (climbStepCounter == numberOfPointsInNextLineToEndCurrentLine)
                 {
-                    stepLinePoints.Add(new MyPoint(listOfPoints[i].Point.X, kmeans.Means[currentCluster]));
+                    stepLinePoints.Add(new MyPoint(listOfPoints[i - numberOfPointsInNextLineToEndCurrentLine+1].Point.X, kmeans.Means[currentCluster]));
 
                     currentCluster += increment;
-                    stepLinePoints.Add(new MyPoint(listOfPoints[i].Point.X + 0.00001, kmeans.Means[currentCluster]));
+                    stepLinePoints.Add(new MyPoint(listOfPoints[i - numberOfPointsInNextLineToEndCurrentLine+1].Point.X + 0.00001, kmeans.Means[currentCluster]));
                     climbStepCounter = 0;
                 }
             }

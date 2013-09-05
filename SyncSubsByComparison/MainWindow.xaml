@@ -216,46 +216,48 @@
                     </Grid>
                 </Expander>
                 <Expander
-                Template="{StaticResource StretchyExpanderTemp}"
-                OverridesDefaultStyle="True"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Header="Baseline Parameters"
-                Margin="0,10,0,0" >
-                    <Grid >
+                    Template="{StaticResource StretchyExpanderTemp}" OverridesDefaultStyle="True"
+                	HorizontalAlignment="Left"
+                	VerticalAlignment="Top"
+                	Header="Baseline Parameters"
+                	Margin="0,10,0,0" >
+                    <Grid  Height="200" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="32*" />
                             <ColumnDefinition Width="1009*" />
                         </Grid.ColumnDefinitions>
-                        <Slider Value="{Binding BaselineAlgAlpha}" Height="23" Minimum="0.01" Maximum="0.6" Margin="9,27,0,0" Name="sldAlpha" VerticalAlignment="Top" SmallChange="0.01" HorizontalAlignment="Left" Width="185" Grid.Column="1" />
-                        <Label Content="{Binding Path=Value, ElementName=sldAlpha}" Height="28" Margin="116,6,0,0" Name="alpha" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="78" />
-                        <Label Content="Algorithm alpha:" Height="28" Margin="9,6,0,0" Name="label3" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="101" />
-                        <Slider Height="23" Margin="9,77,0,0" Maximum="50" Minimum="1" Name="sldStartSection" SmallChange="1" Value="{Binding StartSectionLength}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="185" IsSnapToTickEnabled="True" Grid.Column="1" />
-                        <Label Content="{Binding Path=Value, ElementName=sldStartSection}" Height="28" Margin="116,56,0,0" Name="label4" VerticalAlignment="Top" HorizontalAlignment="Left" Width="72" Grid.Column="1" />
-                        <Label Content="Start sect. length:" Height="28" HorizontalAlignment="Left" Margin="9,56,0,0" Name="label5" VerticalAlignment="Top" Width="101" Grid.Column="1" />
-                        <CheckBox Content="Remove abnormal points" IsChecked="{Binding RemoveAbnormalPoints}" Height="16" HorizontalAlignment="Left" Margin="9,156,0,0" Name="checkBox1" VerticalAlignment="Top" Width="154" Grid.Column="1" />
+                        <Slider Value="{Binding BaselineAlgAlpha}" Height="23" Minimum="0.01" Maximum="0.6" Margin="9,51,0,0" x:Name="sldAlpha" VerticalAlignment="Top" SmallChange="0.01" HorizontalAlignment="Left" Width="185" Grid.Column="1" />
+                        <Label Content="{Binding Value, ElementName=sldAlpha}" Height="28" Margin="116,30,0,0" x:Name="alpha" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="78" />
+                        <Label Content="Algorithm alpha:" Height="28" Margin="9,30,0,0" x:Name="label3" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="101" />
+                        <Slider Height="23" Margin="9,101,0,0" Maximum="50" Minimum="1" x:Name="sldStartSection" SmallChange="1" Value="{Binding StartSectionLength}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="185" IsSnapToTickEnabled="True" Grid.Column="1" />
+                        <Label Content="{Binding Value, ElementName=sldStartSection}" Height="28" Margin="116,80,0,0" x:Name="label4" VerticalAlignment="Top" HorizontalAlignment="Left" Width="72" Grid.Column="1" />
+                        <Label Content="Start sect. length:" Height="28" HorizontalAlignment="Left" Margin="9,80,0,0" x:Name="label5" VerticalAlignment="Top" Width="101" Grid.Column="1" />
+                        <CheckBox Content="Remove abnormal points" IsChecked="{Binding RemoveAbnormalPoints}" Height="16" HorizontalAlignment="Left" Margin="9,174,0,0" x:Name="checkBox1" VerticalAlignment="Top" Width="154" Grid.Column="1" />
                         <!--<CheckBox Content="Sync to orig. match" Height="16" HorizontalAlignment="Left" IsChecked="{Binding SyncAccordingToMatch}" Margin="9,178,0,0" Name="checkBox2" VerticalAlignment="Top" Width="154" Grid.Column="1" />-->
-                        <Slider Height="23" HorizontalAlignment="Left"  Margin="9,127,0,0" Maximum="5" Minimum="0.5" Name="sldAbnormalZoneAmp" SmallChange="0.1" Value="{Binding NormalZoneAmplitude}" VerticalAlignment="Top" Width="185" TickFrequency="0.1" IsSnapToTickEnabled="True" Grid.Column="1" />
-                        <Label Content="{Binding Path=Value, ElementName=sldAbnormalZoneAmp}" Height="28" HorizontalAlignment="Left" Margin="131,106,0,0" Name="label6" VerticalAlignment="Top" Width="57" Grid.Column="1" />
-                        <Label Content="Normal Zone Amp:" Height="28" HorizontalAlignment="Left" Margin="9,106,0,0" Name="label7" VerticalAlignment="Top" Width="123" Grid.Column="1" />
+                        <Slider Height="23" HorizontalAlignment="Left"  Margin="9,151,0,0" Maximum="5" Minimum="0.5" x:Name="sldAbnormalZoneAmp" SmallChange="0.1" Value="{Binding NormalZoneAmplitude}" VerticalAlignment="Top" Width="185" TickFrequency="0.1" IsSnapToTickEnabled="True" Grid.Column="1" />
+                        <Label Content="{Binding Value, ElementName=sldAbnormalZoneAmp}" Height="28" HorizontalAlignment="Left" Margin="131,130,0,0" x:Name="label6" VerticalAlignment="Top" Width="57" Grid.Column="1" />
+                        <Label Content="Normal Zone Amp:" Height="28" HorizontalAlignment="Left" Margin="8,130,0,0" x:Name="label7" VerticalAlignment="Top" Width="123" Grid.Column="1" />
+                        <CheckBox Content="Show baseline graph" IsChecked="{Binding ShowBaselineGraph}" Height="16" HorizontalAlignment="Left" Margin="9,10,0,0" VerticalAlignment="Top" Width="154" Grid.Column="1"  />
                     </Grid>
                 </Expander>
-                
-                <Expander OverridesDefaultStyle="True" Template="{StaticResource StretchyExpanderTemp}" VerticalAlignment="Top" Header="Step Line Parameters" Margin="0,10,0,0" IsExpanded="False" Width="200" HorizontalAlignment="Left">
-                    <Grid HorizontalAlignment="Left" Height="130">
-                        <Label Margin="-1,0,-1,73" HorizontalAlignment="Left" Width="200">Number of lines:</Label>
-                        <Label Content="{Binding Path=Value, ElementName=sld}" Height="28" HorizontalAlignment="Left" Margin="90,0,-1,73" VerticalAlignment="Top" Width="57" Grid.RowSpan="2" Grid.Column="1" />
-                        <Slider Value="{Binding NumberOfStepLines}" Height="23" Minimum="1" Maximum="15" Margin="10,21,0,0" Name="sld" VerticalAlignment="Top" SmallChange="1" HorizontalAlignment="Left" Width="185" />
-                        <Label Margin="0,36,-2,40" HorizontalAlignment="Left" Width="200">Num Points to jump step:</Label>
-                        <Label Content="{Binding Path=Value, ElementName=sld1}" Height="28" HorizontalAlignment="Left" Margin="140,36,-2,40" VerticalAlignment="Top" Width="57" Grid.RowSpan="2" Grid.Column="1" />
-                        <Slider Value="{Binding NumberOfPointsToJumpStep}" Height="23" Minimum="1" Maximum="15" Margin="10,58,0,0" Name="sld1" VerticalAlignment="Top" SmallChange="1" HorizontalAlignment="Left" Width="185" />
-                        <CheckBox Content="Require consecutive points" IsChecked="{Binding StepsAlgRequiresConsecutive}" Height="16" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Width="154" />
-                        <CheckBox Content="Remove redundant lines" IsChecked="{Binding StepsAlgRemoveRedundentLines}" Height="16" HorizontalAlignment="Left" Margin="10,107,0,-21" VerticalAlignment="Top" Width="154" />
+
+
+                <Expander  VerticalAlignment="Top" Header="Step Line Parameters" Margin="0,10,0,0" IsExpanded="False" Width="200" HorizontalAlignment="Left" Template="{StaticResource StretchyExpanderTemp}" OverridesDefaultStyle="True">
+                    <Grid HorizontalAlignment="Left" Height="150">
+                        <Label Margin="6,21,-8,52" HorizontalAlignment="Left" Width="200">Number of lines:</Label>
+                        <Label Content="{Binding Path=Value, ElementName=sld}" Height="28" HorizontalAlignment="Left" Margin="101,21,0,0" VerticalAlignment="Top" Width="57" />
+                        <Slider Value="{Binding NumberOfStepLines}" Height="23" Minimum="1" Maximum="15" Margin="21,42,-8,0" Name="sld" VerticalAlignment="Top" SmallChange="1" HorizontalAlignment="Left" Width="185" />
+                        <Label Margin="6,57,-8,19" HorizontalAlignment="Left" Width="200">Num Points to jump step:</Label>
+                        <Label Content="{Binding Path=Value, ElementName=sld1}" Height="28" HorizontalAlignment="Left" Margin="151,57,-10,0" VerticalAlignment="Top" Width="57" />
+                        <Slider Value="{Binding NumberOfPointsToJumpStep}" Height="23" Minimum="1" Maximum="15" Margin="21,79,-8,0" Name="sld1" VerticalAlignment="Top" SmallChange="1" HorizontalAlignment="Left" Width="185" />
+                        <CheckBox Content="Require consecutive points" IsChecked="{Binding StepsAlgRequiresConsecutive}" Height="16" HorizontalAlignment="Left" Margin="11,107,0,0" VerticalAlignment="Top" Width="154" />
+                        <CheckBox Content="Remove redundant lines" IsChecked="{Binding StepsAlgRemoveRedundentLines}" Height="16" HorizontalAlignment="Left" Margin="11,128,0,0" VerticalAlignment="Top" Width="154" />
+                        <CheckBox Content="Show step graph" IsChecked="{Binding ShowStepGraph}" Height="16" HorizontalAlignment="Left" Margin="11,5,0,0" VerticalAlignment="Top" Width="154" />
                     </Grid>
                 </Expander>
                 <Expander OverridesDefaultStyle="True" Template="{StaticResource StretchyExpanderTemp}" Header="Microsoft Translation Config" Margin="0,10,0,0" IsExpanded="False" Width="200" HorizontalAlignment="Left">
                     <Grid HorizontalAlignment="Left" Width="197" Height="58">
-                        <Label Margin="-1,2,0,-2" HorizontalAlignment="Left" Width="52">ClientID:</Label>
+                        <Label Margin="-1,2,0,-2" HorizontalAlignment="Left" Width="52" >ClientID:</Label>
                         <TextBox Margin="56,2,0.4,0" Text="{Binding MSSearchClientID}" Height="22" VerticalAlignment="Top"></TextBox>
                         <Label Margin="0,26,0,0" HorizontalAlignment="Left" Width="52">Secret:</Label>
                         <TextBox Margin="56,29,0,0"  Text="{Binding MSSearchSecret}" Height="22" VerticalAlignment="Top"></TextBox>

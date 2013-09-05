@@ -47,8 +47,8 @@ namespace SyncSubsByComparison
             cursorCoordinateGraph.Visibility = System.Windows.Visibility.Hidden;
             plotter.Children.Add(cursorCoordinateGraph);
 
-            plotter.AddLineGraph(ViewModel.RegressionData, new Pen(Brushes.LightGreen, 2), new PenDescription("L.Regression"));
-            plotter.AddLineGraph(ViewModel.StepsData, new Pen(Brushes.Orange, 2), new PenDescription("Steps by Clustering"));
+            var lRegressionGraph = plotter.AddLineGraph(ViewModel.RegressionData, new Pen(Brushes.LightGreen, 2), new PenDescription("L.Regression"));
+            var stepsGraph = plotter.AddLineGraph(ViewModel.StepsData, new Pen(Brushes.Orange, 2), new PenDescription("Steps by Clustering"));
 
             _editableGraph = plotter.AddLineGraph(ViewModel.ActualData,
                                                     new Pen(Brushes.Violet, 2),
@@ -59,8 +59,13 @@ namespace SyncSubsByComparison
                                                         Pen = new Pen(Brushes.BlueViolet, 2),
                                                     },
                                                     new PenDescription("Sync Difference"));
+            var baselineGraph = plotter.AddLineGraph(ViewModel.BaselineData, new Pen(Brushes.DodgerBlue, 2), new PenDescription("Baseline"));
 
-            plotter.AddLineGraph(ViewModel.BaselineData, new Pen(Brushes.DodgerBlue, 2), new PenDescription("Baseline"));
+            stepsGraph.SetBinding(LineGraph.VisibilityProperty, new Binding("ShowStepGraph") { Converter = new BooleanToVisibilityConverter() });
+            lRegressionGraph.SetBinding(LineGraph.VisibilityProperty, new Binding("ShowLinearRegressionGraph") { Converter = new BooleanToVisibilityConverter() });
+            baselineGraph.SetBinding(LineGraph.VisibilityProperty, new Binding("ShowBaselineGraph") { Converter = new BooleanToVisibilityConverter() });
+
+            
         }
 
         /// <summary>
@@ -99,7 +104,7 @@ namespace SyncSubsByComparison
 
             //var yTest = ViewModel.SelectedLineForSubtitleFix.ComputeYforXbyInterpolation(230000);
             string newSrtFile = Path.GetDirectoryName(txtLanguageSrt.Text) + "\\fixed_" + Path.GetFileName(txtLanguageSrt.Text);
-            
+
             if (File.Exists(newSrtFile))
                 File.Delete(newSrtFile);
 
@@ -141,7 +146,7 @@ namespace SyncSubsByComparison
             if (_selectedPointIndex != int.MinValue)
             {
                 var pos = e.GetPosition(cursorCoordinateGraph);
-                
+
                 var data = plotter.Viewport.Transform.ScreenToData(pos);
 
                 var dataSource = ((ObservableDataSource<Point>)_editableGraph.LineGraph.DataSource);

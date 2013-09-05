@@ -183,7 +183,43 @@ namespace SyncSubsByComparison
             }
         }
 
-        private bool _stepsAlgRequiresConsecutive = true;
+        private bool _showStepGraph = true;
+        public bool ShowStepGraph
+        {
+            get { return _showStepGraph; }
+            set
+            {
+                _showStepGraph = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("ShowStepGraph"));
+            }
+        }
+
+        private bool _showLinearRegressionGraph = true;
+        public bool ShowLinearRegressionGraph
+        {
+            get { return _showLinearRegressionGraph; }
+            set
+            {
+                _showLinearRegressionGraph = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("ShowLinearRegressionGraph"));
+            }
+        }
+
+        private bool _showBaselineGraph = true;
+        public bool ShowBaselineGraph
+        {
+            get { return _showBaselineGraph; }
+            set
+            {
+                _showBaselineGraph = value;
+                if (PropertyChanged != null)
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("ShowBaselineGraph"));
+            }
+        }
+
+        private bool _stepsAlgRequiresConsecutive = false;
         public bool StepsAlgRequiresConsecutive
         {
             get { return _stepsAlgRequiresConsecutive; }
@@ -207,7 +243,7 @@ namespace SyncSubsByComparison
             }
         }
 
-        private string _msSearchClientID;
+        private string _msSearchClientID = "shutmail";
         public string MSSearchClientID
         {
             get { return _msSearchClientID; }
@@ -219,7 +255,7 @@ namespace SyncSubsByComparison
             }
         }
 
-        private string _msSearchSecret;
+        private string _msSearchSecret = "uXZPslmVER9d5lnjYN2efBE4Ljh0DCxYQ7br9yM7uSM=";
         public string MSSearchSecret
         {
             get { return _msSearchSecret; }
@@ -458,6 +494,8 @@ namespace SyncSubsByComparison
                 if (_bingTranslator == null)
                     _bingTranslator = new BingTranslator();
 
+                _bingTranslator.ClientSecret = MSSearchSecret;
+                _bingTranslator.ClientId = MSSearchClientID;
                 translator = _bingTranslator;
             }
 

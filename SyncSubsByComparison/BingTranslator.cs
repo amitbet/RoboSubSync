@@ -14,9 +14,21 @@ namespace SyncSubsByComparison
 {
     public class BingTranslator : ITranslator
     {
-      
-        static string _clientId = "shutmail";
-        static string _clientSecret = "uXZPslmVER9d5lnjYN2efBE4Ljh0DCxYQ7br9yM7uSM=";
+
+        private string _clientId = "";
+
+        public string ClientId
+        {
+            get { return _clientId; }
+            set { _clientId = value; }
+        }
+        string _clientSecret = "";
+
+        public string ClientSecret
+        {
+            get { return _clientSecret; }
+            set { _clientSecret = value; }
+        }
         AdmAccessToken admToken;
 
         public BingTranslator()
@@ -25,7 +37,7 @@ namespace SyncSubsByComparison
             admToken = admAuth.GetAccessToken();
         }
 
-      
+
         /// <summary>
         /// translates lines by using TranslateArray function with batches of X lines each time, so not to exceed the limit.,
         /// </summary>
@@ -106,11 +118,11 @@ namespace SyncSubsByComparison
                                 {
                                     translatedLines.Add(node.Value);
                                 }
-                            
+
                             }
                         }
                     }
-                    
+
                 }
                 catch (WebException e)
                 {
@@ -125,7 +137,7 @@ namespace SyncSubsByComparison
                         response = null;
                     }
                 }
-                
+
             }
 
             return translatedLines;
@@ -185,7 +197,7 @@ namespace SyncSubsByComparison
         public string DetectLanguage(string text)
         {
             string headerValue;
-            
+
             try
             {
                 // Create a header with the access_token property of the returned token
@@ -256,7 +268,7 @@ namespace SyncSubsByComparison
             get { return !string.IsNullOrWhiteSpace(_clientId) && !string.IsNullOrWhiteSpace(_clientSecret); }
         }
     }
- 
+
     [DataContract]
     public class AdmAccessToken
     {
