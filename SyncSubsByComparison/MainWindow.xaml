@@ -261,9 +261,9 @@
                 <Expander OverridesDefaultStyle="True" Template="{StaticResource StretchyExpanderTemp}" Header="Microsoft Translation Config" Margin="0,10,0,0" IsExpanded="False" Width="200" HorizontalAlignment="Left">
                     <Grid HorizontalAlignment="Left" Width="197" Height="58">
                         <Label Margin="-1,2,0,-2" HorizontalAlignment="Left" Width="52" >ClientID:</Label>
-                        <TextBox Margin="56,2,0.4,0" Text="{Binding MSSearchClientID}" Height="22" VerticalAlignment="Top"></TextBox>
+                        <TextBox Margin="56,2,0.4,0" Text="{Binding  UpdateSourceTrigger=PropertyChanged, Path=MSSearchClientID}" Height="22" VerticalAlignment="Top"></TextBox>
                         <Label Margin="0,26,0,0" HorizontalAlignment="Left" Width="52">Secret:</Label>
-                        <TextBox Margin="56,29,0,0"  Text="{Binding MSSearchSecret}" Height="22" VerticalAlignment="Top"></TextBox>
+                        <TextBox Margin="56,29,0,0"  Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=MSSearchSecret}"  Height="22" VerticalAlignment="Top"></TextBox>
                     </Grid>
                 </Expander>
                 <Expander OverridesDefaultStyle="True" Template="{StaticResource StretchyExpanderTemp}" VerticalAlignment="Top"  Header="Fix &amp; Save Subtitle" Margin="0,10,0,0" IsExpanded="True" Width="200" HorizontalAlignment="Left">

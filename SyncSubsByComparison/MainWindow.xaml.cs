@@ -68,7 +68,7 @@ namespace SyncSubsByComparison
             lRegressionGraph.SetBinding(LineGraph.VisibilityProperty, new Binding("ShowLinearRegressionGraph") { Converter = new BooleanToVisibilityConverter() });
             baselineGraph.SetBinding(LineGraph.VisibilityProperty, new Binding("ShowBaselineGraph") { Converter = new BooleanToVisibilityConverter() });
 
-            
+
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace SyncSubsByComparison
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Configuration.Save(_configFilename);
-            
+
             //workaround some bug of the graph component (application won't close properly)
             Application.Current.Shutdown();
         }
@@ -180,7 +180,7 @@ namespace SyncSubsByComparison
 
         private void plotter_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+
             // Call Hit Test Method
             Point position = e.GetPosition(plotter);
             hitTestList.Clear();
@@ -228,7 +228,7 @@ namespace SyncSubsByComparison
             return HitTestResultBehavior.Continue;
         }
 
-        
+
         private void btnTimingSubBrowse_Click(object sender, RoutedEventArgs e)
         {
             _fileDlg.DefaultExt = ".srt";
@@ -241,7 +241,7 @@ namespace SyncSubsByComparison
             {
                 // Open document 
                 string filename = _fileDlg.FileName;
-                txtTimingSrt.Text = filename;
+                ViewModel.TimingSrtFile = filename;
             }
         }
 
@@ -258,7 +258,7 @@ namespace SyncSubsByComparison
             {
                 // Open document 
                 string filename = _fileDlg.FileName;
-                txtLanguageSrt.Text = filename;
+                ViewModel.LanguageSrtFile = filename;
             }
         }
     }
