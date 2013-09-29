@@ -70,7 +70,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Baseline.cs" />
-    <Compile Include="INotifyPropertyChaged.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="ITranslator.cs" />
     <Compile Include="LineTypes.cs" />
     <Compile Include="MainVM.cs" />

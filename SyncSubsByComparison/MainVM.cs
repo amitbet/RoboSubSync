@@ -31,8 +31,7 @@ namespace SyncSubsByComparison
         private string _translationText;
         private double _alpha = 0.35d;
         private double _startSectionLength = 6;
-        //private string _languageSrt = @"c:\TEST\BG - 3x20\heb.srt";
-        //private string _timingSrt = @"c:\TEST\BG - 3x20\synced.srt";
+        
         private string _languageSrt = @"c:\TEST\Arrow 20\heb.srt";
         private string _timingSrt = @"c:\TEST\Arrow 20\synced.srt";
 
@@ -243,25 +242,23 @@ namespace SyncSubsByComparison
             }
         }
 
-        private string _msSearchClientID = "shutmail";
         public string MSSearchClientID
         {
-            get { return _msSearchClientID; }
+            get { return Configuration.Instance.MicrosoftTranslatorClientID; }
             set
             {
-                _msSearchClientID = value;
+                Configuration.Instance.MicrosoftTranslatorClientID = value;
                 if (PropertyChanged != null)
                     PropertyChanged.Invoke(this, new PropertyChangedEventArgs("MSSearchClientID"));
             }
         }
 
-        private string _msSearchSecret = "uXZPslmVER9d5lnjYN2efBE4Ljh0DCxYQ7br9yM7uSM=";
         public string MSSearchSecret
         {
-            get { return _msSearchSecret; }
+            get { return Configuration.Instance.MicrosoftTranslatorSecret; }
             set
             {
-                _msSearchSecret = value;
+                Configuration.Instance.MicrosoftTranslatorSecret = value;
                 if (PropertyChanged != null)
                     PropertyChanged.Invoke(this, new PropertyChangedEventArgs("MSSearchSecret"));
             }
@@ -280,10 +277,10 @@ namespace SyncSubsByComparison
 
         public string LanguageSrtFile
         {
-            get { return _languageSrt; }
+            get { return Configuration.Instance.LanguageSrtFilename; }
             set
             {
-                _languageSrt = value;
+                Configuration.Instance.LanguageSrtFilename = value;
                 if (PropertyChanged != null)
                     PropertyChanged.Invoke(this, new PropertyChangedEventArgs("LanguageSrtFile"));
             }
@@ -291,10 +288,10 @@ namespace SyncSubsByComparison
 
         public string TimingSrtFile
         {
-            get { return _timingSrt; }
+            get { return Configuration.Instance.TimingSrtFilename; }
             set
             {
-                _timingSrt = value;
+                Configuration.Instance.TimingSrtFilename = value;
                 if (PropertyChanged != null)
                     PropertyChanged.Invoke(this, new PropertyChangedEventArgs("TimingSrtFile"));
             }

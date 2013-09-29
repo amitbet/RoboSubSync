@@ -179,8 +179,9 @@
         <!--<TextBlock Background="Wheat" Width="150" Name="PopupText" TextWrapping="NoWrap">
             </TextBlock>-->
         <Button Content="Auto Sync" Height="23" Margin="0,77,12,0" Name="btnSync" VerticalAlignment="Top" Click="button1_Click" HorizontalAlignment="Right" Width="84" />
-        <TextBox Height="23" Text="{Binding TimingSrtFile}" Name="txtTimingSrt" Margin="92,14,12,0" VerticalAlignment="Top" />
-        <TextBox Height="23" Text="{Binding LanguageSrtFile}"  Name="txtLanguageSrt" Margin="92,48,254,0" VerticalAlignment="Top" />
+        <TextBox Height="23" Text="{Binding TimingSrtFile}" Name="txtTimingSrt" Margin="92,14,53.4,0" VerticalAlignment="Top" />
+        <Button Name="btnTimingSubBrowse"  Height="23"  Margin="0,14,10.4,0" VerticalAlignment="Top" Click="btnTimingSubBrowse_Click" HorizontalAlignment="Right" Width="38">...</Button>
+        <TextBox Height="23" Text="{Binding LanguageSrtFile}"  Name="txtLanguageSrt" Margin="92,48,296.4,0" VerticalAlignment="Top" />
         <ComboBox SelectedItem="{Binding SelectedEncodingName}" ItemsSource="{Binding AllEncodings}" Margin="0,48,127,0" HorizontalAlignment="Right" Width="121" Height="23" VerticalAlignment="Top"></ComboBox>
         <Label Content="timing srt:" Height="28" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label1" VerticalAlignment="Top" />
         <Label Content="language srt:" Height="28" HorizontalAlignment="Left" Margin="10,46,0,0" Name="label2" VerticalAlignment="Top" />
@@ -277,6 +278,7 @@
             </StackPanel>
         </ScrollViewer>
         <Button Content="Update Graph" Height="23" Margin="0,77,102,0" Name="button1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="95" Click="button1_Click_1" />
+        <Button Height="23"  Margin="0,48,253.4,0" Name="btnLangSubBrowse" VerticalAlignment="Top" Content="..." Click="btnLangSubBrowse_Click" HorizontalAlignment="Right" Width="38"/>
     </Grid>
     <Window.Background>
         <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
