@@ -1,3 +1,7 @@
+
+# RoboSubSync
+A studio for Syncronizing subtitles by using translation and time series algorithms
+
 ## Introduction   
 Every once in a while I get an idea, which I just can't get out of my mind...
 
