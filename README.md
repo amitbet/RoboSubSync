@@ -1,14 +1,13 @@
 ## Introduction   
-
-
 Every once in a while I get an idea, which I just can't get out of my mind...
 
 This program started with such an idea, and developed into a subtitle sync studio which doesn't involve any interaction with the actual movie at all. Sounds strange? read on.  
 
+![application image](https://github.com/amitbet/robosubsync/raw/master/images/sub-studio.jpg "robo sub sync in action")
 
 
 ## Background  
-The idea goes something like this: you have a movie and you have a subtitle in your language of choice, but you find out that it is not synchronized to the version of the movie you have downloaded, this may happen when the movie is old, or when it is too new, and sometimes even when there is a subtitle that should be synced to the same version but it actually isn't.  
+The idea goes something like this: you have a movie and you have a subtitle in your language of choice, but you find out that it is not synchronized to the version of the movie you have downloaded, this may happen when the movie is old, or when it is too new, and sometimes even when there is a subtitle that should be synced to the same version but it actually isn't.
 
 the is also usually an existing subtitle in English (or another language) which is in sync, translating it automatically will obviously be a bad idea, but one might think that if you have a synced sub and a language sub there will be some way to take the sync and transfer it, thus creating a good version of the subtitle - now, for my next trick, I'll do that, and you - grab some popcorn... 
 
@@ -24,36 +23,37 @@ I later messed around with microsoft's translation and got it to be automatic, i
 ## The User's guide  
 To automatically sync a subtitle (the short version):
 
-Insert the English .srt path in the first textbox  
-Insert the language .srt in the second textbox 
-Choose the correct encoding for your language srt file 
-Press add translation (if you have registered to Microsoft translation put the passwords in the MS translation config expander and skip to step 7) 
-Open str file, copy content into Google translate (check translation was done until the end of the text)  
-Insert the Google translate English translation of your srt content into the open window 
-Close the translation window 
-Click AutoSync  
-Click Save Srt File (on the bottom right corner)
-Enjoy! 
+1. Insert the English .srt path in the first textbox  
+1. Insert the language .srt in the second textbox 
+1. Choose the correct encoding for your language srt file 
+1. Press add translation (if you have registered to Microsoft translation put the passwords in the MS translation config expander and skip to step 7) 
+1. Open str file, copy content into Google translate (check translation was done until the end of the text)  
+1. Insert the Google translate English translation of your srt content into the open window 
+1. Close the translation window 
+1. Click AutoSync  
+1. Click Save Srt File (on the bottom right corner)
+1. Enjoy! 
 Now that we have satisfied our results craving, we can make some room for curiosity... 
 There are many options and playing with it can get you even better results than just letting the program have its way with things.  
 
 What actually happens here is: 
 
-The translated lines are fuzzy-matched to the English (synced) subtitle 
-The auto sync button tries several values, and uses the values which produce the most line matches. 
-A baseline is created (the blue line) 
-Any abnormal matches (too far from the baseline), are discarded.
-Line and baseline are then drawn 
-The save button is pressed  
-The language subtitle lines are corrected according to the line match line 
-The fixed srt file is saved to disk called fixed_<TheOriginalName>.srt  
+1. The translated lines are fuzzy-matched to the English (synced) subtitle 
+1. The auto sync button tries several values, and uses the values which produce the most line matches. 
+1. A baseline is created (the blue line) 
+1. Any abnormal matches (too far from the baseline), are discarded.
+1. Line and baseline are then drawn 
+1. The save button is pressed  
+1. The language subtitle lines are corrected according to the line match line 
+1. The fixed srt file is saved to disk called fixed_<TheOriginalName>.srt  
+
 This will usually give you a good result but if you want to make it better, there are several levers, nobs and wiggles you can play with: 
-The lines in the graph: 
+### The lines in the graph: 
 Sync Difference (purple) - each dot in this graph represents one match, the value is the substraction (SyncedSubTime - LanguageSubTime), which when added to the language subtitle will correct it to be in sync with the video. 
 Baseline (blue) - the moving baseline created by the baseline algorithem is similar to a moving  average line, and is used to weed out outliers, removing most incorrect matches. 
 Step line (orange) - this algorithm goes by the assumption that there were different commercial breaks in the movie versions, or that one of them was otherwise composed from several parts, it tries to find steps where sync diff is constant and then jumps to another constant level. 
 Linear regression line (green) - the straight line that has the least distance from all the points, this line will be close to the purple match line, if the sync diff is growing (+/-) in a constant speed. (like when you have differences in frame rates)   
-The parameter sections:  
+### The parameter sections:  
 Most of the parameters in these sections require you to press "update graph" to apply changes, graphs will then be recalculated and redrawn. 
 
 Line match parameters - gives you control over the fuzzy matching algorithm, including similarity percentage required for match, minimal letters, and search ahead slack space. 
@@ -61,11 +61,11 @@ Baseline Parameters - allows you to adjust the way the baseline is created, whet
 Microsoft Translation Config - a place to put the MS registration if you get one (it's free) 
 Step Line Parameters - lets you fine tune the step line, including the number of steps to try and create, the number of points which seem to belong to the next step before stepping etc. 
 Fix save subtitle - here you can choose which line will be used to fix the subtitle, including the original (sync diff), baseline, step, and regression lines. 
-Edit on the fly:   
+### Edit on the fly:   
 Another option is to manually fix the sync diff line, according to your own approximation of the diff, in order to accommodate this usage, I added the ability to drag the sync diff line's vertices up and down. During the dragging, a tooltip will display the two lines (English and local language), so you can judge the fit.
 If the lines look like a bad match, dragging the point back into the slope created by its neighbors will eliminate its effect on the sync. 
 
-Graph navigation  
+### Graph navigation  
 The graph is based on the DynamicDataDisplay project, it can be paned with the mouse, zoomed with scroll wheel or +/- keys, and right clicking on it will show a helpful menu.  
 If graph gets scaled out of shape, pressing "home" on your keyboard will get you back to the initial position. 
   
@@ -87,7 +87,7 @@ SubtitleInfo - represents a subtitle file with all it's content (times and lines
 
 Baseline - a class for the baseline algorithm. (used by sampleCollection) 
 
-Algorithms  
+## Algorithms  
 
 There are several algorithms in use here:    
 
@@ -125,7 +125,7 @@ To create the step line we now need to decide when to move from one step to the 
 
 Linear regression is done by using a simple Linear least squares algorithm.  
 
-Future Work 
+## Future Work 
 
 
 There are several improvements and stuff on my todo list for this program:  
@@ -138,12 +138,7 @@ supporting a non-English language as common language (maybe translating both sub
 Adding a commandLine interface or batch support for auto synchronization of multiple subtitles.  
 Encapsulating the editable graph component  
 
-
-
-
-
-
-Conclusions 
+## Conclusions 
 
 
 I like a good challange once in a while, and this one was fun to tackle, I think that this can greatly benefit the people who create subtitles, as well as people like me, that just got stuck with an out-of-sync subtitle once in a while.  
