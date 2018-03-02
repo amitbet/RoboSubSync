@@ -49,18 +49,18 @@ What actually happens here is:
 
 This will usually give you a good result but if you want to make it better, there are several levers, nobs and wiggles you can play with: 
 ### The lines in the graph: 
-Sync Difference (purple) - each dot in this graph represents one match, the value is the substraction (SyncedSubTime - LanguageSubTime), which when added to the language subtitle will correct it to be in sync with the video. 
-Baseline (blue) - the moving baseline created by the baseline algorithem is similar to a moving  average line, and is used to weed out outliers, removing most incorrect matches. 
-Step line (orange) - this algorithm goes by the assumption that there were different commercial breaks in the movie versions, or that one of them was otherwise composed from several parts, it tries to find steps where sync diff is constant and then jumps to another constant level. 
-Linear regression line (green) - the straight line that has the least distance from all the points, this line will be close to the purple match line, if the sync diff is growing (+/-) in a constant speed. (like when you have differences in frame rates)   
+* **Sync Difference (purple)** - each dot in this graph represents one match, the value is the substraction (SyncedSubTime - LanguageSubTime), which when added to the language subtitle will correct it to be in sync with the video. 
+* **Baseline (blue)** - the moving baseline created by the baseline algorithem is similar to a moving  average line, and is used to weed out outliers, removing most incorrect matches. 
+* **Step line (orange)** - this algorithm goes by the assumption that there were different commercial breaks in the movie versions, or that one of them was otherwise composed from several parts, it tries to find steps where sync diff is constant and then jumps to another constant level. 
+* **Linear regression line (green)** - the straight line that has the least distance from all the points, this line will be close to the purple match line, if the sync diff is growing (+/-) in a constant speed. (like when you have differences in frame rates)   
 ### The parameter sections:  
 Most of the parameters in these sections require you to press "update graph" to apply changes, graphs will then be recalculated and redrawn. 
 
-Line match parameters - gives you control over the fuzzy matching algorithm, including similarity percentage required for match, minimal letters, and search ahead slack space. 
-Baseline Parameters - allows you to adjust the way the baseline is created, whether it is used to remove the abnormal points, and how far a point should be to be called abnormal (normal zone is measured in standard deviations away from the baseline). 
-Microsoft Translation Config - a place to put the MS registration if you get one (it's free) 
-Step Line Parameters - lets you fine tune the step line, including the number of steps to try and create, the number of points which seem to belong to the next step before stepping etc. 
-Fix save subtitle - here you can choose which line will be used to fix the subtitle, including the original (sync diff), baseline, step, and regression lines. 
+* **Line match parameters** - gives you control over the fuzzy matching algorithm, including similarity percentage required for match, minimal letters, and search ahead slack space. 
+* **Baseline Parameters** - allows you to adjust the way the baseline is created, whether it is used to remove the abnormal points, and how far a point should be to be called abnormal (normal zone is measured in standard deviations away from the baseline). 
+* **Microsoft Translation Config** - a place to put the MS registration if you get one (it's free) 
+* **Step Line Parameters** - lets you fine tune the step line, including the number of steps to try and create, the number of points which seem to belong to the next step before stepping etc. 
+* **Fix & save subtitle** - here you can choose which line will be used to fix the subtitle, including the original (sync diff), baseline, step, and regression lines. 
 ### Edit on the fly:   
 Another option is to manually fix the sync diff line, according to your own approximation of the diff, in order to accommodate this usage, I added the ability to drag the sync diff line's vertices up and down. During the dragging, a tooltip will display the two lines (English and local language), so you can judge the fit.
 If the lines look like a bad match, dragging the point back into the slope created by its neighbors will eliminate its effect on the sync. 
@@ -70,60 +70,57 @@ The graph is based on the DynamicDataDisplay project, it can be paned with the m
 If graph gets scaled out of shape, pressing "home" on your keyboard will get you back to the initial position. 
   
 ## The Code  
-
 Some parts of the code were refactored repeatedly until i got a simple way of treating the line data, which eliminated worrying about lines, 
 
-SampleCollection is a class that represents a sync correction line, it contains the match points and can apply algorithms to calculate new lines (returning a new SampleCollection instance), which lets you create calculation chains without worrying about repercussions. It can also transfer its data into a graph's DataSource for display purposes. 
+**SampleCollection** is a class that represents a sync correction line, it contains the match points and can apply algorithms to calculate new lines (returning a new SampleCollection instance), which lets you create calculation chains without worrying about repercussions. It can also transfer its data into a graph's DataSource for display purposes. 
 
-BingTranslator - encapsulates the usage of Microsoft's translation services.
+**BingTranslator** - encapsulates the usage of Microsoft's translation services.
 
-MainVM -  ViewModel for the main window, holds most of the logic, and a ton of observable properties... (a good starting point is SyncSubtitles) 
+**MainVM** -  ViewModel for the main window, holds most of the logic, and a ton of observable properties... (a good starting point is SyncSubtitles) 
 
-LineInfo - represents a line in the subtitle (some times 2 or three are contained in one TimeStamp) 
+**LineInfo** - represents a line in the subtitle (some times 2 or three are contained in one TimeStamp) 
 
-TimeStamp - holds a subtitle time along with a list of lines 
+**TimeStamp** - holds a subtitle time along with a list of lines 
 
-SubtitleInfo - represents a subtitle file with all it's content (times and lines), can also load and save srt. 
+**SubtitleInfo** - represents a subtitle file with all it's content (times and lines), can also load and save srt. 
 
-Baseline - a class for the baseline algorithm. (used by sampleCollection) 
+**Baseline** - a class for the baseline algorithm. (used by sampleCollection) 
 
 ## Algorithms  
+There are several algorithms in use here:   
+**Fuzzy Match**: this is just something i cooked up to do the work:  
 
-There are several algorithms in use here:    
+Try to match a line to it's counterpart:
+* for each word from the translated sub line
+    * If contained in the line synched line
+        * count += word letters. 
+* Calculate letter hit percentage etc.  
+* Check the match against thresholds, to see if its a good one: 
+    * If match, advance to the next line in both subs 
+    * If not, advance one line in the translated sub, and retry (creating a shift) 
+* Switch subtitles try it with the translated as the fixed sub.
+* Take the match with the most lines.  
 
-
-Fuzzy Match: this is just something i cooked up to do the work:  
-
-Try to match a line to it's counterpart: 
-for each word from the translated sub line
-If contained in the line synched line  
-count += word letters. 
-Calculate letter hit percentage etc.  
-Check the match against thresholds, to see if its a good one: 
-If match, advance to the next line in both subs 
-If not, advance one line in the translated sub, and retry (creating a shift) 
-Switch subtitles try it with the translated as the fixed sub.
-Take the match with the most lines.  
-Baseline algorithm: done by an adaptive average alg, which takes the average previously achieved as a part of the new average and the rest as the remaining part, nextAvg = [alpha*avg + (1-alpha)*newPoint] so alpha decides the closeness in which the algorithm follows the diff line. 
+**Baseline algorithm**: done by an adaptive average alg, which takes the average previously achieved as a part of the new average and the rest as the remaining part, nextAvg = [alpha*avg + (1-alpha)*newPoint] so alpha decides the closeness in which the algorithm follows the diff line. 
 
 
-Step Detection Algorithm: clustering (k-means) is used to find groups of points with a similar y axis:
+**Step Detection Algorithm**: clustering (k-means) is used to find groups of points with a similar y axis:
 
-Divide the space between the highest Y value and the lowest into K+1 (configurable) equal sections 
-Initialize the means vector with these K lines 
-Until [no change in means vector]:  
- for each point
-Find nearest mean 
-Add to nearest mean accumulator 
-Increment nearest mean's count 
-For each mean: (update means) 
-mean = meanAccumulator / meanCount  
+* Divide the space between the highest Y value and the lowest into K+1 (configurable) equal sections 
+* Initialize the means vector with these K lines 
+* Until [no change in means vector]:  
+    * for each point
+        * Find nearest mean 
+        * Add to nearest mean accumulator 
+        * Increment nearest mean's count 
+    * For each mean: (update means) 
+        * mean = meanAccumulator / meanCount  
 
 Now each mean (= horizontal line) should have aligned it's self with the nearest step. 
 
 To create the step line we now need to decide when to move from one step to the next, this is done by going over the points, and deciding to step when we see X points which belong to the next cluster. (here we can demand points to be consecutive, thus using a more strict approach when the data is messy) 
 
-Linear regression is done by using a simple Linear least squares algorithm.  
+**Linear regression** is done by using a simple Linear least squares algorithm.  
 
 ## Future Work 
 
